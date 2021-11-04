@@ -8,7 +8,7 @@
   <input class="email" type="email" id="email" name="email"><br>
   <label for="password">Mot de passe:</label><br>
   <input class="password" type="password" id="password" name="password"><br><br>
-  <input class="validate" type="submit" value="Valider">
+  <input class="validate" type="submit" value="Connexion">
 </form> 
 </template>
 
@@ -50,6 +50,7 @@ a {
 }
 .validate{
   width:20%;
-  height:30px;
+  height:50px;
+  border-radius:20px;
 }
 </style>

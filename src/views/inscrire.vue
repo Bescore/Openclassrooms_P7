@@ -1,5 +1,15 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <inscrire inscrireinput= 'Rejoignez nous !'/>
   </div>
 </template>
+<script>
+
+  import inscrire from '@/components/inscrire.vue'
+export default {
+  name: 'inscription',
+  components: {
+    inscrire
+  }
+}
+</script>
