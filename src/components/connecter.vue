@@ -2,6 +2,14 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
   </div>
+
+   <form >
+  <label  for="email">Email:</label><br>
+  <input class="email" type="email" id="email" name="email"><br>
+  <label for="password">Mot de passe:</label><br>
+  <input class="password" type="password" id="password" name="password"><br><br>
+  <input class="validate" type="submit" value="Valider">
+</form> 
 </template>
 
 <script>
@@ -28,5 +36,20 @@ li {
 }
 a {
   color: #42b983;
+}
+@mixin input-size{
+  margin: 10px;
+  height: 30px;
+  width:30%;
+}
+.email{
+ @include input-size
+}
+.password{
+   @include input-size
+}
+.validate{
+  width:20%;
+  height:30px;
 }
 </style>

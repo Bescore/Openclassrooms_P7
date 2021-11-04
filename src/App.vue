@@ -28,7 +28,7 @@
   }
 }
 .groupopict{
-  width:350px;
-  height:350px;
+  width:250px;
+  height:250px;
 }
 </style>
