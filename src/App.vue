@@ -16,7 +16,7 @@
 }
 
 #nav {
-  padding:50px;
+  padding:20px;
 
   a {
     font-weight: bold;
@@ -25,10 +25,17 @@
     &.router-link-exact-active {
       color: #db590d;
     }
+    text-decoration: none;
   }
+  
+  text-align: right;
 }
 .groupopict{
   width:250px;
   height:250px;
+}
+.groupicon{
+  width: 50px;
+  height:50px;
 }
 </style>

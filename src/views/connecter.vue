@@ -8,11 +8,10 @@
 <script>
 // @ is an alias to /src
 import connecter from '@/components/connecter.vue'
-
 export default {
   name: 'connection',
   components: {
     connecter
-  }
+  },
 }
 </script>

@@ -1,4 +1,5 @@
 <template>
+
   <div class="about">
     <inscrire inscrireinput= 'Rejoignez nous !'/>
   </div>
