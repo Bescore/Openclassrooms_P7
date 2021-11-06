@@ -42,7 +42,7 @@ export default {
   methods:{
     async poster(){
       event.preventDefault()
-      await axios.post("https://localhost:3000/comment",{
+      await axios.post("https://localhost:3000/feed/comment",{
       commentaire: document.getElementById('comments').value,
     })
     .then((response)=>{
