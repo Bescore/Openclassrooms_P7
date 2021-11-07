@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import connecter from '../views/connecter.vue'
 import poster from '../views/poster.vue'
+import compte from '../views/compte.vue'
 const routes = [
   {
     path: '/',
@@ -16,6 +17,11 @@ const routes = [
     path: '/feed',
     name:' post',
     component: poster
+  },
+  {
+    path: '/compte',
+    name: 'compte',
+    component:compte
   }
   ]
 

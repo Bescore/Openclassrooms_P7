@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img class="groupopict" src="@\assets\icon-above-font.png">
-    <connecter msg="Connectons-nous !"/>
+    <connecter msg="Connectez-vous !"/>
   </div>
 </template>
 
