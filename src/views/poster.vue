@@ -10,6 +10,7 @@
     <div>Titre</div>
     <div class="photo"></div>
     <div class="posts-comments"><div class="posts-comments-child" :key="index" v-for="(posters, index) in posters">{{posters.name}}</div></div>
+    <div class="posts-comments"><div class="posts-comments-child" :key="index" v-for="(posters, index) in posters">{{posters.name}}</div></div>
     <form class="form">
       <div class="like-contenair">
       <div>J'aime</div>
@@ -95,7 +96,7 @@ export default {
 .posts {
   padding:20px;
   width: 600px;
-  height: 650px;
+  height: 700px;
   margin: auto;
   margin-top: 50px;
   border: orange solid 2px;
@@ -105,7 +106,7 @@ export default {
 }
 .photo{
   width:550px;
-  height:320px;
+  height:220px;
   margin:auto;
   position: relative;
   top:20px;
@@ -122,7 +123,7 @@ export default {
 .posts-comments{
   width:580px;
   height:100px;
-  margin:auto;
+  margin:10px;
   position: relative;
   top:30px;
   border:green solid;
