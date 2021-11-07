@@ -13,6 +13,13 @@
       id="password"
       name="password"
     /><br /><br />
+    <label for="pseudo">Pseudonyme :</label><br />
+    <input
+      class="password"
+      type="text"
+      id="pseudo"
+      name="pseudo"
+    /><br /><br />
     <input
       class="validate"
       @click="connected(),redirect()"
