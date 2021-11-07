@@ -1,6 +1,8 @@
 <template>
-  <router-link class="compte" to="/compte"> Mon Compte |</router-link>
-  <router-link class="compte" to="/"> Se deconnecter |</router-link>
+  <div class="compte-banner">
+  <router-link class="compte" to="/compte">Mon Compte</router-link>
+  <router-link class="compte" to="/">Se deconnecter</router-link>
+  </div>
   <div>
     <div class="actualite">Fil d'actualité aujourd'hui</div>
   </div>
@@ -70,13 +72,25 @@ export default {
   font-weight: bold;
   margin-top: 20px;
   padding: 20px;
-  border: rgb(145, 96, 96) solid 2px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   background-color: rgb(233, 219, 219);
 }
 .compte {
+  margin:10px;
   text-decoration: none;
   color: black;
   font-weight: bold;
+}
+.compte-banner{
+  margin: auto;
+  width:300px;
+  height:30px;
+  border:red solid;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  border-radius:20px;
 }
 .posts {
   padding:20px;
@@ -91,7 +105,7 @@ export default {
 }
 .photo{
   width:550px;
-  height:200px;
+  height:320px;
   margin:auto;
   position: relative;
   top:20px;
@@ -107,7 +121,7 @@ export default {
 }
 .posts-comments{
   width:580px;
-  height:200px;
+  height:100px;
   margin:auto;
   position: relative;
   top:30px;
@@ -121,7 +135,7 @@ export default {
   justify-content: center;
 }
 .commentaire {
-  width: 300px;
+  width: 400px;
   height: 50px;
   margin-bottom: 10px;
   resize: none;
