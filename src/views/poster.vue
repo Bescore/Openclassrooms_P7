@@ -27,18 +27,22 @@
     <input @click='poster' type="submit" value="Commenter" />
   </form>
   </div>
-  
+  <posting_box></posting_box>
 </template>
 
 <script>
 import axios from "axios";
 import poster from "@/views/poster.vue";
+import posting_box from '@/components/posting_box.vue'
 export default {
+  components:{
+    posting_box
+  },
   name: poster,
   data() {
     return {
       posters: null,
-      posting:2,
+      posting:1,
     };
   },
   async mounted() {
