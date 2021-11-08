@@ -2,6 +2,11 @@
     <h1>Vos informations personelles</h1>
     <div class="actualite-contenair"><router-link class="actualite" to="/feed">Actualités</router-link></div>
     <div class="compte-contenair">
+        <div class="compte-contains">
+            <div class='compte-contenair-photo'></div>
+            <div class="compte-contenair-photo-label"></div>
+        </div>
+        <div class="compte-contains-infos"></div>
     </div>
 </template>
 
@@ -28,12 +33,41 @@ export default {
     color: #15171a;
     text-decoration: none;
   }
+.compte-contains{
+    display: flex;
+}
 .compte-contenair{
     margin:auto;
     margin-top:20px;
-    width: 650px;
+    width: 850px;
     height:700px;
     border:springgreen solid;
 
 }
+.compte-contenair-photo{
+    width:300px;
+    height:300px;
+    border: hotpink solid ;
+    border-radius:50%;
+    position: relative;
+    left:50px;
+     top:50px;
+}
+.compte-contenair-photo-label{
+width:300px;
+height: 300px;
+border: blue solid;
+position: relative;
+left:150px;
+top:50px;
+}
+.compte-contains-infos{
+width:800px;
+height:290px;
+border:yellow solid;
+position: relative;
+left:20px;
+top:90px
+}
+
 </style>
