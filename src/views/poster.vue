@@ -2,14 +2,14 @@
   <div class="compte-banner">
     <img class="compte-banner-round-pic" src="@/assets/user-icon.png"/>
   <router-link class="compte" to="/compte">Mon Compte</router-link>
-  <router-link class="compte" to="/">Se deconnecter</router-link>
+  <router-link class="compte" to="/">Se déconnecter</router-link>
   </div>
   <div>
     <div class="actualite">Fil d'actualité aujourd'hui</div>
   </div>
   <div class="posts" :key="index" v-for="(posting, index) in posting">
     <div>Titre</div>
-    <div class="photo"></div>
+    <img src="@\assets\post.jpg" class="photo"/>
     <div class="posts-comments"><div class="posts-comments-child" :key="index" v-for="(posters, index) in posters">{{posters.name}}</div></div>
     <div class="posts-comments"><div class="posts-comments-child" :key="index" v-for="(posters, index) in posters">{{posters.name}}</div></div>
     <form class="form">
@@ -119,6 +119,7 @@ overflow: hidden;
   border-radius:20px;
   background-color: #f2f2f2;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  
 }
 .photo{
   width:550px;
@@ -126,6 +127,7 @@ overflow: hidden;
   margin:auto;
   position: relative;
   top:20px;
+  object-fit: contain;
 
   border-radius:20px;
   background-color: white;
