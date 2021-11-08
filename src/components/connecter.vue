@@ -12,11 +12,7 @@
       type="password"
       id="password"
       name="password"
-    /><br />
-    <label for="pseudo">Nom :</label><br />
-    <input class="password" type="text" id="pseudo" name="pseudo" /><br />
-    <label for="pseudo">Prénom :</label><br />
-    <input class="password" type="text" id="pseudo" name="pseudo" /><br /><br />
+    /><br /><br />
     <input
       class="validate"
       @click="connected(), redirect()"
