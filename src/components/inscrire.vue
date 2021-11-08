@@ -14,15 +14,17 @@
       type="password"
       id="password"
       name="password"
-    /><br /><br />
-    <label for="pseudo">Pseudonyme :</label><br />
+    /><br />
+    <label for="pseudo">Nom :</label><br />
+    <input class="password" type="text" id="pseudo" name="pseudo" /><br />
+    <label for="pseudo">Prénom :</label><br />
+    <input class="password" type="text" id="pseudo" name="pseudo" /><br /><br />
     <input
-      class="password"
-      type="text"
-      id="pseudo"
-      name="pseudo"
-    /><br /><br />
-    <input class="validate" @click="redirect()" type="submit" value="Connexion" />
+      class="validate"
+      @click="redirect()"
+      type="submit"
+      value="Connexion"
+    />
   </form>
 </template>
 
@@ -35,10 +37,10 @@ export default {
   props: {
     inscrireinput: String,
   },
-  methods:{
-    redirect(){
-      this.$router.push('/feed')
-    }
-  }
+  methods: {
+    redirect() {
+      this.$router.push("/feed");
+    },
+  },
 };
 </script>

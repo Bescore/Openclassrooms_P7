@@ -12,17 +12,14 @@
       type="password"
       id="password"
       name="password"
-    /><br /><br />
-    <label for="pseudo">Pseudonyme :</label><br />
-    <input
-      class="password"
-      type="text"
-      id="pseudo"
-      name="pseudo"
-    /><br /><br />
+    /><br />
+    <label for="pseudo">Nom :</label><br />
+    <input class="password" type="text" id="pseudo" name="pseudo" /><br />
+    <label for="pseudo">Prénom :</label><br />
+    <input class="password" type="text" id="pseudo" name="pseudo" /><br /><br />
     <input
       class="validate"
-      @click="connected(),redirect()"
+      @click="connected(), redirect()"
       type="submit"
       value="Connexion"
     />
@@ -39,20 +36,21 @@ export default {
   methods: {
     redirect() {
       this.$router.push("/feed");
-    }, 
-    async connected(){
-      event.preventDefault()
-      await axios.post("https://localhost:3000/login",{
-      email: document.getElementById('email').value,
-      password: document.getElementById('password').value,
-    })
-    .then((response)=>{
-      console.log(response);
-    }),(error)=>{
-      console.log(error)
-    }
-    
-  }
+    },
+    async connected() {
+      event.preventDefault();
+      await axios
+        .post("https://localhost:3000/login", {
+          email: document.getElementById("email").value,
+          password: document.getElementById("password").value,
+        })
+        .then((response) => {
+          console.log(response);
+        }),
+        (error) => {
+          console.log(error);
+        };
+    },
   },
 };
 </script>
@@ -64,6 +62,7 @@ a {
 }
 @mixin input-size {
   margin: 10px;
+  margin-bottom: 5px;
   height: 30px;
   width: 30%;
 }
