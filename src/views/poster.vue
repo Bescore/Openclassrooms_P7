@@ -1,6 +1,6 @@
 <template>
   <div class="compte-banner">
-    <img class="compte-banner-round-pic" src="i"/>
+    <img class="compte-banner-round-pic" src="@/assets/user-icon.png"/>
   <router-link class="compte" to="/compte">Mon Compte</router-link>
   <router-link class="compte" to="/">Se deconnecter</router-link>
   </div>
@@ -106,7 +106,6 @@ export default {
 .compte-banner-round-pic{
 width: 50px;
 height: 50px;
-border:grey solid 0.5px;
 border-radius:50%;
 overflow: hidden;
 }

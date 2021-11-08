@@ -38,8 +38,8 @@ export default {
     width:150px;
     height:30px;
     border-radius: 30px;
-    border:purple solid;
     display:flex;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
     
 }
 .actualite {
@@ -55,22 +55,20 @@ export default {
     margin-top:20px;
     width: 850px;
     height:760px;
-    border:springgreen solid;
-
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+    border-radius:5px;
 }
 .compte-contenair-photo{
     width:300px;
     height:300px;
-    border: hotpink solid ;
     border-radius:50%;
     position: relative;
     left:50px;
-     top:50px;
+    top:50px;
 }
 .compte-contenair-photo-label{
 width:400px;
 height: 300px;
-border: blue solid;
 position: relative;
 left:110px;
 top:50px;
@@ -78,7 +76,6 @@ top:50px;
 .compte-contains-infos{
 width:800px;
 height:350px;
-border:yellow solid;
 position: relative;
 left:20px;
 top:90px;
@@ -95,7 +92,7 @@ align-items: center;
 .form-buttons{
     width:300px;
     height: 300px;
-    border: red solid;
+    
     display: flex;
     flex-direction: column;
 }
