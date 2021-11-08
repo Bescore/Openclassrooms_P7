@@ -1,5 +1,6 @@
 <template>
   <div class="compte-banner">
+    <img class="compte-banner-round-pic" src="i"/>
   <router-link class="compte" to="/compte">Mon Compte</router-link>
   <router-link class="compte" to="/">Se deconnecter</router-link>
   </div>
@@ -73,13 +74,16 @@ export default {
 
 
 <style scoped>
+
+
 .actualite {
   font-weight: bold;
-  margin-top: 20px;
+  margin: auto;
+  margin-top: 40px;
   padding: 20px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  background-color: rgb(233, 219, 219);
+  width:600px;
+  background-color: #f2f2f2;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 .compte {
   margin:10px;
@@ -89,13 +93,22 @@ export default {
 }
 .compte-banner{
   margin: auto;
-  width:300px;
-  height:30px;
-  border:red solid;
+  padding:20px;
+  width:600px;
+  height:50px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
   display:flex;
   justify-content: center;
   align-items: center;
-  border-radius:20px;
+  border-radius:5px;
+  background-color: #f2f2f2;
+}
+.compte-banner-round-pic{
+width: 50px;
+height: 50px;
+border:grey solid 0.5px;
+border-radius:50%;
+overflow: hidden;
 }
 .posts {
   padding:20px;
@@ -103,10 +116,10 @@ export default {
   height: 700px;
   margin: auto;
   margin-top: 50px;
-  border: orange solid 2px;
   margin-bottom:30px;
   border-radius:20px;
-  
+  background-color: #f2f2f2;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 .photo{
   width:550px;
@@ -114,8 +127,9 @@ export default {
   margin:auto;
   position: relative;
   top:20px;
-  border: red solid;
+
   border-radius:20px;
+  background-color: white;
 }
 .like-contenair{
   display: flex;
@@ -130,8 +144,9 @@ export default {
   margin:10px;
   position: relative;
   top:30px;
-  border:green solid;
+  border:grey solid 1px;
   overflow:auto;
+  background-color: white;
 }
 .posts-comments-child{
   margin:20px;

@@ -1,7 +1,8 @@
 <template>   
 <form class="create-posts-contains">
     <div class="create-posts-contains-inputs">
-    <textarea class="create-posts-contains-inputs-commentaires" placeholder= "réagissez ici!"></textarea>
+        <textarea class="create-posts-contains-inputs-title" placeholder= "Ajouter un titre à votre post"></textarea>
+    <textarea class="create-posts-contains-inputs-commentaires" placeholder= "Réagissez ici!"></textarea>
     <label for="photo">Ajoutez une photo, un fichier .gif par exemple</label>
     <input id="photo" type="file" accept=".png,.jpeg,.jpg,.gif"/>
     <input type="submit" value="Créer Post !"/>
@@ -21,18 +22,21 @@ export default {
     padding: 20px;
     width: 600px;
     height: 400px;
-    border:red solid;
-    border-radius:20px;
+    border-radius:10px;
     margin:auto;
-    
+    background-color: #f2f2f2;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
     
 }
 .create-posts-contains-inputs{
     height: 400px;
-    border: indianred solid;
     display:flex;
     flex-direction: column;
     justify-content: space-evenly;
+    background-color: #f2f2f2;
+}
+.create-posts-contains-inputs-title{
+    resize: none;
 }
 .create-posts-contains-inputs-commentaires{
 height:200px;
