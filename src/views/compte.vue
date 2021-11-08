@@ -12,9 +12,9 @@
         </div>
         <div class="compte-contains-infos">
             <form class="form-buttons">
-                <input class="form-buttons-btns" type="submit" value="Modifier mon Nom">
-                <input class="form-buttons-btns" type="submit" value="Modifier mon Prénom">
-                <input class="form-buttons-btns" type="submit" value="Modifier mon Email">
+                <input class="form-buttons-btns" type="submit" value="Modifier mon Nom"><br/>
+                <input class="form-buttons-btns" type="submit" value="Modifier mon Prénom"><br/>
+                <input class="form-buttons-btns" type="submit" value="Modifier mon Email"><br/>
                 <label for="img">Modifier la photo</label>
                 <input id="img" class="form-buttons-btns" type="file" accept="image/*">
                 <input class="form-buttons-btns" type="submit" value="Désactiver mon compte">
@@ -91,14 +91,16 @@ align-items: center;
     
 }
 .form-buttons{
-    width:300px;
+    width:400px;
     height: 300px;
     
     display: flex;
     flex-direction: column;
 }
 .form-buttons-btns{
-    margin:17px;
+    margin:5px;
+    border-radius:10px 100px / 120px;
+    height:100px;
 }
 
 
