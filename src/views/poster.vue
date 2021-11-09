@@ -14,8 +14,8 @@
     <div class="posts-comments"><div class="posts-comments-child" :key="index" v-for="(posters, index) in posters">{{posters.name}}</div></div>
     <form class="form">
       <div class="like-contenair">
-      <div  id="like" class="like-contenair-child"><font-awesome-icon icon="thumbs-up" size="lg" /></div>
-      <div id="dislike" class="like-contenair-child"><font-awesome-icon icon="thumbs-down" size="lg" /></div>
+      <div  id="like" class="like-contenair-child"><font-awesome-icon icon="thumbs-up" size="2x" /></div>
+      <div id="dislike" class="like-contenair-child"><font-awesome-icon icon="thumbs-down" size="2x" /></div>
       </div>
       <label class="commentaire-label" for="comments">Ajouter un commentaire:</label>
     <div>
