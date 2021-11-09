@@ -14,8 +14,8 @@
     <div class="posts-comments"><div class="posts-comments-child" :key="index" v-for="(posters, index) in posters">{{posters.name}}</div></div>
     <form class="form">
       <div class="like-contenair">
-      <div>J'aime</div>
-      <div>Je n'aime pas</div>
+      <div  id="like" class="like-contenair-child"><font-awesome-icon icon="thumbs-up" size="lg" /></div>
+      <div id="dislike" class="like-contenair-child"><font-awesome-icon icon="thumbs-down" size="lg" /></div>
       </div>
       <label class="commentaire-label" for="comments">Ajouter un commentaire:</label>
     <div>
@@ -133,11 +133,31 @@ overflow: hidden;
   background-color: white;
 }
 .like-contenair{
+  margin:auto;
+  width: 350px;
   display: flex;
   justify-content: space-around;
   position: relative;
   bottom:20px;
 
+}
+.like-contenair-child{
+  border-radius: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border:grey solid 1px;
+  width:50px;
+  height:50px;
+  
+}
+#like:hover{
+ box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px; 
+ background-color: rgb(191, 221, 178);
+}
+#dislike:hover{
+ box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px; 
+ background-color:rgb(196, 143, 143) ;
 }
 .posts-comments{
   width:580px;
@@ -145,7 +165,6 @@ overflow: hidden;
   margin:10px;
   position: relative;
   top:30px;
-  border:grey solid 1px;
   overflow:auto;
   background-color: white;
 }

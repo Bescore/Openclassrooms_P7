@@ -18,7 +18,6 @@
                 <label for="img">Modifier la photo</label>
                 <input id="img" class="form-buttons-btns" type="file" accept="image/*">
                 <input class="form-buttons-btns" type="submit" value="Désactiver mon compte">
-
             </form>
         </div>
     </div>

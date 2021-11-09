@@ -37,9 +37,11 @@ export default {
 }
 .create-posts-contains-inputs-title{
     resize: none;
+    border: none;
 }
 .create-posts-contains-inputs-commentaires{
 height:200px;
 resize: none;
+border: none;
 }
 </style>
