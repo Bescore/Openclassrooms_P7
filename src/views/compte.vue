@@ -29,7 +29,7 @@ export default {
 }
 </script>
 
-<style lang=scss >
+<style lang="scss"  >
 .actualite-contenair{
     margin:auto;
     align-items: center;
