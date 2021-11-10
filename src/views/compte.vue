@@ -12,25 +12,71 @@
         </div>
         <div class="compte-contains-infos">
             <form class="form-buttons">
-                <input class="form-buttons-btns" type="submit" value="Modifier mon Nom"><br/>
-                <input class="form-buttons-btns" type="submit" value="Modifier mon Prénom"><br/>
-                <input class="form-buttons-btns" type="submit" value="Modifier mon Email"><br/>
+                <input @click="change_lastname()" class="form-buttons-btns" type="submit" value="Modifier mon Nom"><br/>
+                <input @click="change_firstname()" class="form-buttons-btns" type="submit" value="Modifier mon Prénom"><br/>
+                <input @click="change_email()" class="form-buttons-btns" type="submit" value="Modifier mon Email"><br/>
                 <label for="img">Modifier la photo</label>
                 <input id="img" class="form-buttons-btns" type="file" accept="image/*">
-                <input class="form-buttons-btns" type="submit" value="Désactiver mon compte">
+                <input @click="change_image()" class="form-buttons-btns" type="submit" value="Changer de photo">
             </form>
             <form class="form-inputs">
-                <input class="form-buttons-inputs" type="textarea" name="nom"/>
-                <input class="form-buttons-inputs" type="textarea" name="prénom"/>
-                <input class="form-buttons-inputs" type="textarea" name="email"/>
+                <input  id="Newname" class="form-buttons-inputs" type="textarea" placeholder="Saisir les nouvelles informations ici" name="nom"/>
+                <input  id="Firstname" class="form-buttons-inputs" type="textarea" placeholder="Saisir les nouvelles informations ici" name="prénom"/>
+                <input id="email" class="form-buttons-inputs" type="textarea" placeholder="Saisir les nouvelles informations ici" name="email"/>
             </form>
         </div>
     </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
-    
+methods:{
+    async change_image(){
+      event.preventDefault()
+      await axios.put("https://localhost:3000/user",{
+     image:document.getElementById('img').value
+    })
+    .then((response)=>{
+      console.log(response);
+    }),(error)=>{
+      console.log(error)
+    }
+    },
+    async change_email(){
+      event.preventDefault()
+      await axios.put("https://localhost:3000/user",{
+     email:document.getElementById('email').value
+    })
+    .then((response)=>{
+      console.log(response);
+    }),(error)=>{
+      console.log(error)
+    }
+    },
+    async change_firstname(){
+      event.preventDefault()
+      await axios.put("https://localhost:3000/user",{
+     prenom:document.getElementById('Firstname').value
+    })
+    .then((response)=>{
+      console.log(response);
+    }),(error)=>{
+      console.log(error)
+    }
+    },
+    async change_lastname(){
+      event.preventDefault()
+      await axios.put("https://localhost:3000/user",{
+     nom:document.getElementById('Newname').value
+    })
+    .then((response)=>{
+      console.log(response);
+    }),(error)=>{
+      console.log(error)
+    }
+    },
+}
 }
 </script>
 
