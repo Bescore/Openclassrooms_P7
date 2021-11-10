@@ -14,11 +14,11 @@
     <div class="posts-comments"><div class="posts-comments-child" :key="index" v-for="(posters, index) in posters">{{posters.name}}</div></div>
     <form class="form">
       <div class="like-contenair">
-      <div  id="like" class="like-contenair-child"><font-awesome-icon icon="thumbs-up" size="2x" /></div>
-      <div id="dislike" class="like-contenair-child"><font-awesome-icon icon="thumbs-down" size="2x" /></div>
+      <div  id="like" class="like-contenair-child"><font-awesome-icon icon="thumbs-up" size="lg" /></div>
+      <div id="dislike" class="like-contenair-child"><font-awesome-icon icon="thumbs-down" size="lg" /></div>
       </div>
-      <label class="commentaire-label" for="comments">Ajouter un commentaire:</label>
-    <div>
+      <label class="commentaire-label" for="comments">Ajouter un commentaire :</label>
+    <div><br/>
       <textarea
         class="commentaire"
         name="commentaires"
@@ -170,6 +170,7 @@ height: 50px;
 border-radius:50%;
 overflow: hidden;
 }
+
 .posts {
   padding:20px;
   width: 600px;
@@ -190,7 +191,8 @@ overflow: hidden;
   top:20px;
   object-fit: contain;
 
-  border-radius:20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius:20px ;
   background-color: white;
 }
 .like-contenair{
@@ -221,9 +223,10 @@ color: rgb(173, 74, 74);
 @include bounce;
 }
 .posts-comments{
-  width:580px;
+  width:550px;
   height:100px;
-  margin:10px;
+  margin:auto;
+  margin-top:10px;
   position: relative;
   top:30px;
   overflow:auto;
