@@ -281,6 +281,7 @@ background-color: rgb(213, 223, 233);
   position: relative;
   top:30px;
   overflow:auto;
+  background-color: #dbbebe;
 }
 .posts-comments-child{
   margin:20px;
