@@ -5,7 +5,7 @@
   <router-link class="compte" to="/">Se déconnecter</router-link>
   </div>
   <div>
-    <div class="actualite">Fil d'actualité aujourd'hui</div>
+    <div class="actualite">Bonjour {{user.name}}, votre fil d'actualité aujourd'hui !</div>
     <font-awesome-icon  class=" swingimage" icon="bell" size="2x" />
   </div>
   <div>
@@ -48,7 +48,12 @@ export default {
       commentaires:null,
       posters: null,
       posting:1,
+      user:null
     };
+  },
+  async created(){
+    axios.get('user')
+    .then((res)=>this.user=res)
   },
   async posting() {
     await axios.get("feed/posts")

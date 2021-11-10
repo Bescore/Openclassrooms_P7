@@ -39,6 +39,7 @@ export default {
         })
         .then((response) => {
           console.log(response);
+          localStorage.setItem('token',response.data.token)
         this.$router.push("/feed");
         })
         .catch((err) => {
