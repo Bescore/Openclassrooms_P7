@@ -6,7 +6,9 @@
   </div>
   <div>
     <div class="actualite">Fil d'actualité aujourd'hui</div>
+    <font-awesome-icon  class=" swingimage" icon="bell" size="2x" />
   </div>
+  <div>
   <div class="posts" :key="index" v-for="(posting, index) in posting">
     <div>Titre</div>
     <img src="@\assets\post.jpg" class="photo"/>
@@ -25,8 +27,9 @@
         id="comments"
       ></textarea>
     </div>
-    <input @click='poster' type="submit" value="Commenter" />
+    <input class="add-comments-btn" @click='poster' type="submit" value="Commenter" />
   </form>
+  </div>
   </div>
   <posting_box></posting_box>
 </template>
@@ -134,6 +137,7 @@ export default {
 }
 
 .actualite {
+  border-radius:5px;
   font-weight: bold;
   margin: auto;
   margin-top: 40px;
@@ -174,7 +178,7 @@ overflow: hidden;
 .posts {
   padding:20px;
   width: 600px;
-  height: 700px;
+  height: 720px;
   margin: auto;
   margin-top: 50px;
   margin-bottom:30px;
@@ -222,6 +226,13 @@ color:rgb(118, 199, 83) ;
 color: rgb(173, 74, 74);
 @include bounce;
 }
+.add-comments-btn{
+border-radius: 5px ;
+height:40px;
+width:200px;
+background-color: rgb(213, 223, 233);
+
+}
 .posts-comments{
   width:550px;
   height:100px;
@@ -243,10 +254,31 @@ color: rgb(173, 74, 74);
   height: 50px;
   margin-bottom: 10px;
   resize: none;
+  border:none;
 }
 .form{
 position:relative;
 top:70px
+}
+
+@-webkit-keyframes swinging{
+    0%{-webkit-transform: rotate(20deg);}
+    50%{-webkit-transform: rotate(-15deg)}
+    100%{-webkit-transform: rotate(20deg);}
+}
+ 
+@keyframes swinging{
+    0%{transform: rotate(20deg);}
+    50%{transform: rotate(-15deg)}
+    100%{transform: rotate(20deg);}
+}
+ 
+.swingimage{
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    -webkit-animation: swinging 1.5s ease-in-out forwards infinite;
+    animation: swinging 1.5s ease-in-out forwards infinite;
+    
 }
 
 </style>

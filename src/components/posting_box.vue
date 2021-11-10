@@ -5,7 +5,7 @@
     <textarea class="create-posts-contains-inputs-commentaires" placeholder= "Réagissez ici!"></textarea>
     <label for="photo">Ajoutez une photo, un fichier .gif par exemple</label>
     <input id="photo" type="file" accept=".png,.jpeg,.jpg,.gif"/>
-    <input type="submit" value="Créer Post !"/>
+    <input class="create-posts-contains-inputs-btn" type="submit" value="Créer Post !"/>
     </div>
 </form>   
 </template>
@@ -43,5 +43,13 @@ export default {
 height:200px;
 resize: none;
 border: none;
+}
+.create-posts-contains-inputs-btn{
+border-radius: 5px ;
+height:40px;
+width:200px;
+background-color: rgb(213, 223, 233);
+margin-left:auto;
+margin-right: auto;
 }
 </style>
