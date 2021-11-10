@@ -234,11 +234,10 @@ overflow: hidden;
   margin:auto;
   position: relative;
   top:20px;
-  object-fit: contain;
-
+  object-fit: cover;
   border-top-left-radius: 20px;
   border-top-right-radius:20px ;
-  background-color: white;
+  
 }
 .like-contenair{
   margin:auto;
@@ -282,7 +281,6 @@ background-color: rgb(213, 223, 233);
   position: relative;
   top:30px;
   overflow:auto;
-  background-color: white;
 }
 .posts-comments-child{
   margin:20px;
