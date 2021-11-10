@@ -15,7 +15,7 @@
     /><br /><br />
     <input
       class="validate"
-      @click="connected(), redirect()"
+      @click="connected()"
       type="submit"
       value="Connexion"
     />
@@ -30,22 +30,20 @@ export default {
     msg: String,
   },
   methods: {
-    redirect() {
-      this.$router.push("/feed");
-    },
     async connected() {
       event.preventDefault();
       await axios
-        .post("https://localhost:3000/login", {
+        .post("login", {
           email: document.getElementById("email").value,
           password: document.getElementById("password").value,
         })
         .then((response) => {
           console.log(response);
-        }),
-        (error) => {
-          console.log(error);
-        };
+        this.$router.push("/feed");
+        })
+        .catch((err) => {
+          console.log(err + " "+ "envoi du login n'a pas aboutie");
+        })
     },
   },
 };

@@ -51,7 +51,7 @@ export default {
     };
   },
   async posting() {
-    await axios.get("https://localhost:3000/feed/posts")
+    await axios.get("feed/posts")
     .then((response) => {
       this.posting = response.data;
       console.log(this.posting);
@@ -60,7 +60,7 @@ export default {
     
   },
   async commentaires() {
-    await axios.get("https://localhost:3000/feed/commentaires")
+    await axios.get("feed/commentaires")
     .then((response) => {
       this.commentaires = response.data;
       console.log(this.commentaires);
@@ -69,7 +69,7 @@ export default {
     
   },
   async mounted() {
-    await axios.get("https://localhost:3000/feed/posters")
+    await axios.get("feed/posters")
     .then((response) => {
       this.commentaires = response.data;
       console.log(this.commentaires);
@@ -80,7 +80,7 @@ export default {
   methods:{
     async dislike(){
       event.preventDefault()
-      await axios.post("https://localhost:3000/feed/dislike",{
+      await axios.post("feed/dislike",{
      dislike:1
     })
     .then((response)=>{
@@ -91,7 +91,7 @@ export default {
     },
     async like(){
       event.preventDefault()
-      await axios.post("https://localhost:3000/feed/like",{
+      await axios.post("feed/like",{
      like:1
     })
     .then((response)=>{
@@ -102,7 +102,7 @@ export default {
     },
     async addcomment(){
       event.preventDefault()
-      await axios.post("https://localhost:3000/feed/comment",{
+      await axios.post("feed/comment",{
       
       commentaire: document.getElementById('comments').value,
     })

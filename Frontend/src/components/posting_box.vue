@@ -17,7 +17,7 @@ export default {
     methods:{
     async addcomment(){
       event.preventDefault()
-      await axios.post("https://localhost:3000/feed/post",{
+      await axios.post("feed/post",{
       
       post_title: document.getElementById('post_title').value,
       post_body:document.getElementById('post_body').value,

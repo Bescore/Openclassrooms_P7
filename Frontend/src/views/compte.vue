@@ -34,7 +34,7 @@ export default {
 methods:{
     async change_image(){
       event.preventDefault()
-      await axios.put("https://localhost:3000/user",{
+      await axios.put("user",{
      image:document.getElementById('img').value
     })
     .then((response)=>{
@@ -45,7 +45,7 @@ methods:{
     },
     async change_email(){
       event.preventDefault()
-      await axios.put("https://localhost:3000/user",{
+      await axios.put("user",{
      email:document.getElementById('email').value
     })
     .then((response)=>{
@@ -56,7 +56,7 @@ methods:{
     },
     async change_firstname(){
       event.preventDefault()
-      await axios.put("https://localhost:3000/user",{
+      await axios.put("user",{
      prenom:document.getElementById('Firstname').value
     })
     .then((response)=>{
@@ -67,7 +67,7 @@ methods:{
     },
     async change_lastname(){
       event.preventDefault()
-      await axios.put("https://localhost:3000/user",{
+      await axios.put("user",{
      nom:document.getElementById('Newname').value
     })
     .then((response)=>{
