@@ -1,19 +1,35 @@
 <template>   
 <form class="create-posts-contains">
     <div class="create-posts-contains-inputs">
-        <textarea class="create-posts-contains-inputs-title" placeholder= "Ajouter un titre à votre post"></textarea>
-    <textarea class="create-posts-contains-inputs-commentaires" placeholder= "Réagissez ici!"></textarea>
+        <textarea id="post_title" class="create-posts-contains-inputs-title" placeholder= "Ajouter un titre à votre post"></textarea>
+    <textarea id="post_body" class="create-posts-contains-inputs-commentaires" placeholder= "Réagissez ici!"></textarea>
     <label for="photo">Ajoutez une photo, un fichier .gif par exemple</label>
     <input id="photo" type="file" accept=".png,.jpeg,.jpg,.gif"/>
-    <input class="create-posts-contains-inputs-btn" type="submit" value="Créer Post !"/>
+    <input  @click="addcomment()" class="create-posts-contains-inputs-btn" type="submit" value="Créer Post !"/>
     </div>
 </form>   
 </template>
 
 <script>
+import axios from "axios";
 export default {
     name:'posting_box',
-    
+    methods:{
+    async addcomment(){
+      event.preventDefault()
+      await axios.post("https://localhost:3000/feed/post",{
+      
+      post_title: document.getElementById('post_title').value,
+      post_body:document.getElementById('post_body').value,
+      post_image:document.getElementById('photo').value,
+    })
+    .then((response)=>{
+      console.log(response);
+    }),(error)=>{
+      console.log(error)
+    }
+    }
+  }
 }
 </script>
 

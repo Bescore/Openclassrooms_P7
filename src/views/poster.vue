@@ -13,11 +13,11 @@
     <div>Titre</div>
     <img src="@\assets\post.jpg" class="photo"/>
     <div class="posts-comments"><div class="posts-comments-child" :key="index" v-for="(posters, index) in posters">{{posters.name}}</div></div>
-    <div class="posts-comments"><div class="posts-comments-child" :key="index" v-for="(posters, index) in posters">{{posters.name}}</div></div>
+    <div class="posts-comments"><div class="posts-comments-child" :key="index" v-for="(commentaires, index) in commentaires">{{commentaires.commentaires}}</div></div>
     <form class="form">
       <div class="like-contenair">
-      <div  id="like" class="like-contenair-child"><font-awesome-icon icon="thumbs-up" size="lg" /></div>
-      <div id="dislike" class="like-contenair-child"><font-awesome-icon icon="thumbs-down" size="lg" /></div>
+      <div  id="like" @click="like" class="like-contenair-child"><font-awesome-icon icon="thumbs-up" size="lg" /></div>
+      <div id="dislike" @click="dislike" class="like-contenair-child"><font-awesome-icon icon="thumbs-down" size="lg" /></div>
       </div>
       <label class="commentaire-label" for="comments">Ajouter un commentaire :</label>
     <div><br/>
@@ -27,7 +27,7 @@
         id="comments"
       ></textarea>
     </div>
-    <input class="add-comments-btn" @click='poster' type="submit" value="Commenter" />
+    <input class="add-comments-btn" @click='addcomment' type="submit" value="Commenter" />
   </form>
   </div>
   </div>
@@ -45,21 +45,62 @@ export default {
   name: poster,
   data() {
     return {
+      commentaires:null,
       posters: null,
       posting:1,
     };
   },
-  async mounted() {
-    await axios.get("https://digimon-api.vercel.app/api/digimon")
+  async posting() {
+    await axios.get("https://localhost:3000/feed/posts")
     .then((response) => {
-      this.posters = response.data;
-      console.log(this.posters);
+      this.posting = response.data;
+      console.log(this.posting);
+    })
+    .catch(error=>console.log(error));
+    
+  },
+  async commentaires() {
+    await axios.get("https://localhost:3000/feed/commentaires")
+    .then((response) => {
+      this.commentaires = response.data;
+      console.log(this.commentaires);
+    })
+    .catch(error=>console.log(error));
+    
+  },
+  async mounted() {
+    await axios.get("https://localhost:3000/feed/posters")
+    .then((response) => {
+      this.commentaires = response.data;
+      console.log(this.commentaires);
     })
     .catch(error=>console.log(error));
     
   },
   methods:{
-    async poster(){
+    async dislike(){
+      event.preventDefault()
+      await axios.post("https://localhost:3000/feed/dislike",{
+     dislike:1
+    })
+    .then((response)=>{
+      console.log(response);
+    }),(error)=>{
+      console.log(error)
+    }
+    },
+    async like(){
+      event.preventDefault()
+      await axios.post("https://localhost:3000/feed/like",{
+     like:1
+    })
+    .then((response)=>{
+      console.log(response);
+    }),(error)=>{
+      console.log(error)
+    }
+    },
+    async addcomment(){
       event.preventDefault()
       await axios.post("https://localhost:3000/feed/comment",{
       

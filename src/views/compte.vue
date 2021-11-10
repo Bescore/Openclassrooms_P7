@@ -19,6 +19,11 @@
                 <input id="img" class="form-buttons-btns" type="file" accept="image/*">
                 <input class="form-buttons-btns" type="submit" value="Désactiver mon compte">
             </form>
+            <form class="form-inputs">
+                <input class="form-buttons-inputs" type="textarea" name="nom"/>
+                <input class="form-buttons-inputs" type="textarea" name="prénom"/>
+                <input class="form-buttons-inputs" type="textarea" name="email"/>
+            </form>
         </div>
     </div>
 </template>
@@ -90,17 +95,28 @@ align-items: center;
     
 }
 .form-buttons{
+    
     width:400px;
     height: 300px;
-    
     display: flex;
     flex-direction: column;
 }
 .form-buttons-btns{
     margin:5px;
-    border-radius:10px 100px / 120px;
+    border-radius:5px;
     height:100px;
 }
-
+.form-inputs{
+    margin:auto;
+    margin-top:15px;
+    display: flex;
+    flex-direction: column;
+}
+.form-buttons-inputs{
+    width: 340px;
+     margin:15px;
+    border-radius:5px;
+    height:30px;
+}
 
 </style>
