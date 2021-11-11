@@ -3,14 +3,14 @@
     <h1>{{ msg }}</h1>
   </div>
 
-  <form @submit.stop.prevent="submit">
-    <label for="email">Email :</label><br />
-    <input class="email" type="email" id="email" name="email" /><br />
-    <label for="password">Mot de passe :</label><br />
+  <form @submit.prevent="submit">
+    <label for="email_id">Email :</label><br />
+    <input class="email" type="email" id="email_id" name="email" /><br />
+    <label for="password_id">Mot de passe :</label><br />
     <input
       class="password"
       type="password"
-      id="password"
+      id="password_id"
       name="password"
     /><br /><br />
     <input
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import '../views/axios'
 import axios from "axios";
 export default {
   name: "connecteur",
@@ -34,8 +35,8 @@ export default {
       event.preventDefault();
       await axios
         .post("login", {
-          email: document.getElementById("email").value,
-          password: document.getElementById("password").value,
+          email: document.getElementById("email_id").value,
+          password: document.getElementById("password_id").value,
         })
         .then((response) => {
           console.log(response);

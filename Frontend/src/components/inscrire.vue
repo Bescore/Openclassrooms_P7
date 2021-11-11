@@ -5,7 +5,7 @@
     alt="groupomania"
   />
   <h1>{{ inscrireinput }}</h1>
-  <form @submit.prevent="submit">
+  <form @submit.stop.prevent="submit">
     <label for="email">Email :</label><br />
     <input class="email" type="email" id="email" name="email" /><br />
     <label for="password">Mot de passe :</label><br />
@@ -13,12 +13,12 @@
       class="password"
       type="password"
       id="password"
-      name="password"
+      name="password-name"
     /><br />
-    <label for="pseudo">Nom :</label><br />
-    <input class="password" type="text" id="pseudo" name="pseudo" /><br />
-    <label for="pseudo">Prénom :</label><br />
-    <input class="password" type="text" id="pseudo" name="pseudo" /><br /><br />
+    <label for="nom">Nom :</label><br />
+    <input class="password" type="text" id="nom" name="nom-name" /><br />
+    <label for="Prenom">Prénom :</label><br />
+    <input class="password" type="text" id="Prenom" name="Prenom-name" /><br /><br />
     <input
       class="validate"
       @click="redirect()"
