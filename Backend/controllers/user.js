@@ -27,12 +27,31 @@ exports.signup = ( req, res, next ) => {
 };
 
 exports.login = ( req, res, next ) => {
+    const idutilisateurs =`idutilisateurs`
+    const mdp=`md_passe`
     const email=`email`
     con.query( `SELECT ${email}  FROM utilisateurs WHERE email=${ req.body.email}` ), ( err, result ) => {
         if ( err ) throw err, console.log( 'erreur a la fonction login au niveau du query' );
         if ( result === null || result === 0 ) {
             return res.status(401).json({error:'accès non autorisé'})
         }
+        bcrypt.compare( req.body.password, con.query( `SELECT ${ mdp }  FROM utilisateurs WHERE md_passe=${ req.body.password }` ), ( err, result ) => {
+            if ( err ) throw err, console.log( 'problème à la query de recherche de mdp' );
+            if ( result === null || result === 0 ) {
+                return res.status( 200 ).json( { error: 'mdp non présent dans la base' } )
+            }
+        } )
+            .then( valid => {
+                if ( !valid ) {
+                    return res.status( 200 ).json( { error: 'le mot de passe  est incorrect ' } );
+                }
+                res.status( 200 ).json( {
+                    Id: con.query( `SELECT ${ idutilisateurs }  FROM utilisateurs WHERE md_passe=${ req.body.passwod }` ),
+                    token: 'token'
+                
+                } );
+            })
+            .catch( error => error, res.status( 200 ).json( { message: ' ceci est le catch de la fonction bcrypt' } ));
         console.log( result )
     }
 };
