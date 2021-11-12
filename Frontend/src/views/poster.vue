@@ -14,7 +14,7 @@
     <img :src="posted.post_img"  class="photo"/>
     <div  class="posts-comments"><div  class="posts-comments-child">{{posted.post_body}}</div></div>
     <div id="post-body" class="posts-comments"><div class="posts-comments-child" :key="index" v-for="(commentaires, index) in commentaires">{{commentaires.commentaires}}</div></div>
-    <form class="form">
+    <form  class="form">
       <div class="like-contenair">
       <div  id="like" @click="like"  class="like-contenair-child"><font-awesome-icon icon="thumbs-up" size="lg" /></div>
       <div class="like-count-box">{{like.likes}}</div>
@@ -26,7 +26,7 @@
       <textarea
         class="commentaire"
         name="commentaires"
-        id="comments"
+        id='comments'
       ></textarea>
     </div>
     <input class="add-comments-btn" @click='addcomment' type="submit" value="Commenter" />
@@ -82,7 +82,7 @@ export default {
       this.commentaires = response.data;
     })
     .catch(error=>console.log(error));
-    this.likee()
+    this.likee()                                  //tableau like/dislike
   },
   methods:{
     likee: function(){
@@ -107,9 +107,8 @@ export default {
     }
     },
     async addcomment(){
-      event.preventDefault()
+      event.preventDefault;
       await axios.post("feed/comment",{
-      
       commentaire: document.getElementById('comments').value,
     })
     .then((response)=>{

@@ -61,7 +61,22 @@ app.use( '/feed/like', ( req, res, next ) => {
 
 } );
 
+app.post( '/feed/comment', ( req, res, next ) => {
 
+    con.query(
+        `INSERT INTO comments(commentaires) VALUES ("${ req.body.commentaire }")`,
+
+        function ( err, results ) {
+            if ( err ) {
+                console.log( 'Erreur sur la route des comments' );
+            }
+
+            res.status( 200 ).json( results )
+
+
+        } )
+
+} );
 
 
 module.exports = app;
