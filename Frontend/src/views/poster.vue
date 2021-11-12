@@ -1,4 +1,4 @@
-<template>
+<template >
   <div class="compte-banner">
     <img class="compte-banner-round-pic" src="@/assets/user-icon.png"/>
   <router-link class="compte" to="/compte">Mon Compte</router-link>
@@ -9,11 +9,11 @@
     <font-awesome-icon  class=" swingimage" icon="bell" size="2x" />
   </div>
   <div>
-  <div class="posts" :key="index" v-for="(posting, index) in posting">
-    <div>Titre</div>
-    <img src="@\assets\post.jpg" class="photo"/>
-    <div class="posts-comments"><div class="posts-comments-child" :key="index" v-for="(posters, index) in posters">{{posters.name}}</div></div>
-    <div class="posts-comments"><div class="posts-comments-child" :key="index" v-for="(commentaires, index) in commentaires">{{commentaires.commentaires}}</div></div>
+  <div class="posts" :key="index" v-for="(posted, index) in posted">
+    <div>{{posted.titre}}</div>
+    <img :src="posted.post_img"  class="photo"/>
+    <div  class="posts-comments"><div  class="posts-comments-child">{{posted.post_body}}</div></div>
+    <div id="post-body" class="posts-comments"><div class="posts-comments-child" :key="index" v-for="(commentaires, index) in commentaires">{{commentaires.commentaires}}</div></div>
     <form class="form">
       <div class="like-contenair">
       <div  id="like" @click="like" class="like-contenair-child"><font-awesome-icon icon="thumbs-up" size="lg" /></div>
@@ -47,22 +47,14 @@ export default {
     return {
       commentaires:null,
       posters: null,
-      posting:1,
-      user:null
+      posted:null,
+      user:0
     };
   },
   async created(){
     axios.get('user')
     .then((res)=>this.user=res)
-  },
-  async posting() {
-    await axios.get("feed/posts")
-    .then((response) => {
-      this.posting = response.data;
-      console.log(this.posting);
-    })
-    .catch(error=>console.log(error));
-    
+
   },
   async commentaires() {
     await axios.get("feed/commentaires")
@@ -73,16 +65,24 @@ export default {
     .catch(error=>console.log(error));
     
   },
-  async mounted() {
-    await axios.get("feed/posters")
+  async beforeMount() {
+    await axios.get("feed/post")
     .then((response) => {
-      this.commentaires = response.data;
-      console.log(this.commentaires);
+      this.posted = response.data;
+      console.log(this.posted);
     })
-    .catch(error=>console.log(error));
+    .catch(error=>console.log(error,"problème fonction posting"));
     
   },
+  async mounted() {
+    await axios.get("feed/posters")
+    .then((response) => {                         ///COMMENTAIRES DES POSTS
+      this.commentaires = response.data;
+    })
+    .catch(error=>console.log(error));
+  },
   methods:{
+    
     async dislike(){
       event.preventDefault()
       await axios.post("feed/dislike",{
@@ -123,6 +123,19 @@ export default {
 
 
 <style lang="scss" scoped>
+
+*::-webkit-scrollbar {
+  width: 7px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #e7e4e4;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(94, 94, 119);
+  border-radius: 20px;
+}
 @mixin bounce{
   -webkit-animation-name: bounce;
   animation-name: bounce;
@@ -224,7 +237,7 @@ overflow: hidden;
 .posts {
   padding:20px;
   width: 600px;
-  height: 720px;
+  height: 820px;
   margin: auto;
   margin-top: 50px;
   margin-bottom:30px;
@@ -280,19 +293,24 @@ background-color: rgb(213, 223, 233);
 }
 .posts-comments{
   width:550px;
-  height:100px;
+  height:150px;
   margin:auto;
   margin-top:10px;
   position: relative;
   top:30px;
   overflow:auto;
-  background-color: #dbbebe;
+  border: 1px rgb(214, 209, 209) solid;
+  border-radius:5px
+}
+#post-body{
+  height:100px;
 }
 .posts-comments-child{
   margin:20px;
   display:flex;
   flex-wrap: wrap;
   justify-content: center;
+
 }
 .commentaire {
   width: 400px;
