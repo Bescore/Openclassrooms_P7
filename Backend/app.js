@@ -44,7 +44,22 @@ app.use( '/feed/post', ( req, res, next ) => {
 
 } );
 
+app.use( '/feed/like', ( req, res, next ) => {
 
+    con.query(
+        'SELECT * FROM likes ',
+
+        function ( err, results ) {
+            if ( err ) {
+                console.log( 'Erreur sur la route des likes' );
+            }
+
+            res.status( 200 ).json( results )
+
+
+        } )
+
+} );
 
 
 

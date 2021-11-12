@@ -16,8 +16,10 @@
     <div id="post-body" class="posts-comments"><div class="posts-comments-child" :key="index" v-for="(commentaires, index) in commentaires">{{commentaires.commentaires}}</div></div>
     <form class="form">
       <div class="like-contenair">
-      <div  id="like" @click="like" class="like-contenair-child"><font-awesome-icon icon="thumbs-up" size="lg" /></div>
+      <div  id="like" @click="like"  class="like-contenair-child"><font-awesome-icon icon="thumbs-up" size="lg" /></div>
+      <div class="like-count-box">{{like.likes}}</div>
       <div id="dislike" @click="dislike" class="like-contenair-child"><font-awesome-icon icon="thumbs-down" size="lg" /></div>
+      <div class="like-count-box">{{like.dislikes}}</div>
       </div>
       <label class="commentaire-label" for="comments">Ajouter un commentaire :</label>
     <div><br/>
@@ -48,7 +50,8 @@ export default {
       commentaires:null,
       posters: null,
       posted:null,
-      user:0
+      user:0,
+      like:null,
     };
   },
   async created(){
@@ -67,12 +70,11 @@ export default {
   },
   async beforeMount() {
     await axios.get("feed/post")
-    .then((response) => {
+    .then((response) => {                       //LES POSTS
       this.posted = response.data;
       console.log(this.posted);
     })
     .catch(error=>console.log(error,"problème fonction posting"));
-    
   },
   async mounted() {
     await axios.get("feed/posters")
@@ -80,24 +82,23 @@ export default {
       this.commentaires = response.data;
     })
     .catch(error=>console.log(error));
+    this.likee()
   },
   methods:{
-    
-    async dislike(){
+    likee: function(){
       event.preventDefault()
-      await axios.post("feed/dislike",{
-     dislike:1
-    })
+       axios.get("feed/like")
     .then((response)=>{
-      console.log(response);
+      this.like=response.data[0],
+      console.log(this.like)
     }),(error)=>{
       console.log(error)
     }
     },
-    async like(){
+    async dislike(){
       event.preventDefault()
-      await axios.post("feed/like",{
-     like:1
+      await axios.post("feed/dislike",{
+     dislike:1
     })
     .then((response)=>{
       console.log(response);
@@ -117,7 +118,7 @@ export default {
       console.log(error)
     }
     }
-  }
+  },
 };
 </script>
 
@@ -257,11 +258,16 @@ overflow: hidden;
   border-top-right-radius:20px ;
   
 }
+.like-count-box{
+margin-left:30px;
+margin-right: 30px;
+}
 .like-contenair{
   margin:auto;
   width: 350px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  align-items: center;
   position: relative;
   bottom:20px;
   
