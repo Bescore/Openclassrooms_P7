@@ -26,7 +26,7 @@
       <textarea
         class="commentaire"
         name="commentaires"
-        id='comments'
+        id="comments"
       ></textarea>
     </div>
     <input class="add-comments-btn" @click='addcomment' type="submit" value="Commenter" />
@@ -47,6 +47,7 @@ export default {
   name: poster,
   data() {
     return {
+      idvalue:null,
       commentaires:null,
       posters: null,
       posted:null,
@@ -72,6 +73,7 @@ export default {
     await axios.get("feed/post")
     .then((response) => {                       //LES POSTS
       this.posted = response.data;
+      this.idvalue=this.posted.idposts
       console.log(this.posted);
     })
     .catch(error=>console.log(error,"problème fonction posting"));
@@ -107,9 +109,8 @@ export default {
     }
     },
     async addcomment(){
-      event.preventDefault;
       await axios.post("feed/comment",{
-      commentaire: document.getElementById('comments').value,
+      commentaire: document.getElementById("comments").value
     })
     .then((response)=>{
       console.log(response);

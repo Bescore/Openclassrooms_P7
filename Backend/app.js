@@ -79,4 +79,22 @@ app.post( '/feed/comment', ( req, res, next ) => {
 } );
 
 
+app.post( '/feed/reagir', ( req, res, next ) => {
+
+    con.query(
+        `INSERT INTO posts(post_body,post_img,titre) VALUES ("${ req.body.post_body }","${ req.body.post_image }","${ req.body.post_title }")`,
+
+        function ( err, results ) {
+            if ( err ) {
+                console.log( 'Erreur sur la route des comments' );
+            }
+
+            res.status( 200 ).json( results )
+
+
+        } )
+
+} );
+
+
 module.exports = app;

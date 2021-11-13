@@ -16,15 +16,13 @@ export default {
     name:'posting_box',
     methods:{
     async addcomment(){
-      event.preventDefault()
-      await axios.post("feed/post",{
-      
+      await axios.post("feed/reagir",{
       post_title: document.getElementById('post_title').value,
-      post_body:document.getElementById('post_body').value,
-      post_image:document.getElementById('photo').value,
+      post_body: document.getElementById('post_body').value,
+      post_image: document.getElementById('photo').value,
     })
     .then((response)=>{
-      console.log(response);
+      console.log(response.data);
     }),(error)=>{
       console.log(error)
     }
