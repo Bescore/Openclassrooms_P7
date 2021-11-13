@@ -58,6 +58,9 @@ export default {
       nom:this.nom,
       prenom:this.prenom,
      };
+     if(data.email===''||data.password==='',data.nom==='',data.prenom===''){
+       alert('données incorrectes')
+     }else{
       axios.post("auth/signup", 
           data,
           console.log(data)
@@ -69,6 +72,7 @@ export default {
    .catch((err) => {
           console.log(err + " "+ "envoi du login n'a pas aboutie");
         })
+  }
   },
 }
 }
