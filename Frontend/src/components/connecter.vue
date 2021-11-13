@@ -34,13 +34,13 @@ export default {
     async connected() {
       event.preventDefault();
       await axios
-        .post("login", {
+        .post("auth/login", {
           email: document.getElementById("email_id").value,
           password: document.getElementById("password_id").value,
         })
         .then((response) => {
           console.log(response);
-          localStorage.setItem('token',response.data.token)
+          localStorage.setItem('token',response.data.token);
         this.$router.push("/feed");
         })
         .catch((err) => {

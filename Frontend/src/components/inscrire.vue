@@ -5,25 +5,28 @@
     alt="groupomania"
   />
   <h1>{{ inscrireinput }}</h1>
-  <form @submit.stop.prevent="submit">
+  <form @submit.stop.prevent="submit" >
     <label for="email">Email :</label><br />
-    <input class="email" type="email" id="email" name="email" /><br />
+    <input class="email" v-model="email" type="email" id="email" name="email" required="required" /><br />
     <label for="password">Mot de passe :</label><br />
     <input
+      v-model="password"
       class="password"
       type="password"
       id="password"
       name="password-name"
+      required="required"
     /><br />
-    <label for="nom">Nom :</label><br />
-    <input class="password" type="text" id="nom" name="nom-name" /><br />
+    <label for="nom" >Nom :</label><br />
+    <input class="password" v-model="nom" type="text" id="nom" name="nom-name" required="required" /><br />
     <label for="Prenom">Prénom :</label><br />
-    <input class="password" type="text" id="Prenom" name="Prenom-name" /><br /><br />
+    <input  v-model="prenom" class="password" type="text" id="Prenom" name="Prenom-name" required="required" /><br /><br />
     <input
       class="validate"
-      @click="redirect()"
+      @click="handleSubmit()"
       type="submit"
       value="Connexion"
+      name="disable-Btn"
     />
   </form>
 </template>
@@ -32,15 +35,43 @@
 
 
 <script>
+import '../views/axios'
+import axios from "axios";
 export default {
   name: "inscrire",
+  data(){
+    return{
+    email:"",
+    password:"",
+    nom:"",
+    prenom:"",
+  }
+  },
   props: {
     inscrireinput: String,
   },
   methods: {
-    redirect() {
-      this.$router.push("/feed");
-    },
+    handleSubmit(){
+     const data=
+     { email:this.email,
+      password:this.password,
+      nom:this.nom,
+      prenom:this.prenom,
+     };
+      axios.post("auth/signup", 
+          data,
+          console.log(data)
+        )
+        .then((response) => {
+          console.log(response);
+          this.$router.push("/feed");
+    })
+   .catch((err) => {
+          console.log(err + " "+ "envoi du login n'a pas aboutie");
+        })
   },
-};
+}
+}
 </script>
+<style scoped>
+</style>
