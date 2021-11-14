@@ -19,8 +19,7 @@ app.use( ( req, res, next ) => {
 app.use( express.json() );
 
 
-
-app.use( '/feed/reagir', express.static( path.join( __dirname, 'images' ) ) );
+app.use( "/feed/reagir", express.static( path.join( __dirname, 'images' ) ) );
 
 app.use( '/', elementRoutes );
 app.use( '/auth',userRoutes );

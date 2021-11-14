@@ -4,7 +4,7 @@
         <textarea id="post_title" class="create-posts-contains-inputs-title" placeholder= "Ajouter un titre à votre post"></textarea>
     <textarea id="post_body" class="create-posts-contains-inputs-commentaires" placeholder= "Réagissez ici!"></textarea>
     <label for="photo">Ajoutez une photo, un fichier .gif par exemple</label>
-    <input id="photo" @change="path()" type="file" accept="image/gif,image/jpeg,image/png,image/jpg"/>
+    <input name="image" id="photo"  type="file" accept=".gif,.jpg,.jpeg,.png"/>
     <input  @click="addcomment()" class="create-posts-contains-inputs-btn" type="submit" value="Créer Post !"/>
     </div>
 </form>   
@@ -16,12 +16,11 @@ export default {
     name:'posting_box',
     methods:{
       path(){
-        document.getElementById('photo').value.replace(/^.*\\/, "")
+       console.log(document.getElementById('photo').value)
       },
       
     async addcomment(){
       event.preventDefault();
-      console.log(document.getElementById('photo').value.replace(/^.*\\/, ""))
       await axios.post("feed/reagir",{
       post_title: document.getElementById('post_title').value,
       post_body: document.getElementById('post_body').value,

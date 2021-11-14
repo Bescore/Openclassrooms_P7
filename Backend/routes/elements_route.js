@@ -5,7 +5,7 @@ const multer=require('../multer/multer-config')
 
 
 
-//
+
 
 //route d'affichage des commentaires du post//
 router.get( '/feed/posters', elementCtrl.userComments );
