@@ -1,12 +1,11 @@
 const express = require( 'express' );
 const router = express.Router();
-const con = require( '../mysql/db' )
 const elementCtrl = require( '../controllers/element_controllers' );
 const multer=require('../multer/multer-config')
 
 
 
-
+//
 
 //route d'affichage des commentaires du post//
 router.get( '/feed/posters', elementCtrl.userComments );
