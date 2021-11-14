@@ -18,19 +18,46 @@
       @click="connected()"
       type="submit"
       value="Connexion"
+      id="sub"
+      disabled="disabled"
     />
   </form>
 </template>
 
 <script>
-import '../views/axios'
+import "../views/axios";
 import axios from "axios";
 export default {
   name: "connecteur",
   props: {
     msg: String,
   },
+  mounted(){
+    this.hello()
+  },
+
   methods: {
+
+hello(){
+ document.getElementById('email_id').addEventListener('input',function(){
+   if(document.getElementById('email_id').value.length>0 ){
+     document.getElementById("sub").disabled = false
+   }else{
+     document.getElementById("sub").disabled = true
+   }
+
+ }),
+ document.getElementById('password_id').addEventListener('input',function(){
+   if(document.getElementById('password_id').value.length>0 ){
+     document.getElementById("sub").disabled = false
+   }else{
+     document.getElementById("sub").disabled = true
+   }
+
+ })
+        
+},
+
     async connected() {
       event.preventDefault();
       await axios
@@ -39,13 +66,13 @@ export default {
           password: document.getElementById("password_id").value,
         })
         .then((response) => {
-          console.log(response);
-          localStorage.setItem('token',response.token);
-        this.$router.push("/feed");
+          localStorage.setItem("token", response.token);
+          this.$router.push("/feed");
         })
         .catch((err) => {
-          console.log(err + " "+ "envoi du login n'a pas aboutie");
-        })
+          
+          console.log(err + " " + "envoi du login n'a pas aboutie");
+        });
     },
   },
 };

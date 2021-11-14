@@ -27,6 +27,8 @@
       type="submit"
       value="Connexion"
       name="disable-Btn"
+      disabled="disabled"
+      id="sub"
     />
   </form>
 </template>
@@ -50,7 +52,45 @@ export default {
   props: {
     inscrireinput: String,
   },
+  mounted(){
+this.hello()
+  },
   methods: {
+hello(){
+ document.getElementById('email').addEventListener('input',function(){
+   if(document.getElementById('email').value.length>0 ){
+     document.getElementById("sub").disabled = false
+   }else{
+     document.getElementById("sub").disabled = true
+   }
+
+ }),
+ document.getElementById('password').addEventListener('input',function(){
+   if(document.getElementById('password').value.length>0 ){
+     document.getElementById("sub").disabled = false
+   }else{
+     document.getElementById("sub").disabled = true
+   }
+
+ })
+ document.getElementById('nom').addEventListener('input',function(){
+   if(document.getElementById('nom').value.length>0 ){
+     document.getElementById("sub").disabled = false
+   }else{
+     document.getElementById("sub").disabled = true
+   }
+
+ })
+ document.getElementById('Prenom').addEventListener('input',function(){
+   if(document.getElementById('Prenom').value.length>0 ){
+     document.getElementById("sub").disabled = false
+   }else{
+     document.getElementById("sub").disabled = true
+   }
+
+ })
+        
+},
     handleSubmit(){
      const data=
      { email:this.email,
