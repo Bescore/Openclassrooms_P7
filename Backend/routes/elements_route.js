@@ -2,13 +2,13 @@ const express = require( 'express' );
 const router = express.Router();
 const con = require( '../mysql/db' )
 const elementCtrl = require( '../controllers/element_controllers' );
+const multer=require('../multer/multer-config')
 
 
 
 
 
-
-//route des commentaires du post//
+//route d'affichage des commentaires du post//
 router.get( '/feed/posters', elementCtrl.userComments );
 
 //route d'affichage des posts//
@@ -21,7 +21,7 @@ router.get( '/feed/like', elementCtrl.userLikes );
 router.post( '/feed/comment', elementCtrl.addcomment );
 
 //route d'ajout de posts//
-router.post( '/feed/reagir', elementCtrl.addPosts );
+router.post( '/feed/reagir',multer, elementCtrl.addPosts );
 
 
 module.exports = router;

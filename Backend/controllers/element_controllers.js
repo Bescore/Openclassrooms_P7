@@ -70,11 +70,11 @@ exports.addcomment = ( req, res, next ) => {
 }
 
 exports.addPosts = ( req, res, next ) => {
+    
+    req.body.post_image = `${ req.protocol }://${ req.get( 'host' ) } / image / ${ req.file.filename }`
 
     con.query(
-        `INSERT INTO posts(post_body,post_img,titre) VALUES ("${ req.body.post_body }","${ req.body.post_image }","${ req.body.post_title }")`,
-
-        function ( err, results ) {
+        `INSERT INTO posts(post_body,post_img,titre) VALUES ("${ req.body.post_body }","${ req.body.post_image}","${ req.body.post_title }")`,function ( err, results ) {
             if ( err ) {
                 console.log( 'Erreur sur la route des comments' );
             }

@@ -2,7 +2,7 @@ const express = require( 'express' );
 const app = express();
 const elementRoutes = require( './routes/elements_route' );
 const userRoutes=require('./routes/user_route')
-
+const path = require( 'path' );
 
 
 
@@ -17,6 +17,9 @@ app.use( ( req, res, next ) => {
 } );
 
 app.use( express.json() );
+
+
+app.use( '/feed/reagir', express.static( path.join( __dirname, 'image' ) ) );
 
 app.use( '/', elementRoutes );
 app.use( '/auth',userRoutes );

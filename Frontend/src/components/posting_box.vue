@@ -4,7 +4,7 @@
         <textarea id="post_title" class="create-posts-contains-inputs-title" placeholder= "Ajouter un titre à votre post"></textarea>
     <textarea id="post_body" class="create-posts-contains-inputs-commentaires" placeholder= "Réagissez ici!"></textarea>
     <label for="photo">Ajoutez une photo, un fichier .gif par exemple</label>
-    <input id="photo" type="file" accept=".png,.jpeg,.jpg,.gif"/>
+    <input id="photo" type="file"/>
     <input  @click="addcomment()" class="create-posts-contains-inputs-btn" type="submit" value="Créer Post !"/>
     </div>
 </form>   
