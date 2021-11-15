@@ -1,11 +1,11 @@
 <template >
   <div class="compte-banner">
-    <img class="compte-banner-round-pic" src="@/assets/user-icon.png"/>
+    <img class="compte-banner-round-pic" :src="accountOwner.photo"/>
   <router-link class="compte" to="/compte">Mon Compte</router-link>
-  <router-link class="compte" to="/">Se déconnecter</router-link>
+  <router-link @click="logOut" class="compte" to="/">Se déconnecter</router-link>
   </div>
   <div>
-    <div class="actualite">Bonjour {{user.name}}, votre fil d'actualité aujourd'hui !</div>
+    <div class="actualite">Bonjour {{accountOwner.prenom}}, votre mur d'actualité aujourd'hui !</div>
     <font-awesome-icon  class=" swingimage" icon="bell" size="2x" />
   </div>
   <div>
@@ -51,15 +51,24 @@ export default {
       commentaires:null,
       posters: null,
       posted:null,
-      user:0,
+      user:null,
       like:null,
+      accountOwner:null,
     };
   },
-  async created(){
-    axios.get('user')
-    .then((res)=>this.user=res)
-
+   created(){
+    axios.post('user',{
+      userid:localStorage.getItem('secret')
+    })
+    .then((response)=>{                          //photo du mur
+      this.accountOwner=response.data[0];
+      console.log(response.data[0]);
+    }),(error)=>{
+      console.log(error)
+    }
+    
   },
+
   async commentaires() {
     await axios.get("feed/commentaires")
     .then((response) => {
@@ -83,11 +92,15 @@ export default {
     .then((response) => {                         ///COMMENTAIRES DES POSTS
       this.commentaires = response.data;
     })
-    .catch(error=>console.log(error));
-    this.likee()                                  //tableau like/dislike
+    .catch(error=>console.log(error)),
+     this.likers()                                     //tableau like/dislike
   },
+
   methods:{
-    likee: function(){
+    logOut(){
+      localStorage.removeItem('secret')
+    },
+     likers(){
       event.preventDefault()
        axios.get("feed/like")
     .then((response)=>{
@@ -229,10 +242,13 @@ export default {
   background-color: #f2f2f2;
 }
 .compte-banner-round-pic{
+position: relative;
+right:60px;
 width: 50px;
 height: 50px;
 border-radius:50%;
 overflow: hidden;
+object-fit: cover;
 }
 
 .posts {

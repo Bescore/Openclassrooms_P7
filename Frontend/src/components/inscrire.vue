@@ -92,6 +92,7 @@ hello(){
         
 },
     handleSubmit(){
+      event.preventDefault()
      const data=
      { email:this.email,
       password:this.password,
@@ -106,8 +107,9 @@ hello(){
           console.log(data)
         )
         .then((response) => {
-          console.log(response);
+          localStorage.setItem('secret',JSON.stringify(response.data.userId[0].idutilisateurs)),
           this.$router.push("/feed");
+          
     })
    .catch((err) => {
           console.log(err + " "+ "envoi du login n'a pas aboutie");

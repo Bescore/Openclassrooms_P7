@@ -66,7 +66,9 @@ hello(){
           password: document.getElementById("password_id").value,
         })
         .then((response) => {
-          localStorage.setItem("token", response.token);
+          console.log(response);
+          localStorage.setItem("secret",response.data.userId);
+          localStorage.setItem("token", response.data.token);
           this.$router.push("/feed");
         })
         .catch((err) => {

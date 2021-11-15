@@ -5,12 +5,20 @@ const con = require( '../mysql/db' )
 exports.signup = async ( req, res, next ) => {
     const hashy = await bcrypt.hash( req.body.password, 10 )
     con.query( `INSERT INTO utilisateurs(nom,prenom,md_passe,email) VALUES("${ req.body.nom }","${ req.body.prenom }","${ hashy }","${ req.body.email }")`, function ( err, result ) {
-        res.status( 200 ).json( { message: "l'utilisateur a bien été crée et est enregistré dans la base de donnée" } )
+
         console.log( req.body );
     } );
+    con.query( `SELECT idutilisateurs FROM utilisateurs WHERE email='${ req.body.email }'`, function ( err, result ) {
+        if ( err ) {
+            console.log( 'Erreur sur 1 la route de login' )
+        }
+        res.status( 200 ).json( {
+            userId: result
+        } )
+    } )
 };
 
-//LOGIN, CONTÔLE D'ACCÈS UTILISATEUR//
+//LOGIN, CONTRÔLE D'ACCÈS UTILISATEUR//
 exports.login = ( req, res, next ) => {
 
     con.query( `SELECT idutilisateurs FROM utilisateurs WHERE email='${ req.body.email }'`, function ( err, resultat ) {
@@ -34,7 +42,7 @@ exports.login = ( req, res, next ) => {
                         userId: idUser
                     } )
                 } else {
-                    res.status( 400 ).json(  'mauvais mot de passe'  )
+                    res.status( 400 ).json( 'mauvais mot de passe' )
                 }
             }
         } );

@@ -56,7 +56,7 @@ export default {
       const formdata = new formData();
       formdata.append("image", this.fileselect, this.fileselect.name);
       formdata.append("titre",this.titre)
-      formdata.append("post_body",this.post_body)
+      formdata.append("post_body",this.post)
       axios
         .post("image", formdata, {
           headers: {

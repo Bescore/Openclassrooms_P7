@@ -16,11 +16,16 @@ router.get( '/feed/post', elementCtrl.userPosts );
 //route des tableaux des likes//
 router.get( '/feed/like', elementCtrl.userLikes );
 
+//route d'affichage des infos utilisateurs//
+router.post( '/user', elementCtrl.userAccount );
+
 //route d'ajout de commentaires//
 router.post( '/feed/comment', elementCtrl.addcomment );
 
 //route d'ajout de posts//
 router.post( '/image', multer, elementCtrl.addPosts );
+
+
 
 
 module.exports = router;
