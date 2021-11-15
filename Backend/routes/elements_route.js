@@ -1,7 +1,7 @@
 const express = require( 'express' );
 const router = express.Router();
 const elementCtrl = require( '../controllers/element_controllers' );
-const multer=require('../multer/multer-config')
+const multer = require( '../multer/multer-config' )
 
 
 
@@ -20,7 +20,7 @@ router.get( '/feed/like', elementCtrl.userLikes );
 router.post( '/feed/comment', elementCtrl.addcomment );
 
 //route d'ajout de posts//
-router.post( '/feed/reagir',multer, elementCtrl.addPosts );
+router.post( '/image', multer, elementCtrl.addPosts );
 
 
 module.exports = router;

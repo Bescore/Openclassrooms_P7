@@ -3,7 +3,7 @@ const app = express();
 const elementRoutes = require( './routes/elements_route' );
 const userRoutes=require('./routes/user_route')
 const path = require( 'path' );
-
+const bodyParser=require('body-parser')
 
 
 
@@ -16,10 +16,11 @@ app.use( ( req, res, next ) => {
     next();
 } );
 
+app.use( bodyParser.json() );
 app.use( express.json() );
 
 
-app.use( "/feed/reagir", express.static( path.join( __dirname, 'images' ) ) );
+app.use( "/image", express.static( path.join( __dirname, 'image' ) ) );
 
 app.use( '/', elementRoutes );
 app.use( '/auth',userRoutes );

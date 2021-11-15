@@ -1,0 +1,9 @@
+{
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "html.format.wrapLineLength": 150,
+    "html.format.endWithNewline": true,
+    "editor.wordWrapColumn": 150,
+    "diffEditor.wordWrap": "off",
+    "editor.wordWrap": "on"
+}
