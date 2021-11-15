@@ -66,11 +66,13 @@ hello(){
           password: document.getElementById("password_id").value,
         })
         .then((response) => {
-          console.log(response);
+          if(localStorage.getItem('secret')){
+            localStorage.removeItem('secret')
+          }
           localStorage.setItem("secret",response.data.userId);
           localStorage.setItem("token", response.data.token);
           this.$router.push("/feed");
-        })
+         })
         .catch((err) => {
           
           console.log(err + " " + "envoi du login n'a pas aboutie");
