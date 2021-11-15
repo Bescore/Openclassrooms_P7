@@ -13,7 +13,7 @@
     <div>{{posted.titre}}</div>
     <img :src="posted.post_img"  class="photo"/>
     <div  class="posts-comments"><div  class="posts-comments-child">{{posted.post_body}}</div></div>
-    <div id="post-body" class="posts-comments"><div class="posts-comments-child" :key="index" v-for="(commentaires, index) in commentaires">{{commentaires.commentaires}}</div></div>
+    <div id="post-body" class="posts-comments-2"><div class="posts-comments-child-2" :key="index" v-for="(commentaires, index) in commentaires">{{commentaires.commentaires}}</div></div>
     <form  class="form">
       <div class="like-contenair">
       <div  id="like" @click="like"  class="like-contenair-child"><font-awesome-icon icon="thumbs-up" size="lg" /></div>
@@ -238,7 +238,7 @@ overflow: hidden;
 .posts {
   padding:20px;
   width: 600px;
-  height: 820px;
+  height: 1000px;
   margin: auto;
   margin-top: 50px;
   margin-bottom:30px;
@@ -249,11 +249,12 @@ overflow: hidden;
 }
 .photo{
   width:550px;
-  height:220px;
+  height:420px;
   margin:auto;
   position: relative;
   top:20px;
   object-fit: cover;
+  
   border-top-left-radius: 20px;
   border-top-right-radius:20px ;
   
@@ -306,7 +307,21 @@ background-color: rgb(213, 223, 233);
   top:30px;
   overflow:auto;
   border: 1px rgb(214, 209, 209) solid;
-  border-radius:5px
+  border-radius:5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.posts-comments-2{
+   width:550px;
+  height:150px;
+  margin:auto;
+  margin-top:10px;
+  position: relative;
+  top:30px;
+  overflow:auto;
+  border-radius:5px;
+
 }
 #post-body{
   height:100px;
@@ -316,7 +331,16 @@ background-color: rgb(213, 223, 233);
   display:flex;
   flex-wrap: wrap;
   justify-content: center;
+  
+}
+.posts-comments-child-2{
 
+height: 30px;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-justify: center;
+  
 }
 .commentaire {
   width: 400px;
