@@ -1,5 +1,6 @@
 const bcrypt = require( 'bcrypt' );
 const con = require( '../mysql/db' )
+const jwt = require( 'jsonwebtoken' )
 
 //CREATION D'UTILISATEUR//
 exports.signup = async ( req, res, next ) => {
@@ -38,7 +39,9 @@ exports.login = ( req, res, next ) => {
             const validate = ( valid ) => {
                 if ( valid ) {
                     res.status( 200 ).json( {
-                        token: 'TOKEN DE LA MOWWW',
+                        token: jwt.sign(
+                            { userId: idUser }, 'RANDOM_TOKEN_SECRET', { expiresIn: '1h' }
+                        ),
                         userId: idUser
                     } )
                 } else {

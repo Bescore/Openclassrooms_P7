@@ -91,7 +91,7 @@ export default {
 .create-posts-contains {
   padding: 20px;
   width: 600px;
-  height: 400px;
+  height: 300px;
   border-radius: 10px;
   margin: auto;
   background-color: #f2f2f2;
@@ -100,7 +100,7 @@ export default {
     rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 .create-posts-contains-inputs {
-  height: 400px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -111,7 +111,7 @@ export default {
   border: none;
 }
 .create-posts-contains-inputs-commentaires {
-  height: 200px;
+  height: 100px;
   resize: none;
   border: none;
 }

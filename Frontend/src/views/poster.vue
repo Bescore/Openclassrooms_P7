@@ -5,8 +5,8 @@
   <router-link @click="logOut" class="compte" to="/">Se déconnecter</router-link>
   </div>
   <div>
-    <div class="actualite">Bonjour {{accountOwner.prenom}}, votre mur d'actualité aujourd'hui !</div>
-    <font-awesome-icon  class=" swingimage" icon="bell" size="2x" />
+    <div class="actualite"> Bonjour {{accountOwner.prenom}}, votre mur d'actualité aujourd'hui ! </div>
+    <font-awesome-icon  class=" swingimage" icon="bell" size="lg" />
   </div>
   <div>
   <div class="posts" :key="index" v-for="(posted, index) in posted">
@@ -14,12 +14,14 @@
     <img :src="posted.post_img"  class="photo"/>
     <div  class="posts-comments"><div  class="posts-comments-child">{{posted.post_body}}</div></div>
     <div id="post-body" class="posts-comments-2"><div class="posts-comments-child-2" :key="index" v-for="(commentaires, index) in commentaires">{{commentaires.commentaires}}</div></div>
+    <div class="like-count-box">
+    <div>{{like.likes}}</div>
+      <div>{{like.dislikes}}</div>
+      </div>
     <form  class="form">
       <div class="like-contenair">
-      <div  id="like" @click="like"  class="like-contenair-child"><font-awesome-icon icon="thumbs-up" size="lg" /></div>
-      <div class="like-count-box">{{like.likes}}</div>
-      <div id="dislike" @click="dislike" class="like-contenair-child"><font-awesome-icon icon="thumbs-down" size="lg" /></div>
-      <div class="like-count-box">{{like.dislikes}}</div>
+      <div  id="like" @click="like"  class="like-contenair-child"><font-awesome-icon icon="thumbs-up" size="3x" /></div>
+      <div id="dislike" @click="dislike" class="like-contenair-child"><font-awesome-icon icon="thumbs-down" size="3x" /></div>
       </div>
       <label class="commentaire-label" for="comments">Ajouter un commentaire :</label>
     <div><br/>
@@ -125,7 +127,7 @@ export default {
     },
     async addcomment(){
       await axios.post("feed/comment",{
-      commentaire: this.kaka
+      commentaire: this.coms
     })
     .then((response)=>{
       console.log(response);
@@ -222,10 +224,28 @@ export default {
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 .compte {
-  margin:10px;
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
+  box-shadow: 3px 4px 0px 0px #899599;
+	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+	background-color:#ededed;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:#3a8a9e;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e1e2ed;
+  margin: 5px;
+}
+.compte:hover {
+	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+	background-color:#bab1ba;
+}
+.compte:active {
+	position:relative;
+	top:1px;
 }
 .compte-banner{
   z-index:1;
@@ -238,14 +258,14 @@ export default {
   height:50px;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
   display:flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   border-radius:5px;
   background-color: #f2f2f2;
 }
 .compte-banner-round-pic{
 position: relative;
-right:60px;
+right:50px;
 width: 50px;
 height: 50px;
 border-radius:50%;
@@ -278,12 +298,13 @@ object-fit: cover;
   
 }
 .like-count-box{
-margin-left:30px;
-margin-right: 30px;
+display: flex;
+justify-content: space-evenly;
+align-items: center;
 }
 .like-contenair{
   margin:auto;
-  width: 350px;
+  width: 550px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -317,6 +338,7 @@ background-color: rgb(213, 223, 233);
 
 }
 .posts-comments{
+  font-size:20px;
   width:550px;
   height:150px;
   margin:auto;
@@ -325,7 +347,7 @@ background-color: rgb(213, 223, 233);
   top:30px;
   overflow:auto;
   border: 1px rgb(214, 209, 209) solid;
-  border-radius:5px;
+  border-radius:40px;
   display: flex;
   justify-content: center;
   align-items: center;

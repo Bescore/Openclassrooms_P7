@@ -2,28 +2,29 @@ const express = require( 'express' );
 const router = express.Router();
 const elementCtrl = require( '../controllers/element_controllers' );
 const multer = require( '../multer/multer-config' )
+const authentification = require( '../middleware/auth' )
 
 
 
 
 
 //route d'affichage des commentaires du post//
-router.get( '/feed/posters', elementCtrl.userComments );
+router.get( '/feed/posters', authentification, elementCtrl.userComments );
 
 //route d'affichage des posts//
-router.get( '/feed/post', elementCtrl.userPosts );
+router.get( '/feed/post', authentification, elementCtrl.userPosts );
 
 //route des tableaux des likes//
-router.get( '/feed/like', elementCtrl.userLikes );
+router.get( '/feed/like', authentification, elementCtrl.userLikes );
 
 //route d'affichage des infos utilisateurs//
-router.post( '/user', elementCtrl.userAccount );
+router.post( '/user', authentification, elementCtrl.userAccount );
 
 //route d'ajout de commentaires//
-router.post( '/feed/comment', elementCtrl.addcomment );
+router.post( '/feed/comment', authentification, elementCtrl.addcomment );
 
 //route d'ajout de posts//
-router.post( '/image', multer, elementCtrl.addPosts );
+router.post( '/image', authentification, multer, elementCtrl.addPosts );
 
 
 

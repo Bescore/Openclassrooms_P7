@@ -55,7 +55,7 @@ exports.userLikes = ( req, res, next ) => {
 
 exports.userAccount = ( req, res, next ) => {
 
-    console.log( req.body )
+    
 
     con.query(
         `SELECT * FROM utilisateurs WHERE idutilisateurs='${ req.body.userid }'`,
@@ -90,7 +90,6 @@ exports.addcomment = ( req, res, next ) => {
 }
 
 exports.addPosts = ( req, res, next ) => {
-    console.log( req.body )
     if ( req.file ) {
         req.body.post_image = `${ req.protocol }://${ req.get( 'host' ) }/image/${ req.file.filename }`
 
