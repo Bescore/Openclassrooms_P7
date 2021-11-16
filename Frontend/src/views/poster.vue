@@ -1,4 +1,5 @@
 <template >
+<div class="test"></div>
   <div class="compte-banner">
     <img class="compte-banner-round-pic" :src="accountOwner.photo"/>
   <router-link class="compte" to="/compte">Mon Compte</router-link>
@@ -6,7 +7,10 @@
   </div>
   <div>
     <div class="actualite"> Bonjour {{accountOwner.prenom}}, votre mur d'actualité aujourd'hui ! </div>
+    <div class="bell-banner">
     <font-awesome-icon  class=" swingimage" icon="bell" size="lg" />
+    <font-awesome-icon  class=" swingimage" icon="bell" size="lg" />
+    </div>
   </div>
   <div>
   <div class="posts" :key="index" v-for="(posted, index) in posted">
@@ -239,6 +243,13 @@ export default {
 	text-shadow:0px 1px 0px #e1e2ed;
   margin: 5px;
 }
+.bell-banner{
+  width:600px;
+  margin:auto;
+  display: flex;
+  justify-content: space-between;
+  
+}
 .compte:hover {
 	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
 	background-color:#bab1ba;
@@ -412,5 +423,31 @@ top:70px
     animation: swinging 1.5s ease-in-out forwards infinite;
     
 }
+.test{
+  
+  background-color: rgb(95, 95, 247);
+  opacity: 0.3;
+  margin: auto;
+  border-radius: 10px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position:fixed;
+  
+  z-index: -2;
+  animation: myAnim 3s ease 0s infinite alternate backwards;
+}
+@keyframes myAnim {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
+}
+
+ 
 
 </style>
