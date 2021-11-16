@@ -24,6 +24,7 @@
       <label class="commentaire-label" for="comments">Ajouter un commentaire :</label>
     <div><br/>
       <textarea
+      v-model="coms"
         class="commentaire"
         name="commentaires"
         id="comments"
@@ -54,6 +55,7 @@ export default {
       user:null,
       like:null,
       accountOwner:null,
+      coms:''
     };
   },
    created(){
@@ -123,7 +125,7 @@ export default {
     },
     async addcomment(){
       await axios.post("feed/comment",{
-      commentaire: document.getElementById("comments").value
+      commentaire: this.kaka
     })
     .then((response)=>{
       console.log(response);

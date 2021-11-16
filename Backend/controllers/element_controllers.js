@@ -91,18 +91,29 @@ exports.addcomment = ( req, res, next ) => {
 
 exports.addPosts = ( req, res, next ) => {
     console.log( req.body )
+    if ( req.file ) {
+        req.body.post_image = `${ req.protocol }://${ req.get( 'host' ) }/image/${ req.file.filename }`
 
-    req.body.post_image = `${ req.protocol }://${ req.get( 'host' ) }/image/${ req.file.filename }`
+        con.query(
+            `INSERT INTO posts(post_body,post_img,titre) VALUES ("${ req.body.post_body }","${ req.body.post_image }","${ req.body.titre }")`, function ( err, results ) {
+                if ( err ) {
+                    console.log( 'Erreur backend sur la route des comments' );
+                }
 
-    con.query(
-        `INSERT INTO posts(post_body,post_img,titre) VALUES ("${ req.body.post_body }","${ req.body.post_image }","${ req.body.titre }")`, function ( err, results ) {
-            if ( err ) {
-                console.log( 'Erreur backend sur la route des comments' );
-            }
-
-            res.status( 200 ).json( results )
+                res.status( 200 ).json( results )
 
 
-        } )
+            } )
+    } else {
+        con.query(
+            `INSERT INTO posts(post_body,post_img,titre) VALUES ("${ req.body.post_body }","","${ req.body.titre }")`, function ( err, results ) {
+                if ( err ) {
+                    console.log( 'Erreur backend sur la route des comments' );
+                }
 
+                res.status( 200 ).json( results )
+
+
+            } )
+    }
 }

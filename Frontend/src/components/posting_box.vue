@@ -53,10 +53,11 @@ export default {
 
     async addcomment() {
       event.preventDefault();
+      if (document.getElementById('image').value!==''){
       const formdata = new formData();
       formdata.append("image", this.fileselect, this.fileselect.name);
       formdata.append("titre",this.titre)
-      formdata.append("post_body",this.post)
+      formdata.append("post_body",this.post_body)
       axios
         .post("image", formdata, {
           headers: {
@@ -69,6 +70,18 @@ export default {
         .catch(function (error) {
           alert(error);
         });
+      }else{
+        axios.post("image",{
+          titre:this.titre,
+          post_body:this.post_body,
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch(function (error) {
+          alert(error);
+        });
+      }
     },
   },
 };
