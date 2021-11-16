@@ -1,13 +1,13 @@
 <template>
     <h1>Vos informations personelles</h1>
-    <div class="actualite-contenair"><router-link class="actualite" to="/feed">Actualités</router-link></div>
+    <div><router-link class="mur" to="/feed">Mur</router-link></div>
     <div class="compte-contenair">
         <div class="compte-contains">
-            <img class='compte-contenair-photo' src="@\assets\user-icon.png"/>
+            <img class='compte-contenair-photo' :src="User.photo"/>
             <div class="compte-contenair-photo-label">
-                <div class="infos">Nom :</div>
-                <div class="infos">Prénom :</div>
-                <div class="infos">Email :</div>
+                <div class="infos">Nom : {{User.nom}}</div>
+                <div class="infos">Prénom : {{User.prenom}}</div>
+                <div class="infos">Email : {{User.email}}</div>
             </div>
         </div>
         <div class="compte-contains-infos">
@@ -31,6 +31,23 @@
 <script>
 import axios from "axios";
 export default {
+  data(){
+    return{
+      User:1
+    }
+  },
+  mounted(){
+axios.post("user",{
+  userid:localStorage.getItem('secret')
+})
+.then((response)=>{
+this.User=response.data[0];
+console.log(response)
+})
+.catch(err=>{console.log(err)})
+
+
+  },
 methods:{
     async change_image(){
       event.preventDefault()
@@ -80,7 +97,7 @@ methods:{
 }
 </script>
 
-<style lang="scss"  >
+<style lang="scss" scoped  >
 .actualite-contenair{
     margin:auto;
     align-items: center;
@@ -92,11 +109,30 @@ methods:{
     box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
     
 }
-.actualite {
-    font-weight: bold;
-    color: #15171a;
-    text-decoration: none;
+.mur {
+    box-shadow: 3px 4px 0px 0px #1564ad;
+	background:linear-gradient(to bottom, #79bbff 5%, #9ba9b8 100%);
+	background-color:#79bbff;
+	border-radius:5px;
+	border:1px solid #337bc4;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:12px 44px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
   }
+  .mur:hover {
+	background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	background-color:#378de5;
+}
+.mur:active {
+	position:relative;
+	top:1px;
+}
 .compte-contains{
     display: flex;
 }
@@ -116,6 +152,7 @@ methods:{
     position: relative;
     left:50px;
     top:50px;
+    object-fit: cover;
 }
 .compte-contenair-photo-label{
 width:400px;
@@ -123,6 +160,7 @@ height: 300px;
 position: relative;
 left:110px;
 top:50px;
+
 }
 .compte-contains-infos{
 width:800px;

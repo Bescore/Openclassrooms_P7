@@ -64,7 +64,7 @@ export default {
     axios.post('user',{
       userid:localStorage.getItem('secret')
     })
-    .then((response)=>{                          //photo du mur
+    .then((response)=>{                          //photo du mur//infos users
       this.accountOwner=response.data[0];
       console.log(response.data[0]);
     }),(error)=>{
@@ -231,7 +231,7 @@ export default {
 	border:1px solid #d6bcd6;
 	display:inline-block;
 	cursor:pointer;
-	color:#3a8a9e;
+	color:#03151a;
 	font-family:Arial;
 	font-size:17px;
 	padding:7px 25px;
@@ -346,7 +346,6 @@ background-color: rgb(213, 223, 233);
   position: relative;
   top:30px;
   overflow:auto;
-  border: 1px rgb(214, 209, 209) solid;
   border-radius:40px;
   display: flex;
   justify-content: center;
