@@ -7,10 +7,6 @@
   </div>
   <div>
     <div class="actualite"> Bonjour {{accountOwner.prenom}}, votre mur d'actualité aujourd'hui ! </div>
-    <div class="bell-banner">
-    <font-awesome-icon  class=" swingimage" icon="bell" size="lg" />
-    <font-awesome-icon  class=" swingimage" icon="bell" size="lg" />
-    </div>
   </div>
   <div>
   <div class="posts" :key="index" v-for="(posted, index) in posted">
@@ -18,16 +14,13 @@
     <img :src="posted.post_img"  class="photo"/>
     <div  class="posts-comments"><div  class="posts-comments-child">{{posted.post_body}}</div></div>
     <div id="post-body" class="posts-comments-2"><div class="posts-comments-child-2" :key="index" v-for="(commentaires, index) in commentaires">{{commentaires.commentaires}}</div></div>
-    <div class="like-count-box">
-    <div>{{like.likes}}</div>
-      <div>{{like.dislikes}}</div>
-      </div>
+   
     <form  class="form">
       <div class="like-contenair">
-      <div  id="like" @click="like"  class="like-contenair-child"><font-awesome-icon icon="thumbs-up" size="3x" /></div>
-      <div id="dislike" @click="dislike" class="like-contenair-child"><font-awesome-icon icon="thumbs-down" size="3x" /></div>
+      <div  id="like" @click="like"  class="like-contenair-child"><font-awesome-icon icon="thumbs-up" size="lg" />{{like.likes}}</div>
+      <div id="dislike" @click="dislike" class="like-contenair-child"><font-awesome-icon icon="thumbs-down" size="lg" />{{like.dislikes}}</div>
       </div>
-      <label class="commentaire-label" for="comments">Ajouter un commentaire :</label>
+      <label class="commentaire-label" for="comments">Ajoutez un commentaire :</label>
     <div><br/>
       <textarea
       v-model="coms"
@@ -86,15 +79,7 @@ export default {
     .catch(error=>console.log(error));
     
   },
-  async beforeMount() {
-    await axios.get("feed/post")
-    .then((response) => {                       //LES POSTS
-      this.posted = response.data;
-      this.idvalue=this.posted.idposts
-      console.log(this.posted);
-    })
-    .catch(error=>console.log(error,"problème fonction posting"));
-  },
+   
   async mounted() {
     await axios.get("feed/posters")
     .then((response) => {                         ///COMMENTAIRES DES POSTS
@@ -102,6 +87,16 @@ export default {
     })
     .catch(error=>console.log(error)),
      this.likers()                                     //tableau like/dislike
+
+
+     await axios.get("feed/post")
+    .then((response) => {                       //LES POSTS
+      this.posted = response.data;
+      this.idvalue=this.posted.idposts
+      console.log(this.posted);
+    })
+    .catch(error=>console.log(error,"problème fonction posting"));
+  
   },
 
   methods:{
@@ -158,64 +153,6 @@ export default {
   background-color: rgb(94, 94, 119);
   border-radius: 20px;
 }
-@mixin bounce{
-  -webkit-animation-name: bounce;
-  animation-name: bounce;
-  -webkit-transform-origin: center bottom;
-  -ms-transform-origin: center bottom;
-  transform-origin: center bottom;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  }
-  @-webkit-keyframes bounce {
-  0%, 20%, 53%, 80%, 100% {
-  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-  -webkit-transform: translate3d(0,0,0);
-  transform: translate3d(0,0,0);
-  }
-  40%, 43% {
-  -webkit-transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
-  transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
-  -webkit-transform: translate3d(0, -30px, 0);
-  transform: translate3d(0, -30px, 0);
-  }
-  70% {
-  -webkit-transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
-  transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
-  -webkit-transform: translate3d(0, -15px, 0);
-  transform: translate3d(0, -15px, 0);
-  }
-  90% {
-  -webkit-transform: translate3d(0,-4px,0);
-  transform: translate3d(0,-4px,0);
-  }
-  }
-  
-  @keyframes bounce {
-  0%, 20%, 53%, 80%, 100% {
-  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-  -webkit-transform: translate3d(0,0,0);
-  transform: translate3d(0,0,0);
-  }
-  40%, 43% {
-  -webkit-transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
-  transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
-  -webkit-transform: translate3d(0, -30px, 0);
-  transform: translate3d(0, -30px, 0);
-  }
-  70% {
-  -webkit-transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
-  transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
-  -webkit-transform: translate3d(0, -15px, 0);
-  transform: translate3d(0, -15px, 0);
-  }
-  90% { -webkit-transform: translate3d(0,-4px,0); transform: translate3d(0,-4px,0);
-  }
-}
 
 .actualite {
   border-radius:5px;
@@ -242,13 +179,6 @@ export default {
 	text-decoration:none;
 	text-shadow:0px 1px 0px #e1e2ed;
   margin: 5px;
-}
-.bell-banner{
-  width:600px;
-  margin:auto;
-  display: flex;
-  justify-content: space-between;
-  
 }
 .compte:hover {
 	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
@@ -282,33 +212,31 @@ height: 50px;
 border-radius:50%;
 overflow: hidden;
 object-fit: cover;
+animation: bounce 0.7s ease infinite;
 }
 
 .posts {
   padding:20px;
   width: 600px;
-  height: 1000px;
+  height: 950px;
   margin: auto;
   margin-top: 50px;
   margin-bottom:30px;
-  border-radius:20px;
+  border-radius:105x;
   background-color: #f2f2f2;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
   
 }
 .photo{
   width:550px;
-  height:420px;
+  height:320px;
   margin:auto;
   position: relative;
   top:20px;
   object-fit: cover;
-  
-  border-top-left-radius: 20px;
-  border-top-right-radius:20px ;
-  
 }
 .like-count-box{
+  height:5px;
 display: flex;
 justify-content: space-evenly;
 align-items: center;
@@ -320,10 +248,12 @@ align-items: center;
   justify-content: space-evenly;
   align-items: center;
   position: relative;
-  bottom:20px;
+  bottom:30px;
+  border-top:rgb(214, 206, 206) ridge 5px;
   
 }
 .like-contenair-child{
+  padding:20px;
   border-radius: 20%;
   display: flex;
   justify-content: center;
@@ -334,12 +264,10 @@ align-items: center;
 }
 #like:hover{
 color:rgb(118, 199, 83) ;
-@include bounce;
-
 }
 #dislike:hover{
 color: rgb(173, 74, 74);
-@include bounce;
+
 }
 .add-comments-btn{
 border-radius: 5px ;
@@ -357,10 +285,11 @@ background-color: rgb(213, 223, 233);
   position: relative;
   top:30px;
   overflow:auto;
-  border-radius:40px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-top:rgb(214, 206, 206) ridge 5px;
+  border-bottom:rgb(214, 206, 206) ridge 5px;
 }
 .posts-comments-2{
    width:550px;
@@ -404,25 +333,13 @@ position:relative;
 top:70px
 }
 
-@-webkit-keyframes swinging{
-    0%{-webkit-transform: rotate(20deg);}
-    50%{-webkit-transform: rotate(-15deg)}
-    100%{-webkit-transform: rotate(20deg);}
+@keyframes bounce{
+     from {top: 0px;}
+     60%  {top: 5px;}
+     to   {top: 0px;}
 }
  
-@keyframes swinging{
-    0%{transform: rotate(20deg);}
-    50%{transform: rotate(-15deg)}
-    100%{transform: rotate(20deg);}
-}
- 
-.swingimage{
-    -webkit-transform-origin: 50% 0;
-    transform-origin: 50% 0;
-    -webkit-animation: swinging 1.5s ease-in-out forwards infinite;
-    animation: swinging 1.5s ease-in-out forwards infinite;
-    
-}
+
 .test{
   
   background-color: rgb(95, 95, 247);
