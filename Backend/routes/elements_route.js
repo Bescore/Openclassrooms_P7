@@ -29,5 +29,8 @@ router.post( '/image', authentification, multer, elementCtrl.addPosts );
 //route de modification d'image page (compte)//
 router.put( '/compte', authentification, multer, elementCtrl.changeImage );
 
+//route de modification du nom prénom email//
+router.put( '/compte/changes', authentification , elementCtrl.changeMyInfos);
+
 
 module.exports = router;

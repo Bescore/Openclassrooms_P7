@@ -36,6 +36,7 @@ export default {
     return{
       User:1,
       Inf:null,
+      
     }
   },
   mounted(){
@@ -74,9 +75,9 @@ methods:{
         });
     },
     async change_email(){
-      event.preventDefault()
-      await axios.put("user",{
-     email:document.getElementById('email').value
+      await axios.put("compte/changes",{
+     email:document.getElementById('email').value,
+     userid:localStorage.getItem('secret')
     })
     .then((response)=>{
       console.log(response);
@@ -85,9 +86,9 @@ methods:{
     }
     },
     async change_firstname(){
-      event.preventDefault()
-      await axios.put("user",{
-     prenom:document.getElementById('Firstname').value
+      await axios.put("compte/changes",{
+     prenom:document.getElementById('Firstname').value,
+     userid:localStorage.getItem('secret')
     })
     .then((response)=>{
       console.log(response);
@@ -96,9 +97,9 @@ methods:{
     }
     },
     async change_lastname(){
-      event.preventDefault()
-      await axios.put("user",{
-     nom:document.getElementById('Newname').value
+      await axios.put("compte/changes",{
+     nom:document.getElementById('Newname').value,
+     userid:localStorage.getItem('secret')
     })
     .then((response)=>{
       console.log(response);

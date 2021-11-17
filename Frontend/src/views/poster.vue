@@ -110,9 +110,10 @@ export default {
     .then((response)=>{
       this.like=response.data[0],
       console.log(this.like)
-    }),(error)=>{
-      console.log(error)
-    }
+    })
+    .catch(function (error) {
+          alert(error);
+        });
     },
     async dislike(){
       event.preventDefault()
@@ -121,9 +122,11 @@ export default {
     })
     .then((response)=>{
       console.log(response);
-    }),(error)=>{
-      console.log(error)
-    }
+    })
+    .catch(function (error) {
+          alert(error);
+        })
+    
     },
     async addcomment(){
       await axios.post("feed/comment",{
@@ -131,9 +134,10 @@ export default {
     })
     .then((response)=>{
       console.log(response);
-    }),(error)=>{
-      console.log(error)
-    }
+    })
+    .catch(function (error) {
+          alert(error);
+        });
     }
   },
 };
@@ -296,7 +300,7 @@ background-color: rgb(213, 223, 233);
    width:550px;
   height:150px;
   margin:auto;
-  margin-top:10px;
+  margin-top:30px;
   position: relative;
   top:30px;
   overflow:auto;
