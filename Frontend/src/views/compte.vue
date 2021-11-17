@@ -16,8 +16,8 @@
                 <input @click="change_firstname()" class="form-buttons-btns" type="submit" value="Modifier mon Prénom"><br/>
                 <input @click="change_email()" class="form-buttons-btns" type="submit" value="Modifier mon Email"><br/>
                 <label for="img">Modifier la photo</label>
-                <input id="img" class="form-buttons-btns" type="file" accept="image/*">
-                <input @click="change_image()" class="form-buttons-btns" type="submit" value="Changer de photo">
+                <input @change='getInfos' id="img" class="form-buttons-btns" type="file" accept=".gif,.jpg,.jpeg,.png">
+                <input  @click="change_image()" class="form-buttons-btns" type="submit" value="Changer de photo">
             </form>
             <form class="form-inputs">
                 <input  id="Newname" class="form-buttons-inputs" type="textarea" placeholder="Saisir les nouvelles informations ici" name="nom"/>
@@ -29,11 +29,13 @@
 </template>
 
 <script>
+import formData from "form-data";
 import axios from "axios";
 export default {
   data(){
     return{
-      User:1
+      User:1,
+      Inf:null,
     }
   },
   mounted(){
@@ -49,16 +51,27 @@ console.log(response)
 
   },
 methods:{
+  getInfos(event) {
+      this.Inf = event.target.files[0];
+      console.log(this.Inf)
+    },
     async change_image(){
-      event.preventDefault()
-      await axios.put("user",{
-     image:document.getElementById('img').value
-    })
-    .then((response)=>{
-      console.log(response);
-    }),(error)=>{
-      console.log(error)
-    }
+      console.log(this.Inf)
+     const formdata = new formData();
+      formdata.append("image", this.Inf, this.Inf.name);
+      formdata.append("userid",localStorage.getItem('secret'))
+      axios
+        .put("compte", formdata, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch(function (error) {
+          alert(error);
+        });
     },
     async change_email(){
       event.preventDefault()
