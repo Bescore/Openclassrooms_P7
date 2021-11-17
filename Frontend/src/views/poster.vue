@@ -115,19 +115,7 @@ export default {
           alert(error);
         });
     },
-    async dislike(){
-      event.preventDefault()
-      await axios.post("feed/dislike",{
-     dislike:1
-    })
-    .then((response)=>{
-      console.log(response);
-    })
-    .catch(function (error) {
-          alert(error);
-        })
     
-    },
     async addcomment(){
       await axios.post("feed/comment",{
       commentaire: this.coms
