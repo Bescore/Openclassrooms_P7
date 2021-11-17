@@ -1,7 +1,7 @@
 <template >
 <div class="test"></div>
   <div class="compte-banner">
-    <img class="compte-banner-round-pic" :src="accountOwner.photo"/>
+    <img   id='roundpic' class="compte-banner-round-pic" :src="accountOwner.photo"/>
   <router-link class="compte" to="/compte">Mon Compte</router-link>
   <router-link @click="logOut" class="compte" to="/">Se déconnecter</router-link>
   </div>
@@ -53,8 +53,9 @@ export default {
       posted:null,
       user:null,
       like:null,
-      accountOwner:null,
+      accountOwner:0,
       coms:''
+
     };
   },
    created(){
@@ -63,10 +64,11 @@ export default {
     })
     .then((response)=>{                          //photo du mur//infos users
       this.accountOwner=response.data[0];
-      console.log(response.data[0]);
-    }),(error)=>{
-      console.log(error)
-    }
+      if (response.data[0].photo===null){
+        document.getElementById('roundpic').style.display='none'
+      }
+    })
+    .catch(error=>console.log(error));
     
   },
 
@@ -74,7 +76,6 @@ export default {
     await axios.get("feed/commentaires")
     .then((response) => {
       this.commentaires = response.data;
-      console.log(this.commentaires);
     })
     .catch(error=>console.log(error));
     
@@ -96,7 +97,7 @@ export default {
       console.log(this.posted);
     })
     .catch(error=>console.log(error,"problème fonction posting"));
-  
+    
   },
 
   methods:{
