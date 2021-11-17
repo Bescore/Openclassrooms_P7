@@ -55,7 +55,7 @@ exports.userLikes = ( req, res, next ) => {
 
 exports.userAccount = ( req, res, next ) => {
 
-    
+
 
     con.query(
         `SELECT * FROM utilisateurs WHERE idutilisateurs='${ req.body.userid }'`,
@@ -115,4 +115,22 @@ exports.addPosts = ( req, res, next ) => {
 
             } )
     }
+
+}
+
+
+exports.changeImage = ( req, res, next ) => {
+
+    req.body.image = `${ req.protocol }://${ req.get( 'host' ) }/image/${ req.file.filename }`
+
+
+    con.query( `UPDATE utilisateurs SET photo = '${ req.body.image }' WHERE idutilisateurs = '${ req.body.userid }'`, function ( err, results ) {
+        if ( err ) {
+            console.log( 'Erreur backend sur la route changeImage' );
+        }
+        console.log( req.body )
+        res.status( 200 ).json( results )
+    } )
+
+
 }
