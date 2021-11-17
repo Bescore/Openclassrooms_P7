@@ -26,7 +26,8 @@ router.post( '/feed/comment', authentification, elementCtrl.addcomment );
 //route d'ajout de posts//
 router.post( '/image', authentification, multer, elementCtrl.addPosts );
 
-
+//route de modification d'image page (compte)//
+router.put( '/compte', authentification, multer, elementCtrl.changeImage );
 
 
 module.exports = router;
