@@ -5,7 +5,8 @@ const jwt = require( 'jsonwebtoken' )
 //CREATION D'UTILISATEUR//
 exports.signup = async ( req, res, next ) => {
     const hashy = await bcrypt.hash( req.body.password, 10 )
-    con.query( `INSERT INTO utilisateurs(nom,prenom,md_passe,email) VALUES("${ req.body.nom }","${ req.body.prenom }","${ hashy }","${ req.body.email }")`, function ( err, result ) {
+    const photo =`${ req.protocol }://${ req.get( 'host' ) }/image/user-icon.png`
+    con.query( `INSERT INTO utilisateurs(nom,prenom,md_passe,email,photo) VALUES("${ req.body.nom }","${ req.body.prenom }","${ hashy }","${ req.body.email }","${photo}")`, function ( err, result ) {
 
         console.log( req.body );
     } );
