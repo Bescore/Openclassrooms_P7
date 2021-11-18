@@ -21,7 +21,7 @@
         accept="image/jpg,image/jpeg,image/png,gif"
       />
       <input
-        @click="addcomment"
+        @click="addpost"
         class="create-posts-contains-inputs-btn"
         type="submit"
         value="Créer Post !"
@@ -51,12 +51,15 @@ export default {
       console.log(document.getElementById("image").value);
     },
 
-    async addcomment() {
+    async addpost() {
+      const secret=localStorage.getItem('secret')
       if (document.getElementById('image').value!==''){
       const formdata = new formData();
       formdata.append("image", this.fileselect, this.fileselect.name);
-      formdata.append("titre",this.titre)
-      formdata.append("post_body",this.post_body)
+      formdata.append("titre",this.titre);
+      formdata.append("post_body",this.post_body);
+      formdata.append("userid",secret);
+      console.log(formdata)
       axios
         .post("image", formdata, {
           headers: {
@@ -73,6 +76,7 @@ export default {
         axios.post("image",{
           titre:this.titre,
           post_body:this.post_body,
+          userid: secret,
         })
         .then((response) => {
           console.log(response);

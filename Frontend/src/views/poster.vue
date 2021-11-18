@@ -121,7 +121,8 @@ export default {
     
     async addcomment(){
       await axios.post("feed/comment",{
-      commentaire: this.coms
+      commentaire: this.coms,
+      userid:localStorage.getItem('secret')
     })
     .then((response)=>{
       console.log(response);

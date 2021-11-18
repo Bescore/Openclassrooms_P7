@@ -73,9 +73,9 @@ exports.userAccount = ( req, res, next ) => {
 
 
 exports.addcomment = ( req, res, next ) => {
-
+    console.log(req.body)
     con.query(
-        `INSERT INTO comments(commentaires) VALUES ("${ req.body.commentaire }")`,
+        `INSERT INTO comments(commentaires,utilisateurs_idutilisateurs) VALUES ('${ req.body.commentaire }','${req.body.userid}')`,
 
         function ( err, results ) {
             if ( err ) {
@@ -95,9 +95,9 @@ exports.addPosts = ( req, res, next ) => {
         
 
         con.query(
-            `INSERT INTO posts(post_body,post_img,titre) VALUES ("${ req.body.post_body }","${ req.body.post_image }","${ req.body.titre }")`, function ( err, results ) {
+            `INSERT INTO posts(post_body,post_img,titre,utilisateurs_idutilisateurs,likes_idlike) VALUES ("${ req.body.post_body }","${ req.body.post_image }","${ req.body.titre }","${ req.body.userid }","${ req.body.userid}")`, function ( err, results ) {
                 if ( err ) {
-                    console.log( 'Erreur backend sur la route des comments' );
+                    console.log( 'Erreur backend sur la route des addposts1' );
                 }
                 console.log('cas1')
                 res.status( 200 ).json( results )
@@ -106,12 +106,13 @@ exports.addPosts = ( req, res, next ) => {
             } )
     } else {
         con.query(
-            `INSERT INTO posts(post_body,post_img,titre) VALUES ("${ req.body.post_body }","","${ req.body.titre }")`, function ( err, results ) {
+            `INSERT INTO posts(post_body,post_img,titre,utilisateurs_idutilisateurs,likes_idlike) VALUES ("${ req.body.post_body }","${ req.body.titre }","","${ req.body.userid }","${ req.body.userid}")`, function ( err, results ) {
                 if ( err ) {
-                    console.log( 'Erreur backend sur la route des comments' );
+                    console.log( 'Erreur backend sur la route des addposts2' );
                 }
-                console.log('cas 2')
+                console.log( req.body )
                 res.status( 200 ).json( results )
+                
 
 
             } )
