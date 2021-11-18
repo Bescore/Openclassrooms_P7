@@ -1,4 +1,5 @@
 <template>
+<div>
     <h1>Vos informations personelles</h1>
     <div><router-link class="mur" to="/feed">Mur</router-link></div>
     <div class="compte-contenair">
@@ -25,6 +26,7 @@
                 <input id="email" class="form-buttons-inputs" type="textarea" placeholder="Saisir les nouvelles informations ici" name="email"/>
             </form>
         </div>
+    </div>
     </div>
 </template>
 
