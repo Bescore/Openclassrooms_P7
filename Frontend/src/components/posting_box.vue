@@ -52,7 +52,6 @@ export default {
     },
 
     async addcomment() {
-      event.preventDefault();
       if (document.getElementById('image').value!==''){
       const formdata = new formData();
       formdata.append("image", this.fileselect, this.fileselect.name);
