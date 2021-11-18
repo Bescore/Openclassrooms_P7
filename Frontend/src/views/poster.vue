@@ -1,4 +1,5 @@
 <template >
+<div>
 <div class="test"></div>
   <div class="compte-banner">
     <img   id='roundpic' class="compte-banner-round-pic" :src="accountOwner.photo"/>
@@ -33,7 +34,9 @@
   </form>
   </div>
   </div>
+  
   <posting_box></posting_box>
+  </div>
 </template>
 
 <script>
