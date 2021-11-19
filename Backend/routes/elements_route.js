@@ -30,7 +30,10 @@ router.post( '/image', authentification, multer, elementCtrl.addPosts );
 router.put( '/compte', authentification, multer, elementCtrl.changeImage );
 
 //route de modification du nom prénom email//
-router.put( '/compte/changes', authentification , elementCtrl.changeMyInfos);
+router.put( '/compte/changes', authentification, elementCtrl.changeMyInfos );
+
+//route de suppression du post utilisateur//
+router.delete( '/feed/delete', authentification, elementCtrl.deletePost )
 
 
 module.exports = router;

@@ -14,7 +14,7 @@
     <div>{{posted.titre}}</div>
     <img :src="posted.post_img" id="posted_img"  class="photo"/>
     <div  class="posts-comments"><div  class="posts-comments-child">{{posted.post_body}}</div></div>
-    <div id="post-body" class="posts-comments-2"><div class="posts-comments-child-2" :key="index" v-for="(commentaires, index) in commentaires">{{commentaires.commentaires}}</div></div>
+    <div id="post-body" class="posts-comments-2"><div class="posts-comments-child-2" :key="comindex" v-for="(commentaires, comindex) in commentaires"><div class="round-name"><img class="photo-comments" :src="commentaires.photo" />{{commentaires.nom}} {{commentaires.prenom}} dit :</div>{{commentaires.commentaires}}</div></div>
    
     <form  class="form">
       <div class="like-contenair">
@@ -31,6 +31,7 @@
       ></textarea>
     </div>
     <input class="add-comments-btn" @click='addcomment' type="submit" value="Commenter" />
+    <input id='delete' class="add-comments-btn" @click='addcomment' type="submit" value="Supprimer" />
   </form>
   </div>
   </div>
@@ -57,7 +58,8 @@ export default {
       user:null,
       like:null,
       accountOwner:0,
-      coms:''
+      coms:'',
+      comindex:0,
 
     };
   },
@@ -124,6 +126,7 @@ export default {
     })
     .then((response)=>{
       console.log(response);
+      
     })
     .catch(function (error) {
           alert(error);
@@ -265,11 +268,43 @@ color: rgb(173, 74, 74);
 
 }
 .add-comments-btn{
-border-radius: 5px ;
-height:40px;
-width:200px;
-background-color: rgb(213, 223, 233);
-
+  margin:auto;
+  margin-right:10px;
+  margin-left: 10px;
+	box-shadow: 0px 0px 0px 2px #9fb4f2;
+	background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+	background-color:#7892c2;
+	border-radius:10px;
+	border:1px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:19px;
+	padding:12px 37px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #283966;
+}
+.add-comments-btn:hover {
+	background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+	background-color:#476e9e;
+}
+.add-comments-btn:active {
+	position:relative;
+	top:1px;
+}
+#delete{
+background-color:green;
+background:linear-gradient(to bottom, #c03a18 5%, #c71212 100%);
+border: rgb(114, 114, 119);
+}
+#delete:hover {
+	background:linear-gradient(to bottom, #eeb108 5%, #e76f0d 100%);
+	background-color:#e72e0e;
+}
+#delete:active {
+	position:relative;
+	top:1px;
 }
 .posts-comments{
   font-size:20px;
@@ -306,14 +341,28 @@ background-color: rgb(213, 223, 233);
   flex-wrap: wrap;
   justify-content: center;
   
+  
+}
+.round-name{
+display: flex;
+align-items: center;
+position: relative;
+  right:10px;
+
+}
+.photo-comments{
+  margin:10px;
+  height:30px;
+  width:30px;
+  border-radius:50%;
+  
 }
 .posts-comments-child-2{
 
-height: 30px;
+height: 40px;
   display:flex;
-  flex-wrap: wrap;
-  justify-content: center;
   text-justify: center;
+  align-items: center;
   
 }
 .commentaire {
@@ -356,7 +405,7 @@ top:70px
   }
 
   100% {
-    opacity: 0.3;
+    opacity: 0.4;
   }
 }
 

@@ -13,7 +13,7 @@
         class="create-posts-contains-inputs-commentaires"
         placeholder="Réagissez ici!"
       ></textarea>
-      <label for="image">Ajoutez une photo, un fichier .gif par exemple</label>
+      <label for="image">Ajoutez une photo, une image</label>
       <input
         id="image"
         type="file"
@@ -97,6 +97,7 @@ export default {
   height: 300px;
   border-radius: 10px;
   margin: auto;
+  margin-top: 40px;
   background-color: #f2f2f2;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
     rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
@@ -118,12 +119,28 @@ export default {
   resize: none;
   border: none;
 }
+
 .create-posts-contains-inputs-btn {
-  border-radius: 5px;
-  height: 40px;
-  width: 200px;
-  background-color: rgb(213, 223, 233);
-  margin-left: auto;
-  margin-right: auto;
+  box-shadow: 0px 0px 0px 2px #9fb4f2;
+	background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+	background-color:#7892c2;
+	border-radius:10px;
+	border:1px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:19px;
+	padding:12px 37px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #283966;
+}
+.create-posts-contains-inputs-btn:hover {
+	background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+	background-color:#476e9e;
+}
+.create-posts-contains-inputs-btn:active {
+	position:relative;
+	top:1px;
 }
 </style>

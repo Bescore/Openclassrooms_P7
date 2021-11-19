@@ -21,13 +21,12 @@ exports.userPosts = ( req, res, next ) => {
 exports.userComments = ( req, res, next ) => {
 
     con.query(
-        'SELECT * FROM comments ',
+        'SELECT * FROM comments C,utilisateurs U WHERE C.utilisateurs_idutilisateurs= U.idutilisateurs ORDER BY DATE ASC',
 
         function ( err, results ) {
             if ( err ) {
                 console.log( 'Erreur backend sur la route des commentaires du post' );
             }
-
             res.status( 200 ).json( results )
 
 
@@ -73,9 +72,10 @@ exports.userAccount = ( req, res, next ) => {
 
 
 exports.addcomment = ( req, res, next ) => {
-    console.log(req.body)
+    console.log( req.body )
+    const time=Date.now()
     con.query(
-        `INSERT INTO comments(commentaires,utilisateurs_idutilisateurs) VALUES ('${ req.body.commentaire }','${req.body.userid}')`,
+        `INSERT INTO comments(commentaires,utilisateurs_idutilisateurs,DATE) VALUES ("${ req.body.commentaire }","${ req.body.userid }","${time}")`,
 
         function ( err, results ) {
             if ( err ) {
@@ -94,25 +94,25 @@ exports.addPosts = ( req, res, next ) => {
         req.body.post_img = `${ req.protocol }://${ req.get( 'host' ) }/image/${ req.file.filename }`
 
         con.query(
-            `INSERT INTO posts(post_body,post_img,titre,utilisateurs_idutilisateurs,likes_idlike) VALUES ("${ req.body.post_body }","${ req.body.post_img }","${ req.body.titre }","${ req.body.userid }","${ req.body.userid}")`, function ( err, results ) {
+            `INSERT INTO posts(post_body,post_img,titre,utilisateurs_idutilisateurs,likes_idlike) VALUES ("${ req.body.post_body }","${ req.body.post_img }","${ req.body.titre }","${ req.body.userid }","${ req.body.userid }")`, function ( err, results ) {
                 if ( err ) {
                     console.log( 'Erreur backend sur la route des addposts1' );
                 }
-                console.log('cas1')
+                console.log( 'cas1' )
                 res.status( 200 ).json( results )
 
 
             } )
     } else {
-        const img ="https://cdn-icons-png.flaticon.com/512/1532/1532520.png"
+        const img = "https://cdn-icons-png.flaticon.com/512/1532/1532520.png"
         con.query(
-            `INSERT INTO posts(post_body,post_img,titre,utilisateurs_idutilisateurs,likes_idlike) VALUES ("${ req.body.post_body }","${img}","${ req.body.titre }","${ req.body.userid }","${ req.body.userid}")`, function ( err, results ) {
+            `INSERT INTO posts(post_body,post_img,titre,utilisateurs_idutilisateurs,likes_idlike) VALUES ("${ req.body.post_body }","${ img }","${ req.body.titre }","${ req.body.userid }","${ req.body.userid }")`, function ( err, results ) {
                 if ( err ) {
                     console.log( 'Erreur backend sur la route des addposts2' );
                 }
                 console.log( req.body )
                 res.status( 200 ).json( results )
-                
+
 
 
             } )
@@ -165,3 +165,25 @@ exports.changeMyInfos = ( req, res, next ) => {
         } )
     }
 }
+
+
+exports.deletePost = ( req, res, next ) => {
+
+    con.query(
+        `SELECT idposts FROM posts WHERE titre='${ req.body.userid }'`,
+
+        function ( err, results ) {
+            if ( err ) {
+                console.log( 'Erreur backend route userAccount' );
+            }
+
+            res.status( 200 ).json( results )
+
+
+        } )
+
+
+
+
+}
+
