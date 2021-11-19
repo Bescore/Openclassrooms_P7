@@ -91,11 +91,10 @@ exports.addcomment = ( req, res, next ) => {
 
 exports.addPosts = ( req, res, next ) => {
     if ( req.file ) {
-        req.body.post_image = `${ req.protocol }://${ req.get( 'host' ) }/image/${ req.file.filename }`
-        
+        req.body.post_img = `${ req.protocol }://${ req.get( 'host' ) }/image/${ req.file.filename }`
 
         con.query(
-            `INSERT INTO posts(post_body,post_img,titre,utilisateurs_idutilisateurs,likes_idlike) VALUES ("${ req.body.post_body }","${ req.body.post_image }","${ req.body.titre }","${ req.body.userid }","${ req.body.userid}")`, function ( err, results ) {
+            `INSERT INTO posts(post_body,post_img,titre,utilisateurs_idutilisateurs,likes_idlike) VALUES ("${ req.body.post_body }","${ req.body.post_img }","${ req.body.titre }","${ req.body.userid }","${ req.body.userid}")`, function ( err, results ) {
                 if ( err ) {
                     console.log( 'Erreur backend sur la route des addposts1' );
                 }
@@ -105,8 +104,9 @@ exports.addPosts = ( req, res, next ) => {
 
             } )
     } else {
+        const img ="https://cdn-icons-png.flaticon.com/512/1532/1532520.png"
         con.query(
-            `INSERT INTO posts(post_body,post_img,titre,utilisateurs_idutilisateurs,likes_idlike) VALUES ("${ req.body.post_body }","${ req.body.titre }","","${ req.body.userid }","${ req.body.userid}")`, function ( err, results ) {
+            `INSERT INTO posts(post_body,post_img,titre,utilisateurs_idutilisateurs,likes_idlike) VALUES ("${ req.body.post_body }","${img}","${ req.body.titre }","${ req.body.userid }","${ req.body.userid}")`, function ( err, results ) {
                 if ( err ) {
                     console.log( 'Erreur backend sur la route des addposts2' );
                 }

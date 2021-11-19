@@ -18,7 +18,7 @@
         id="image"
         type="file"
         @change="sentImage"
-        accept="image/jpg,image/jpeg,image/png,gif"
+        accept=".jpg,.jpeg,.png,.gif"
       />
       <input
         @click="addpost"
