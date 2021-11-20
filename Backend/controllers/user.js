@@ -17,7 +17,7 @@ exports.signup = async ( req, res, next ) => {
         res.status( 200 ).json( {
             userId: result
         } )
-    } )
+       } )
 };
 
 //LOGIN, CONTRÔLE D'ACCÈS UTILISATEUR//
@@ -27,7 +27,7 @@ exports.login = ( req, res, next ) => {
         if ( err ) {
             console.log( 'Erreur sur 1 la route de login' )
         }
-
+        
         con.query( `SELECT md_passe FROM utilisateurs WHERE email='${ req.body.email }'`, function ( err, resulting ) {
             if ( err ) {
                 console.log( 'Erreur 2 sur la route de login' )
@@ -50,9 +50,7 @@ exports.login = ( req, res, next ) => {
                 }
             }
         } );
-    } );
-
-
+    } ); 
 }
 
 

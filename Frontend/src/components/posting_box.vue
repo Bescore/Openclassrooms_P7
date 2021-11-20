@@ -34,7 +34,7 @@
 import formData from "form-data";
 import axios from "axios";
 export default {
-	name: "posting_box",
+	name: "posting",
 	data() {
 		return {
 			fileselect: null,
@@ -91,7 +91,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped >
 .create-posts-contains {
 	padding: 20px;
 	width: 600px;
@@ -143,5 +143,20 @@ export default {
 .create-posts-contains-inputs-btn:active {
 	position: relative;
 	top: 1px;
+}
+/*MEDIA QUERIES*/
+@media screen and (max-width:662px) {
+	.create-posts-contains {
+	padding: 20px;
+	width: 300px;
+	height: 300px;
+	border-radius: 10px;
+	margin: auto;
+	margin-top: 40px;
+	background-color: #f2f2f2;
+	box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+		rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+		rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
 }
 </style>
