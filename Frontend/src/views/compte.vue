@@ -51,21 +51,21 @@
 						id="Newname"
 						class="form-buttons-inputs"
 						type="textarea"
-						placeholder="Saisir les nouvelles informations ici (nom)"
+						placeholder="NOM"
 						name="nom"
 					/>
 					<input
 						id="Firstname"
 						class="form-buttons-inputs"
 						type="textarea"
-						placeholder="Saisir les nouvelles informations ici (prénom)"
+						placeholder="PRÉNOM"
 						name="prénom"
 					/>
 					<input
 						id="email"
 						class="form-buttons-inputs"
 						type="textarea"
-						placeholder="Saisir les nouvelles informations ici (email)"
+						placeholder="EMAIL"
 						name="email"
 					/>
 				</form>
