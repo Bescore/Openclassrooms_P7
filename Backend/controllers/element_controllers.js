@@ -73,9 +73,9 @@ exports.userAccount = ( req, res, next ) => {
 
 exports.addcomment = ( req, res, next ) => {
     console.log( req.body )
-    const time=Date.now()
+    const time = new Date().toLocaleTimeString()
     con.query(
-        `INSERT INTO comments(commentaires,utilisateurs_idutilisateurs,DATE) VALUES ("${ req.body.commentaire }","${ req.body.userid }","${time}")`,
+        `INSERT INTO comments(commentaires,utilisateurs_idutilisateurs,DATE) VALUES ("${ req.body.commentaire }","${ req.body.userid }","${ time }")`,
 
         function ( err, results ) {
             if ( err ) {

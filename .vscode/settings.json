@@ -1,8 +1,9 @@
 {
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
-    "html.format.wrapLineLength": 150,
+    "prettier.resolveGlobalModules": true,
+    "prettier.endOfLine": "auto",
+    "prettier.vueIndentScriptAndStyle": true,
     "html.format.endWithNewline": true,
-    "editor.wordWrapColumn": 150,
-    "diffEditor.wordWrap": "off"
+    "html.format.indentInnerHtml": true
 }

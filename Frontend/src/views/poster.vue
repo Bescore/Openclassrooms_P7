@@ -1,144 +1,179 @@
-<template >
-<div>
-<div class="test"></div>
-  <div class="compte-banner">
-    <img   id='roundpic' class="compte-banner-round-pic" :src="accountOwner.photo"/>
-  <router-link class="compte" to="/compte">Mon Compte</router-link>
-  <router-link @click="logOut" class="compte" to="/">Se déconnecter</router-link>
-  </div>
+<template>
   <div>
-    <div class="actualite"> Bonjour {{accountOwner.prenom}}, votre mur d'actualité aujourd'hui ! </div>
-  </div>
-  <div>
-  <div class="posts" :key="index" v-for="(posted, index) in posted">
-    <div>{{posted.titre}}</div>
-    <img :src="posted.post_img" id="posted_img"  class="photo"/>
-    <div  class="posts-comments"><div  class="posts-comments-child">{{posted.post_body}}</div></div>
-    <div id="post-body" class="posts-comments-2"><div class="posts-comments-child-2" :key="comindex" v-for="(commentaires, comindex) in commentaires"><div class="round-name"><img class="photo-comments" :src="commentaires.photo" />{{commentaires.nom}} {{commentaires.prenom}} dit :</div>{{commentaires.commentaires}}</div></div>
-   
-    <form  class="form">
-      <div class="like-contenair">
-      <div  id="like" @click="like"  class="like-contenair-child"><font-awesome-icon icon="thumbs-up" size="lg" />{{like.likes}}</div>
-      <div id="dislike" @click="dislike" class="like-contenair-child"><font-awesome-icon icon="thumbs-down" size="lg" />{{like.dislikes}}</div>
-      </div>
-      <label class="commentaire-label" for="comments">Ajoutez un commentaire :</label>
-    <div><br/>
-      <textarea
-      v-model="coms"
-        class="commentaire"
-        name="commentaires"
-        id="comments"
-      ></textarea>
+    <div class="test"></div>
+    <div class="compte-banner">
+      <img
+        id="roundpic"
+        class="compte-banner-round-pic"
+        :src="accountOwner.photo"
+      />
+      <router-link class="compte" to="/compte">Mon Compte</router-link>
+      <router-link @click="logOut" class="compte" to="/"
+        >Se déconnecter</router-link
+      >
     </div>
-    <input class="add-comments-btn" @click='addcomment' type="submit" value="Commenter" />
-    <input id='delete' class="add-comments-btn" @click='addcomment' type="submit" value="Supprimer" />
-  </form>
-  </div>
-  </div>
-  
-  <posting_box></posting_box>
+    <div>
+      <div class="actualite">
+        Bonjour {{ accountOwner.prenom }}, votre mur d'actualité aujourd'hui !
+      </div>
+    </div>
+    <div>
+      <div class="posts" :key="comindex" v-for="(posted, comindex) in posted">
+        <div>{{ posted.titre }}</div>
+        <img :src="posted.post_img" id="posted_img" class="photo" />
+        <div class="posts-comments">
+          <div class="posts-comments-child">{{ posted.post_body }}</div>
+        </div>
+        <div id="post-body" class="posts-comments-2">
+          <div
+            class="posts-comments-child-2"
+            :key="comindex"
+            v-for="(commentaires, comindex) in commentaires"
+          >
+            <div class="round-name">
+              <img class="photo-comments" :src="commentaires.photo" />{{
+                commentaires.prenom
+              }}
+              dit :
+            </div>
+            {{ commentaires.commentaires }}
+          </div>
+        </div>
+
+        <form class="form">
+          <label class="commentaire-label" for="comments"
+            >Discutez entre collègues :</label
+          >
+          <div>
+            <br />
+            <textarea
+              v-model="coms"
+              class="commentaire"
+              name="commentaires"
+              id="comments"
+            ></textarea>
+          </div>
+          <input
+            class="add-comments-btn"
+            @click="addcomment"
+            type="submit"
+            value="Dire"
+          />
+          <input
+            id="delete"
+            class="add-comments-btn"
+            @click="addcomment"
+            type="submit"
+            value="Supprimer"
+          />
+        </form>
+      </div>
+    </div>
+
+    <posting_box></posting_box>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import poster from "@/views/poster.vue";
-import posting_box from '@/components/posting_box.vue'
+import posting_box from "@/components/posting_box.vue";
 export default {
-  components:{
-    posting_box
+  components: {
+    posting_box,
   },
   name: poster,
   data() {
     return {
-      idvalue:null,
-      commentaires:null,
+      idvalue: null,
+      commentaires: null,
       posters: null,
-      posted:null,
-      user:null,
-      like:null,
-      accountOwner:0,
-      coms:'',
-      comindex:0,
-
+      posted: null,
+      user: null,
+      like: null,
+      accountOwner: 0,
+      coms: "",
     };
   },
-   created(){
-    axios.post('user',{
-      userid:localStorage.getItem('secret')
-    })
-    .then((response)=>{                          //photo du mur//infos users
-      this.accountOwner=response.data[0];
-      if (response.data[0].photo===null){
-        document.getElementById('roundpic').style.display='none'
-      }
-    })
-    .catch(error=>console.log(error));
-    
+  created() {
+    axios
+      .post("user", {
+        userid: localStorage.getItem("secret"),
+      })
+      .then((response) => {
+        //photo du mur//infos users
+        this.accountOwner = response.data[0];
+        if (response.data[0].photo === null) {
+          document.getElementById("roundpic").style.display = "none";
+        }
+      })
+      .catch((error) => console.log(error));
   },
 
   async commentaires() {
-    await axios.get("feed/commentaires")
-    .then((response) => {
-      this.commentaires = response.data;
-    })
-    .catch(error=>console.log(error));
-    
+    await axios
+      .get("feed/commentaires")
+      .then((response) => {
+        this.commentaires = response.data;
+      })
+      .catch((error) => console.log(error));
   },
-   
+
   async mounted() {
-    await axios.get("feed/posters")
-    .then((response) => {                         ///COMMENTAIRES DES POSTS
-      this.commentaires = response.data;
-    })
-    .catch(error=>console.log(error)),
-     this.likers()                                     //tableau like/dislike
+    await axios
+      .get("feed/posters")
+      .then((response) => {
+        ///COMMENTAIRES DES POSTS
+        this.commentaires = response.data;
+      })
+      .catch((error) => console.log(error)),
+      this.likers(); //tableau like/dislike
 
-
-     await axios.get("feed/post")
-    .then((response) => {                       //LES POSTS
-      this.posted = response.data;
-      this.idvalue=this.posted.idposts
-    })
-    .catch(error=>console.log(error,"problème fonction posting"));
-    
+    await axios
+      .get("feed/post")
+      .then((response) => {
+        //LES POSTS
+        this.posted = response.data;
+        this.idvalue = this.posted.idposts;
+        console.log(this.posted[this.comindex].idposts);
+      })
+      .catch((error) => console.log(error, "problème fonction posting"));
   },
 
-  methods:{
-    logOut(){
-      localStorage.removeItem('secret')
+  methods: {
+    logOut() {
+      localStorage.removeItem("secret");
     },
-     likers(){
-      event.preventDefault()
-       axios.get("feed/like")
-    .then((response)=>{
-      this.like=response.data[0]
-    })
-    .catch(function (error) {
+    likers() {
+      event.preventDefault();
+      axios
+        .get("feed/like")
+        .then((response) => {
+          this.like = response.data[0];
+        })
+        .catch(function (error) {
           alert(error);
         });
     },
-    
-    async addcomment(){
-      await axios.post("feed/comment",{
-      commentaire: this.coms,
-      userid:localStorage.getItem('secret')
-    })
-    .then((response)=>{
-      console.log(response);
-      
-    })
-    .catch(function (error) {
+
+    async addcomment() {
+      await axios
+        .post("feed/comment", {
+          commentaire: this.coms,
+          userid: localStorage.getItem("secret"),
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch(function (error) {
           alert(error);
         });
-    }
+    },
   },
 };
 </script>
 
-
 <style lang="scss" scoped>
-
 *::-webkit-scrollbar {
   width: 7px;
 }
@@ -153,239 +188,237 @@ export default {
 }
 
 .actualite {
-  border-radius:5px;
+  border-radius: 5px;
   font-weight: bold;
   margin: auto;
   margin-top: 40px;
   padding: 20px;
-  width:600px;
+  width: 600px;
   background-color: #f2f2f2;
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 .compte {
   box-shadow: 3px 4px 0px 0px #899599;
-	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
-	background-color:#ededed;
-	border-radius:15px;
-	border:1px solid #d6bcd6;
-	display:inline-block;
-	cursor:pointer;
-	color:#03151a;
-	font-family:Arial;
-	font-size:17px;
-	padding:7px 25px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #e1e2ed;
+  background: linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+  background-color: #ededed;
+  border-radius: 15px;
+  border: 1px solid #d6bcd6;
+  display: inline-block;
+  cursor: pointer;
+  color: #03151a;
+  font-family: Arial;
+  font-size: 17px;
+  padding: 7px 25px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #e1e2ed;
   margin: 5px;
 }
 .compte:hover {
-	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
-	background-color:#bab1ba;
+  background: linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+  background-color: #bab1ba;
 }
 .compte:active {
-	position:relative;
-	top:1px;
+  position: relative;
+  top: 1px;
 }
-.compte-banner{
-  z-index:1;
+.compte-banner {
+  z-index: 1;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   margin: auto;
-  padding:20px;
-  width:600px;
-  height:50px;
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-  display:flex;
+  padding: 20px;
+  width: 600px;
+  height: 50px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  display: flex;
   justify-content: space-evenly;
   align-items: center;
-  border-radius:5px;
+  border-radius: 5px;
   background-color: #f2f2f2;
 }
-.compte-banner-round-pic{
-position: relative;
-right:50px;
-width: 50px;
-height: 50px;
-border-radius:50%;
-overflow: hidden;
-object-fit: cover;
-animation: bounce 0.7s ease infinite;
+.compte-banner-round-pic {
+  position: relative;
+  right: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
+  animation: bounce 0.7s ease infinite;
 }
 
 .posts {
-  padding:20px;
+  padding: 20px;
   width: 600px;
   height: 950px;
   margin: auto;
   margin-top: 50px;
-  margin-bottom:30px;
-  border-radius:105x;
+  margin-bottom: 30px;
+  border-radius: 105x;
   background-color: #f2f2f2;
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-  
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
-.photo{
-  width:550px;
-  height:320px;
-  margin:auto;
+.photo {
+  width: 550px;
+  height: 320px;
+  margin: auto;
   position: relative;
-  top:20px;
+  top: 20px;
   object-fit: contain;
 }
-.like-count-box{
-  height:5px;
-display: flex;
-justify-content: space-evenly;
-align-items: center;
+.like-count-box {
+  height: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
-.like-contenair{
-  margin:auto;
+.like-contenair {
+  margin: auto;
   width: 550px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   position: relative;
-  bottom:30px;
-  border-top:rgb(214, 206, 206) ridge 5px;
-  
+  bottom: 30px;
+  border-top: rgb(214, 206, 206) ridge 5px;
 }
-.like-contenair-child{
-  padding:20px;
+.like-contenair-child {
+  padding: 20px;
   border-radius: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
-  width:50px;
-  height:50px;
-  
+  width: 50px;
+  height: 50px;
 }
-#like:hover{
-color:rgb(118, 199, 83) ;
+#like:hover {
+  color: rgb(118, 199, 83);
 }
-#dislike:hover{
-color: rgb(173, 74, 74);
-
+#dislike:hover {
+  color: rgb(173, 74, 74);
 }
-.add-comments-btn{
-  margin:auto;
-  margin-right:10px;
+.add-comments-btn {
+  margin: auto;
+  margin-right: 10px;
   margin-left: 10px;
-	box-shadow: 0px 0px 0px 2px #9fb4f2;
-	background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
-	background-color:#7892c2;
-	border-radius:10px;
-	border:1px solid #4e6096;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:19px;
-	padding:12px 37px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #283966;
+  box-shadow: 0px 0px 0px 2px #9fb4f2;
+  background: linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+  background-color: #7892c2;
+  border-radius: 10px;
+  border: 1px solid #4e6096;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 19px;
+  padding: 12px 37px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #283966;
 }
 .add-comments-btn:hover {
-	background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
-	background-color:#476e9e;
+  background: linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+  background-color: #476e9e;
 }
 .add-comments-btn:active {
-	position:relative;
-	top:1px;
+  position: relative;
+  top: 1px;
 }
-#delete{
-background-color:green;
-background:linear-gradient(to bottom, #c03a18 5%, #c71212 100%);
-border: rgb(114, 114, 119);
+#delete {
+  background-color: green;
+  background: linear-gradient(to bottom, #c03a18 5%, #c71212 100%);
+  border: rgb(114, 114, 119);
 }
 #delete:hover {
-	background:linear-gradient(to bottom, #eeb108 5%, #e76f0d 100%);
-	background-color:#e72e0e;
+  background: linear-gradient(to bottom, #eeb108 5%, #e76f0d 100%);
+  background-color: #e72e0e;
 }
 #delete:active {
-	position:relative;
-	top:1px;
-}
-.posts-comments{
-  font-size:20px;
-  width:550px;
-  height:150px;
-  margin:auto;
-  margin-top:10px;
   position: relative;
-  top:30px;
-  overflow:auto;
+  top: 1px;
+}
+.posts-comments {
+  font-size: 20px;
+  width: 550px;
+  height: 120px;
+  margin: auto;
+  margin-top: 10px;
+  position: relative;
+  top: 30px;
+  overflow: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top:rgb(214, 206, 206) ridge 5px;
-  border-bottom:rgb(214, 206, 206) ridge 5px;
+  border-top: rgb(214, 206, 206) ridge 5px;
+  border-bottom: rgb(214, 206, 206) ridge 5px;
 }
-.posts-comments-2{
-   width:550px;
-  height:150px;
-  margin:auto;
-  margin-top:30px;
+.posts-comments-2 {
+  width: 550px;
+  margin: auto;
+  margin-top: 30px;
   position: relative;
-  top:30px;
-  overflow:auto;
-  border-radius:5px;
-
+  top: 30px;
+  overflow: auto;
+  border-radius: 5px;
 }
-#post-body{
-  height:100px;
+#post-body {
+  height: 150px;
 }
-.posts-comments-child{
-  margin:20px;
-  display:flex;
+.posts-comments-child {
+  margin: 20px;
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  
-  
 }
-.round-name{
-display: flex;
-align-items: center;
-position: relative;
-  right:10px;
-
+.round-name {
+  display: flex;
+  align-items: center;
+  position: relative;
+  right: 10px;
 }
-.photo-comments{
-  margin:10px;
-  height:30px;
-  width:30px;
-  border-radius:50%;
-  
+.photo-comments {
+  margin: 10px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
 }
-.posts-comments-child-2{
-
-height: 40px;
-  display:flex;
+.posts-comments-child-2 {
+  height: 40px;
+  display: flex;
   text-justify: center;
   align-items: center;
-  
 }
 .commentaire {
   width: 400px;
   height: 50px;
   margin-bottom: 10px;
   resize: none;
-  border:none;
+  border: none;
 }
-.form{
-position:relative;
-top:70px
+.form {
+  position: relative;
+  top: 70px;
 }
 
-@keyframes bounce{
-     from {top: 0px;}
-     60%  {top: 5px;}
-     to   {top: 0px;}
+@keyframes bounce {
+  from {
+    top: 0px;
+  }
+  60% {
+    top: 5px;
+  }
+  to {
+    top: 0px;
+  }
 }
- 
 
-.test{
-  
+.test {
   background-color: rgb(95, 95, 247);
   opacity: 0.3;
   margin: auto;
@@ -394,8 +427,8 @@ top:70px
   right: 0;
   bottom: 0;
   left: 0;
-  position:fixed;
-  
+  position: fixed;
+
   z-index: -2;
   animation: myAnim 3s ease 0s infinite alternate backwards;
 }
@@ -408,7 +441,4 @@ top:70px
     opacity: 0.4;
   }
 }
-
- 
-
 </style>
