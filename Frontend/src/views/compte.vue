@@ -291,7 +291,7 @@ export default {
 		top: 400px;
 		display: initial;
 	}
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: 544px) {
 	.compte-contenair {
 		width: 95%;
 		height: 1000px;
@@ -344,6 +344,10 @@ export default {
 	border-radius: 5px;
 	height: 30px;
 }
+.infos {
+		width: 250px;
+	
+}
   }
   @media screen and (max-width: 458px) {
 .compte-contenair-photo-label {
@@ -352,16 +356,21 @@ export default {
 		position: relative;
 		left: 00px;
 		top: 220px;
-    left:-180px;
+    left:-200px;
 	}
   .compte-contains-infos {
 		width: 800px;
 		height: 350px;
 		position: relative;
 		left: -500px;
-		top: 500px;
-		display: initial;
+		top: 540px;
+		display: flex;
+		flex-direction: column-reverse;
 	}
+	.infos {
+		width: 250px;
+	
+}
   }
 }
 </style>
