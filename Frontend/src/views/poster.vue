@@ -18,7 +18,7 @@
 			</div>
 		</div>
 		<div>
-			<div class="posts" :key="comindex" v-for="(posted, comindex) in posted">
+			<div class="posts" :key="index" v-for="(posted, index) in posted">
 				<div>{{ posted.titre }}</div>
 				<img :src="posted.post_img" id="posted_img" class="photo" />
 				<div class="posts-comments">
@@ -50,7 +50,6 @@
 							v-model="coms"
 							class="commentaire"
 							name="commentaires"
-							id="comments"
 						></textarea>
 					</div>
 					<input
@@ -59,17 +58,10 @@
 						type="submit"
 						value="Dire"
 					/>
-					<input
-						id="delete"
-						class="add-comments-btn"
-						@click="addcomment"
-						type="submit"
-						value="Supprimer"
-					/>
 				</form>
 			</div>
 		</div>
-
+		<supprimer></supprimer>
 		<posting_box></posting_box>
 	</div>
 </template>
@@ -78,14 +70,17 @@
 import axios from "axios";
 import poster from "@/views/poster.vue";
 import posting_box from "@/components/posting_box.vue";
+import supprimer from "@/components/supprimer.vue";
 export default {
 	components: {
 		posting_box,
+		supprimer,
 	},
 	name: poster,
 	data() {
 		return {
-			idvalue: null,
+			
+			idvalue:null,
 			commentaires: null,
 			posters: null,
 			posted: null,
@@ -103,9 +98,10 @@ export default {
 			.then((response) => {
 				//photo du mur//infos users
 				this.accountOwner = response.data[0];
-				if (response.data[0].photo === null) {
+				if (this.accountOwner.photo == '') {
 					document.getElementById("roundpic").style.display = "none";
 				}
+				console.log(response.data[0].photo)
 			})
 			.catch((error) => console.log(error));
 	},
@@ -132,13 +128,14 @@ export default {
 				.then((response) => {
 					//LES POSTS
 					this.posted = response.data;
-					this.idvalue = this.posted.idposts;
-					console.log(this.posted[this.comindex].idposts);
 				})
 				.catch((error) => console.log(error, "problème fonction posting"));
 	},
 
 	methods: {
+		getobj(){
+
+		},
 		logOut() {
 			localStorage.removeItem("secret");
 		},
@@ -286,19 +283,7 @@ export default {
 	position: relative;
 	top: 1px;
 }
-#delete {
-	background-color: green;
-	background: linear-gradient(to bottom, #c03a18 5%, #c71212 100%);
-	border: rgb(114, 114, 119);
-}
-#delete:hover {
-	background: linear-gradient(to bottom, #eeb108 5%, #e76f0d 100%);
-	background-color: #e72e0e;
-}
-#delete:active {
-	position: relative;
-	top: 1px;
-}
+
 .posts-comments {
 	font-size: 20px;
 	width: 550px;
@@ -349,6 +334,7 @@ export default {
 	display: flex;
 	text-justify: center;
 	align-items: center;
+	flex-wrap: wrap;
 }
 .commentaire {
 	width: 400px;
@@ -453,5 +439,10 @@ export default {
 	margin: 20px;
 	width:150px;
 }
+#post-body{
+	width:300px;
+	flex:wrap
+}
+
 }
 </style>

@@ -4,7 +4,7 @@
 		<div><router-link class="mur" to="/feed">Mur</router-link></div>
 		<div class="compte-contenair">
 			<div class="compte-contains">
-				<img class="compte-contenair-photo" :src="User.photo" />
+				<img  class="compte-contenair-photo" :src="User.photo" />
 				<div class="compte-contenair-photo-label">
 					<div class="infos">Nom : {{ User.nom }}</div>
 					<div class="infos">Prénom : {{ User.prenom }}</div>
@@ -351,7 +351,7 @@ export default {
   }
   @media screen and (max-width: 458px) {
 .compte-contenair-photo-label {
-		width: 350px;
+		width: 320px;
 		height: 400px;
 		position: relative;
 		left: 00px;
@@ -362,8 +362,8 @@ export default {
 		width: 800px;
 		height: 350px;
 		position: relative;
-		left: -500px;
-		top: 540px;
+		left: -260px;
+		top: 550px;
 		display: flex;
 		flex-direction: column-reverse;
 	}
@@ -371,6 +371,10 @@ export default {
 		width: 250px;
 	
 }
+.compte-contains {
+	width:300px;
+}
+
   }
 }
 </style>

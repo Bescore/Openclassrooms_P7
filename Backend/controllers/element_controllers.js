@@ -7,12 +7,11 @@ exports.userPosts = ( req, res, next ) => {
 
         function ( err, results ) {
             if ( err ) {
-                console.log( 'Erreur backend sur la route des posts' );
+                ( 'Erreur backend sur la route des posts' );
             }
-
+    
             res.status( 200 ).json( results )
-
-
+            
         } )
 
 }
@@ -130,7 +129,7 @@ exports.changeImage = ( req, res, next ) => {
         if ( err ) {
             console.log( 'Erreur backend sur la route changeImage' );
         }
-        console.log( req.body )
+        
         res.status( 200 ).json( results )
     } )
 
@@ -144,7 +143,7 @@ exports.changeMyInfos = ( req, res, next ) => {
             if ( err ) {
                 console.log( 'Erreur backend sur la route changeImage' );
             }
-            console.log( req.body )
+            
             res.status( 200 ).json( results )
         } )
     } else if ( req.body.prenom ) {
@@ -152,7 +151,7 @@ exports.changeMyInfos = ( req, res, next ) => {
             if ( err ) {
                 console.log( 'Erreur backend sur la route changeImage' );
             }
-            console.log( req.body )
+            
             res.status( 200 ).json( results )
         } )
     } else if ( req.body.email ) {
@@ -160,7 +159,7 @@ exports.changeMyInfos = ( req, res, next ) => {
             if ( err ) {
                 console.log( 'Erreur backend sur la route changeImage' );
             }
-            console.log( req.body )
+            
             res.status( 200 ).json( results )
         } )
     }
@@ -168,21 +167,33 @@ exports.changeMyInfos = ( req, res, next ) => {
 
 
 exports.deletePost = ( req, res, next ) => {
-
     con.query(
-        `SELECT idposts FROM posts WHERE titre='${ req.body.userid }'`,
+        `SELECT utilisateurs_idutilisateurs FROM posts WHERE utilisateurs_idutilisateurs="${ req.body.userid }"`,
 
         function ( err, results ) {
             if ( err ) {
                 console.log( 'Erreur backend route userAccount' );
             }
+            
+            if ( JSON.stringify( results[ 0 ].utilisateurs_idutilisateurs ) !== req.body.userid ) {
+                console.log( JSON.stringify( results[ 0 ].utilisateurs_idutilisateurs ) )
+            } else {
 
-            res.status( 200 ).json( results )
+                con.query(
+                    `DELETE FROM posts WHERE titre="${ req.body.titre }"`,
+
+                    function ( err, resultat ) {
+                        if ( err ) {
+                            console.log( 'Erreur backend route userAccount' );
+                        }
+                        
+                        res.status( 200 ).json( resultat )
 
 
-        } )
 
+                    } )
 
+            } } )
 
 
 }

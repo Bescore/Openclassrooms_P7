@@ -1,0 +1,69 @@
+<template>
+    <form class="supp">
+        <label id="supp" for="delete_post">Supprimer un post ? quel est son titre ?<br/></label>
+    <input v-model="del_input_value" id="delete_input" type="textarea"/>
+    <input  @click="delPost()" class="del-btn" type="submit" value="Supprimer"/>
+    </form>
+</template>
+
+<script>
+import axios from "axios";
+export default {
+    data(){
+        return{
+            del_input_value:''
+        }
+    },
+    methods:{
+         delPost(){
+           axios.delete("feed/delete",{data:{
+                titre: this.del_input_value,
+                userid: localStorage.getItem('secret')
+            } })
+            .then((response) => {
+					console.log(response);
+                    if (response.data=="nope"){
+                        alert(' vous ne pouvez pas supprimer ce post !')
+                    }
+				}),
+				(error) => {
+					console.log(error);
+				};
+        }
+    }
+}
+</script>
+<style>
+.del-btn{
+margin-left:20px;
+margin-top:20px ;
+	box-shadow: 0px 0px 0px 2px #9fb4f2;
+	background: linear-gradient(to bottom, #ce2121 5%, #e2480b 100%);
+	background-color: #7892c2;
+	border-radius: 10px;
+	border: 1px solid #4e6096;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 19px;
+	padding: 9px 37px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #283966;
+}
+.del-btn:hover {
+	background: linear-gradient(to bottom, #eb380c 5%, #be350b 100%);
+	background-color: #9e7847;
+}
+.del-btn:active {
+	position: relative;
+	top: 1px;
+}
+#delete_input{
+  height: 28px; 
+  width:200px; 
+}
+.supp{
+    margin-top: 50px;
+}
+</style>
