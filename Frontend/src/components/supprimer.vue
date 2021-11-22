@@ -40,9 +40,9 @@ margin-left:20px;
 margin-top:20px ;
 	box-shadow: 0px 0px 0px 2px #9fb4f2;
 	background: linear-gradient(to bottom, #ce2121 5%, #e2480b 100%);
-	background-color: #7892c2;
+	background-color: #da4012;
 	border-radius: 10px;
-	border: 1px solid #4e6096;
+	border: 1px solid #96594e;
 	display: inline-block;
 	cursor: pointer;
 	color: #ffffff;
@@ -62,7 +62,7 @@ margin-top:20px ;
 }
 #delete_input{
   height: 28px; 
-  width:180px; 
+  width:150px; 
   margin: 10px;
 }
 .supp{

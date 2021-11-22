@@ -4,10 +4,10 @@ const elementRoutes = require( './routes/elements_route' );
 const userRoutes=require('./routes/user_route')
 const path = require( 'path' );
 const bodyParser=require('body-parser')
+const helmet = require( "helmet" );
 
 
-
-
+app.use( helmet() );
 
 app.use( ( req, res, next ) => {
     res.setHeader( 'Access-Control-Allow-Origin', '*' );

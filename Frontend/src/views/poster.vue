@@ -336,7 +336,8 @@ export default {
 	display: flex;
 	text-justify: center;
 	align-items: center;
-	flex-wrap: wrap;
+	text-overflow: ellipsis;
+white-space: nowrap;
 }
 .commentaire {
 	width: 400px;
@@ -363,7 +364,7 @@ export default {
 }
 
 .test {
-	background-color: rgb(95, 95, 247);
+	background-color: rgb(38, 38, 233);
 	opacity: 0.3;
 	margin: auto;
 	border-radius: 10px;
