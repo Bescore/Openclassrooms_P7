@@ -1,6 +1,6 @@
 <template>
     <form class="supp">
-        <label id="supp" for="delete_post">Supprimer un post ? quel est son titre ?<br/></label>
+        <label id="supp" for="delete_post">Supprimer mon post ? quel est son titre ?<br/></label>
     <input v-model="del_input_value" id="delete_input" type="textarea"/>
     <input  @click="delPost()" class="del-btn" type="submit" value="Supprimer"/>
     </form>
@@ -21,7 +21,8 @@ export default {
                 userid: localStorage.getItem('secret')
             } })
             .then((response) => {
-					console.log(response);
+					console.log(response.data);
+                    
                     if (response.data=="nope"){
                         alert(' vous ne pouvez pas supprimer ce post !')
                     }
@@ -61,7 +62,8 @@ margin-top:20px ;
 }
 #delete_input{
   height: 28px; 
-  width:200px; 
+  width:180px; 
+  margin: 10px;
 }
 .supp{
     margin-top: 50px;

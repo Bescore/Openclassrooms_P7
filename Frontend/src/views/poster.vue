@@ -34,7 +34,8 @@
 							<img class="photo-comments" :src="commentaires.photo" />{{
 								commentaires.prenom
 							}}
-							dit :
+							à 
+							<div class="date-time"> {{commentaires.date}} :</div>
 						</div>
 						{{ commentaires.commentaires }}
 					</div>
@@ -130,16 +131,15 @@ export default {
 					this.posted = response.data;
 				})
 				.catch((error) => console.log(error, "problème fonction posting"));
+				
 	},
 
 	methods: {
-		getobj(){
-
-		},
 		logOut() {
 			localStorage.removeItem("secret");
 		},
 		async addcomment() {
+			event.preventDefault()
 			await axios
 				.post("feed/comment", {
 					commentaire: this.coms,
@@ -151,6 +151,7 @@ export default {
 				.catch(function (error) {
 					alert(error);
 				});
+				
 		},
 	},
 };
@@ -300,6 +301,7 @@ export default {
 	border-bottom: rgb(214, 206, 206) ridge 5px;
 }
 .posts-comments-2 {
+	font-size: 13px;
 	width: 550px;
 	margin: auto;
 	margin-top: 30px;
@@ -384,6 +386,10 @@ export default {
 	}
   
 }
+.date-time{
+	margin-left:3px;
+}
+
 /*MEDIA QUERIES*/
 @media  screen and(max-width:662px) {
 	

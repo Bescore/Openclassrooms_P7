@@ -291,25 +291,25 @@ export default {
 		top: 400px;
 		display: initial;
 	}
-  @media screen and (max-width: 544px) {
+  @media screen and (max-width: 556px) {
 	.compte-contenair {
 		width: 95%;
-		height: 1000px;
+		height: 1100px;
 		display: flex;
 	}
 	.compte-contenair-photo-label {
 		width: 350px;
 		height: 400px;
-		position: initial;
-		left: 00px;
-		top: 00px;
+		position: relative;
+		left: -110px;
+		top: 250px;
 	}
 	.compte-contains-infos {
 		width: 800px;
 		height: 350px;
 		position: relative;
-		left: -500px;
-		top: 400px;
+		left: -400px;
+		top: 550px;
 		display: initial;
 	}
   .compte-contenair-photo {
@@ -317,7 +317,7 @@ export default {
 	height: 200px;
 	border-radius: 50%;
 	position: relative;
-	left: 50px;
+	left: 150px;
 	top: 50px;
 	object-fit: cover;
 }
@@ -355,7 +355,7 @@ export default {
 		height: 400px;
 		position: relative;
 		left: 00px;
-		top: 220px;
+		top: 230px;
     left:-200px;
 	}
   .compte-contains-infos {
@@ -363,7 +363,7 @@ export default {
 		height: 350px;
 		position: relative;
 		left: -260px;
-		top: 550px;
+		top: 600px;
 		display: flex;
 		flex-direction: column-reverse;
 	}
@@ -374,7 +374,46 @@ export default {
 .compte-contains {
 	width:300px;
 }
-
+.compte-contenair-photo-label {
+		width: 350px;
+		height: 400px;
+		position: relative;
+		left: -180px;
+		top: 250px;
+	}
+.compte-contenair-photo {
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	position: relative;
+	left: 70px;
+	top: 50px;
+	object-fit: cover;
+}
+@media screen and (max-width: 320px) {
+.compte-contains-infos {
+		
+		left: -270px;
+		top: 600px;
+		
+	}
+	.compte-contenair-photo-label {
+		width: 300px;
+		height: 400px;
+		position: relative;
+		left: -210px;
+		top: 250px;
+	}
+	.compte-contenair-photo {
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	position: relative;
+	left: 50px;
+	top: 50px;
+	object-fit: cover;
+}
+}
   }
 }
 </style>
