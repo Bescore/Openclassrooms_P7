@@ -139,7 +139,6 @@ export default {
 			localStorage.removeItem("secret");
 		},
 		async addcomment() {
-			event.preventDefault()
 			await axios
 				.post("feed/comment", {
 					commentaire: this.coms,

@@ -14,9 +14,6 @@ router.get( '/feed/posters', authentification, elementCtrl.userComments );
 //route d'affichage des posts//
 router.get( '/feed/post', authentification, elementCtrl.userPosts );
 
-//route des tableaux des likes//
-router.get( '/feed/like', authentification, elementCtrl.userLikes );
-
 //route d'affichage des infos utilisateurs//
 router.post( '/user', authentification, elementCtrl.userAccount );
 

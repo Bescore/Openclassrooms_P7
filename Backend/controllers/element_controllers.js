@@ -33,24 +33,6 @@ exports.userComments = ( req, res, next ) => {
 }
 
 
-exports.userLikes = ( req, res, next ) => {
-
-    con.query(
-        'SELECT * FROM likes ',
-
-        function ( err, results ) {
-            if ( err ) {
-                console.log( 'Erreur backend sur la route des likes' );
-            }
-
-            res.status( 200 ).json( results )
-
-
-        } )
-
-}
-
-
 exports.userAccount = ( req, res, next ) => {
 
 
@@ -103,7 +85,7 @@ exports.addPosts = ( req, res, next ) => {
 
             } )
     } else {
-        const img = "https://cdn-icons-png.flaticon.com/512/1532/1532520.png"
+        const img = "https://www.zdnet.fr/zdnet/i/edit/ne/2014/09/the-impact-of-social-media-on-enterprise-apps-600.jpg"
         con.query(
             `INSERT INTO posts(post_body,post_img,titre,utilisateurs_idutilisateurs,likes_idlike) VALUES ("${ req.body.post_body }","${ img }","${ req.body.titre }","${ req.body.userid }","${ req.body.userid }")`, function ( err, results ) {
                 if ( err ) {
