@@ -1,5 +1,10 @@
-const con = require( '../mysql/db' )
-const multer = require( '../multer/multer-config' )
+const con = require( '../mysql/db' );
+const fs = require( 'fs' );
+
+
+
+
+
 exports.userPosts = ( req, res, next ) => {
 
     con.query(
@@ -103,19 +108,26 @@ exports.addPosts = ( req, res, next ) => {
 
 
 exports.changeImage = ( req, res, next ) => {
-
-    req.body.image = `${ req.protocol }://${ req.get( 'host' ) }/image/${ req.file.filename }`
-
-
-    con.query( `UPDATE utilisateurs SET photo = '${ req.body.image }' WHERE idutilisateurs = '${ req.body.userid }'`, function ( err, results ) {
+    con.query( `SELECT photo FROM utilisateurs WHERE idutilisateurs= "${ req.body.userid }"`, function ( err, resulting ) {
         if ( err ) {
-            console.log( 'Erreur backend sur la route changeImage' );
+            console.log( 'Erreur backend sur la route changeImage 1' );
         }
-        
-        res.status( 200 ).json( results )
+        console.log(resulting[0].photo)
+        const removedfile = resulting[0].photo.split( '/image/' )[ 1 ];
+        fs.unlink( `image/${ removedfile }`, () => {
+           console.log('la précédente image a été supprimée')
+        } );
+        req.body.image = `${ req.protocol }://${ req.get( 'host' ) }/image/${ req.file.filename }`
+        con.query( `UPDATE utilisateurs SET photo = '${ req.body.image }' WHERE idutilisateurs = '${ req.body.userid }'`, function ( err, results ) {
+            if ( err ) {
+                console.log( 'Erreur backend sur la route changeImage 2' );
+            }
+
+            res.status( 200 ).json( results )
+        } )
+
+
     } )
-
-
 }
 
 

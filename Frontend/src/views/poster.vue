@@ -50,7 +50,7 @@
 						<textarea
 							v-model="coms"
 							class="commentaire"
-							name="commentaires"
+							name="commentaires"	
 						></textarea>
 					</div>
 					<input

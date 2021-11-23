@@ -24,7 +24,7 @@ export default {
 					console.log(response.data);
                     
                     if (response.data=="nope"){
-                        alert(' vous ne pouvez pas supprimer ce post !')
+                        alert(" vous ne pouvez pas supprimer un post que vous n'avez pas créer !")
                     }
 				}),
 				(error) => {
