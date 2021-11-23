@@ -102,7 +102,8 @@ export default {
 			console.log(this.Inf);
 		},
 		change_image() {
-			console.log(this.Inf)
+			event.preventDefault();
+			console.log(this.Inf);
 			const formdata = new formData();
 			formdata.append("image", this.Inf, this.Inf.name);
 			formdata.append("userid", localStorage.getItem("secret"));
@@ -118,10 +119,13 @@ export default {
 				.catch(function (error) {
 					alert(error);
 				});
-				
+			setTimeout(function () {
+				location.reload();
+			}, 50);
 		},
-		async change_email() {
-			await axios
+		change_email() {
+			event.preventDefault();
+			axios
 				.put("compte/changes", {
 					email: document.getElementById("email").value,
 					userid: localStorage.getItem("secret"),
@@ -132,9 +136,13 @@ export default {
 				(error) => {
 					console.log(error);
 				};
+			setTimeout(function () {
+				location.reload();
+			}, 20);
 		},
-		async change_firstname() {
-			await axios
+		change_firstname() {
+			event.preventDefault();
+			axios
 				.put("compte/changes", {
 					prenom: document.getElementById("Firstname").value,
 					userid: localStorage.getItem("secret"),
@@ -145,9 +153,13 @@ export default {
 				(error) => {
 					console.log(error);
 				};
+			setTimeout(function () {
+				location.reload();
+			}, 20);
 		},
-		async change_lastname() {
-			await axios
+		change_lastname() {
+			event.preventDefault();
+			axios
 				.put("compte/changes", {
 					nom: document.getElementById("Newname").value,
 					userid: localStorage.getItem("secret"),
@@ -158,6 +170,9 @@ export default {
 				(error) => {
 					console.log(error);
 				};
+			setTimeout(function () {
+				location.reload();
+			}, 20);
 		},
 	},
 };

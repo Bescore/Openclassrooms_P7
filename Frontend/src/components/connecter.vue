@@ -61,6 +61,7 @@ export default {
     },
 
     async connected() {
+      event.preventDefault();
       await axios
         .post("auth/login", {
           email: document.getElementById("email_id").value,
@@ -77,6 +78,9 @@ export default {
         .catch((err) => {
           console.log(err + " " + "envoi du login n'a pas aboutie");
         });
+        setTimeout(function () {
+				location.reload();
+			}, 100);
     },
   },
 };

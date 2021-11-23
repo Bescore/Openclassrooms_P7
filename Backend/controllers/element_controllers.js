@@ -43,7 +43,7 @@ exports.userAccount = ( req, res, next ) => {
 
 
     con.query(
-        `SELECT * FROM utilisateurs WHERE idutilisateurs='${ req.body.userid }'`,
+        `SELECT * FROM utilisateurs WHERE idutilisateurs="${ req.body.userid }"`,
 
         function ( err, results ) {
             if ( err ) {
@@ -132,7 +132,7 @@ exports.changeImage = ( req, res, next ) => {
 
 exports.changeMyInfos = ( req, res, next ) => {
     if ( req.body.nom ) {
-        con.query( `UPDATE utilisateurs SET nom = '${ req.body.nom }' WHERE idutilisateurs = '${ req.body.userid }'`, function ( err, results ) {
+        con.query( `UPDATE utilisateurs SET nom = "${ req.body.nom }" WHERE idutilisateurs = "${ req.body.userid }"`, function ( err, results ) {
             if ( err ) {
                 console.log( 'Erreur backend sur la route changeImage' );
             }
@@ -140,7 +140,7 @@ exports.changeMyInfos = ( req, res, next ) => {
             res.status( 200 ).json( results )
         } )
     } else if ( req.body.prenom ) {
-        con.query( `UPDATE utilisateurs SET prenom = '${ req.body.prenom }' WHERE idutilisateurs = '${ req.body.userid }'`, function ( err, results ) {
+        con.query( `UPDATE utilisateurs SET prenom = "${ req.body.prenom }" WHERE idutilisateurs = "${ req.body.userid }"`, function ( err, results ) {
             if ( err ) {
                 console.log( 'Erreur backend sur la route changeImage' );
             }
@@ -148,7 +148,7 @@ exports.changeMyInfos = ( req, res, next ) => {
             res.status( 200 ).json( results )
         } )
     } else if ( req.body.email ) {
-        con.query( `UPDATE utilisateurs SET email = '${ req.body.email }' WHERE idutilisateurs = '${ req.body.userid }'`, function ( err, results ) {
+        con.query( `UPDATE utilisateurs SET email = "${ req.body.email }" WHERE idutilisateurs = "${ req.body.userid }"`, function ( err, results ) {
             if ( err ) {
                 console.log( 'Erreur backend sur la route changeImage' );
             }

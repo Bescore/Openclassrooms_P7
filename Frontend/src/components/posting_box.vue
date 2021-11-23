@@ -25,6 +25,7 @@
 				class="create-posts-contains-inputs-btn"
 				type="submit"
 				value="Créer Post !"
+				name="addpost"
 			/>
 		</div>
 	</form>
@@ -52,6 +53,7 @@ export default {
 		},
 
 		addpost() {
+			event.preventDefault();
 			const secret = localStorage.getItem("secret");
 			if (document.getElementById("image").value !== "") {
 				const formdata = new formData();
@@ -86,6 +88,9 @@ export default {
 						alert(error);
 					});
 			}
+			setTimeout(function () {
+				location.reload();
+			}, 20);
 		},
 	},
 };

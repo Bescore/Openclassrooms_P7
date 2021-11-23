@@ -101,43 +101,43 @@ export default {
 				if (this.accountOwner.photo == "") {
 					document.getElementById("roundpic").style.display = "none";
 				}
-				console.log(response.data[0].photo);
 			})
-			.catch((error) => console.log(error));
+			.catch((error) =>{ console.log(error)});
 	},
 
-	async commentaires() {
-		await axios
+	commentaires() {
+		axios
 			.get("feed/commentaires")
 			.then((response) => {
 				this.commentaires = response.data;
 			})
-			.catch((error) => console.log(error));
+			.catch((error) =>{ console.log(error)});
 	},
 
-	async mounted() {
-		await axios
+	mounted() {
+		axios
 			.get("feed/posters")
 			.then((response) => {
 				///COMMENTAIRES DES POSTS
 				this.commentaires = response.data;
 			})
-			.catch((error) => console.log(error)),
-			await axios
+			.catch((error) =>{ console.log(error)}),
+			axios
 				.get("feed/post")
 				.then((response) => {
 					//LES POSTS
 					this.posted = response.data;
 				})
-				.catch((error) => console.log(error, "problème fonction posting"));
+				.catch((error) =>{ console.log(error, "problème fonction posting")});
 	},
 
 	methods: {
 		logOut() {
 			localStorage.removeItem("secret");
 		},
-		async addcomment() {
-			await axios
+		addcomment() {
+			event.preventDefault();
+			axios
 				.post("feed/comment", {
 					commentaire: this.coms,
 					userid: localStorage.getItem("secret"),
@@ -148,6 +148,7 @@ export default {
 				.catch(function (error) {
 					alert(error);
 				});
+				setTimeout(function(){location.reload()},20);
 		},
 	},
 };
