@@ -112,7 +112,6 @@ exports.changeImage = ( req, res, next ) => {
         if ( err ) {
             console.log( 'Erreur backend sur la route changeImage 1' );
         }
-        console.log(resulting[0].photo)
         const removedfile = resulting[0].photo.split( '/image/' )[ 1 ];
         fs.unlink( `image/${ removedfile }`, () => {
            console.log('la précédente image a été supprimée')

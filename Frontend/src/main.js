@@ -9,5 +9,5 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add( faSpinner, faThumbsDown, faThumbsUp,faBell)
 
-createApp( App ).component( "font-awesome-icon", FontAwesomeIcon ).use( router ).use( router ).mount( '#app' )
+createApp( App ).component( "font-awesome-icon", FontAwesomeIcon ).use( router ).mount( '#app' )
 

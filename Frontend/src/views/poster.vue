@@ -34,8 +34,8 @@
 							<img class="photo-comments" :src="commentaires.photo" />{{
 								commentaires.prenom
 							}}
-							à 
-							<div class="date-time"> {{commentaires.date}} :</div>
+							à
+							<div class="date-time">{{ commentaires.date }} :</div>
 						</div>
 						{{ commentaires.commentaires }}
 					</div>
@@ -50,7 +50,7 @@
 						<textarea
 							v-model="coms"
 							class="commentaire"
-							name="commentaires"	
+							name="commentaires"
 						></textarea>
 					</div>
 					<input
@@ -80,8 +80,7 @@ export default {
 	name: poster,
 	data() {
 		return {
-			
-			idvalue:null,
+			idvalue: null,
 			commentaires: null,
 			posters: null,
 			posted: null,
@@ -99,10 +98,10 @@ export default {
 			.then((response) => {
 				//photo du mur//infos users
 				this.accountOwner = response.data[0];
-				if (this.accountOwner.photo == '') {
+				if (this.accountOwner.photo == "") {
 					document.getElementById("roundpic").style.display = "none";
 				}
-				console.log(response.data[0].photo)
+				console.log(response.data[0].photo);
 			})
 			.catch((error) => console.log(error));
 	},
@@ -131,7 +130,6 @@ export default {
 					this.posted = response.data;
 				})
 				.catch((error) => console.log(error, "problème fonction posting"));
-				
 	},
 
 	methods: {
@@ -150,13 +148,12 @@ export default {
 				.catch(function (error) {
 					alert(error);
 				});
-				
 		},
 	},
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped >
 *::-webkit-scrollbar {
 	width: 7px;
 }
@@ -242,15 +239,14 @@ export default {
 	margin: auto;
 	margin-top: 50px;
 	margin-bottom: 30px;
-	border-radius: 105x;
 	background-color: #f2f2f2;
 	box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
 		rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
 		rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
-.title-font{
+.title-font {
 	font-size: 23px;
-	overflow:auto ;
+	overflow: auto;
 }
 .photo {
 	width: 550px;
@@ -300,8 +296,8 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-top: rgb(214, 206, 206) ridge 5px;
-	border-bottom: rgb(214, 206, 206) ridge 5px;
+	border-top: rgb(214, 206, 206) ridge 2px;
+	border-bottom: rgb(214, 206, 206) ridge 2px;
 }
 .posts-comments-2 {
 	font-size: 13px;
@@ -337,10 +333,9 @@ export default {
 .posts-comments-child-2 {
 	height: 40px;
 	display: flex;
-	text-justify: center;
 	align-items: center;
 	text-overflow: ellipsis;
-white-space: nowrap;
+	white-space: nowrap;
 }
 .commentaire {
 	width: 400px;
@@ -388,71 +383,67 @@ white-space: nowrap;
 	100% {
 		opacity: 0.4;
 	}
-  
 }
-.date-time{
-	margin-left:3px;
+.date-time {
+	margin-left: 3px;
 }
 
 /*MEDIA QUERIES*/
-@media  screen and(max-width:662px) {
-	
+@media screen and(max-width:662px) {
 	.posts {
-	padding: 20px;
-	width: 290px;
-	height: 950px;
-	margin: auto;
-	margin-top: 50px;
-	margin-bottom: 30px;
-	border-radius: 105x;
-	background-color: #f2f2f2;
-  }
-  .photo {
-	width: 200px;
-	height: 200px;
-}
-.posts-comments {
-	width: 280px;
-}
-.commentaire {
-	width: 280px;
-}
-.actualite {
-	border-radius: 5px;
-	font-weight: bold;
-	margin: auto;
-	margin-top: 40px;
-	padding: 20px;
-	width: 300px;
-	
-}
-.compte-banner {
-	width: 310px;
-}
-.compte-banner-round-pic {
-	position: relative;
-	right: 10px;
-	width: 50px;
-	height: 40px;
-	border-radius: 50%;
-	overflow: hidden;
-	object-fit: cover;
-	animation: bounce 0.7s ease infinite;
-}
-#delete {
-  margin-top:20px;
-	background-color: green;
-	background: linear-gradient(to bottom, #c03a18 5%, #c71212 100%);
-	border: rgb(114, 114, 119);
-}
-.add-comments-btn {
-	margin: 20px;
-	width:150px;
-}
-#post-body{
-	width:300px;
-	flex:wrap
-}
-
+		padding: 20px;
+		width: 290px;
+		height: 950px;
+		margin: auto;
+		margin-top: 50px;
+		margin-bottom: 30px;
+		border-radius: 105x;
+		background-color: #f2f2f2;
+	}
+	.photo {
+		width: 200px;
+		height: 200px;
+	}
+	.posts-comments {
+		width: 280px;
+	}
+	.commentaire {
+		width: 280px;
+	}
+	.actualite {
+		border-radius: 5px;
+		font-weight: bold;
+		margin: auto;
+		margin-top: 40px;
+		padding: 20px;
+		width: 300px;
+	}
+	.compte-banner {
+		width: 310px;
+	}
+	.compte-banner-round-pic {
+		position: relative;
+		right: 10px;
+		width: 50px;
+		height: 40px;
+		border-radius: 50%;
+		overflow: hidden;
+		object-fit: cover;
+		animation: bounce 0.7s ease infinite;
+	}
+	#delete {
+		margin-top: 20px;
+		background-color: green;
+		background: linear-gradient(to bottom, #c03a18 5%, #c71212 100%);
+		border: rgb(114, 114, 119);
+	}
+	.add-comments-btn {
+		margin: 20px;
+		width: 150px;
+	}
+	#post-body {
+		width: 300px;
+		flex: wrap;
+	}
 }
 </style>

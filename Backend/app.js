@@ -17,7 +17,7 @@ app.use( ( req, res, next ) => {
 } );
 
 app.use( bodyParser.json() );
-app.use( express.json() );
+
 
 
 app.use( "/image", express.static( path.join( __dirname, 'image' ) ) );

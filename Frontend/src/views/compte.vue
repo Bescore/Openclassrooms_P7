@@ -14,19 +14,19 @@
 			<div class="compte-contains-infos">
 				<form class="form-buttons">
 					<input
-						@click="change_lastname()"
+						@click="change_lastname"
 						class="form-buttons-btns"
 						type="submit"
 						value="Modifier mon Nom"
 					/><br />
 					<input
-						@click="change_firstname()"
+						@click="change_firstname"
 						class="form-buttons-btns"
 						type="submit"
 						value="Modifier mon Prénom"
 					/><br />
 					<input
-						@click="change_email()"
+						@click="change_email"
 						class="form-buttons-btns"
 						type="submit"
 						value="Modifier mon Email"
@@ -39,7 +39,7 @@
 						accept=".gif,.jpg,.jpeg,.png"
 					/>
 					<input
-						@click="change_image()"
+						@click="change_image"
 						class="form-buttons-btns"
 						type="submit"
 						value="Changer de photo"
@@ -102,7 +102,7 @@ export default {
 			console.log(this.Inf);
 		},
 		change_image() {
-			console.log(this.Inf);
+			console.log(this.Inf)
 			const formdata = new formData();
 			formdata.append("image", this.Inf, this.Inf.name);
 			formdata.append("userid", localStorage.getItem("secret"));
@@ -118,6 +118,7 @@ export default {
 				.catch(function (error) {
 					alert(error);
 				});
+				
 		},
 		async change_email() {
 			await axios
