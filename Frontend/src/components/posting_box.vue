@@ -51,7 +51,7 @@ export default {
 			console.log(document.getElementById("image").value);
 		},
 
-		 addpost() {
+		addpost() {
 			const secret = localStorage.getItem("secret");
 			if (document.getElementById("image").value !== "") {
 				const formdata = new formData();
@@ -60,7 +60,7 @@ export default {
 				formdata.append("post_body", this.post_body);
 				formdata.append("userid", secret);
 				console.log(formdata);
-				 axios
+				axios
 					.post("image", formdata, {
 						headers: {
 							"Content-Type": "multipart/form-data",
