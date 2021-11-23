@@ -1,7 +1,12 @@
 <template>
 	<div>
 		<h1>Vos informations personelles</h1>
-		<div><router-link class="mur" to="/feed">Mur</router-link></div>
+		<div>
+			<router-link class="mur" to="/feed">Mur</router-link
+			><button @click="inactiveAccount()" id="inactive" class="mur" type="button">
+				Désactiver son compte
+			</button>
+		</div>
 		<div class="compte-contenair">
 			<div class="compte-contains">
 				<img class="compte-contenair-photo" :src="User.photo" />
@@ -174,6 +179,22 @@ export default {
 				location.reload();
 			}, 20);
 		},
+		inactiveAccount(){
+			axios.put("compte/inactive",{
+				value:0,
+				userid:localStorage.getItem('secret')
+			})
+			.then((response) => {
+					console.log(response);
+				}),
+				(error) => {
+					console.log(error);
+				};
+				this.$router.push("/")
+		}
+
+
+
 	},
 };
 </script>
@@ -190,6 +211,11 @@ export default {
 	box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
 		rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
 		rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+#inactive {
+	margin: 10px;
+	margin-left: 30px;
+	background: linear-gradient(to right, #da3810 5%, #f52109 100%);
 }
 .mur {
 	box-shadow: 3px 4px 0px 0px #1564ad;

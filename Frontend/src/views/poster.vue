@@ -236,7 +236,7 @@ export default {
 .posts {
 	padding: 20px;
 	width: 600px;
-	height: 950px;
+	height: 900px;
 	margin: auto;
 	margin-top: 50px;
 	margin-bottom: 30px;
@@ -394,7 +394,7 @@ export default {
 	.posts {
 		padding: 20px;
 		width: 290px;
-		height: 950px;
+		height: 800px;
 		margin: auto;
 		margin-top: 50px;
 		margin-bottom: 30px;

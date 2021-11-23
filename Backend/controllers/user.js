@@ -6,7 +6,7 @@ const jwt = require( 'jsonwebtoken' )
 exports.signup = async ( req, res, next ) => {
     const hashy = await bcrypt.hash( req.body.password, 10 )
     const photo =`${ req.protocol }://${ req.get( 'host' ) }/image/user-icon.png`
-    con.query( `INSERT INTO utilisateurs(nom,prenom,md_passe,email,photo) VALUES("${ req.body.nom }","${ req.body.prenom }","${ hashy }","${ req.body.email }","${photo}")`, function ( err, result ) {
+    con.query( `INSERT INTO utilisateurs(nom,prenom,md_passe,email,photo,active) VALUES("${ req.body.nom }","${ req.body.prenom }","${ hashy }","${ req.body.email }","${photo}",'1')`, function ( err, result ) {
 
         console.log( req.body );
     } );
@@ -23,12 +23,12 @@ exports.signup = async ( req, res, next ) => {
 //LOGIN, CONTRÔLE D'ACCÈS UTILISATEUR//
 exports.login = ( req, res, next ) => {
 
-        con.query( `SELECT idutilisateurs FROM utilisateurs WHERE email='${ req.body.email }'`, function ( err, resultat ) {
+        con.query( `SELECT idutilisateurs FROM utilisateurs WHERE email='${ req.body.email }' AND active='1'`, function ( err, resultat ) {
             if ( err ) {
                 console.log( 'Erreur sur 1 la route de login' )
             }
             
-                con.query( `SELECT md_passe FROM utilisateurs WHERE email='${ req.body.email }'`, function ( err, resulting ) {
+            con.query( `SELECT md_passe FROM utilisateurs WHERE email='${ req.body.email }' AND active='1'`, function ( err, resulting ) {
                     if ( err ) {
                         console.log( 'Erreur 2 sur la route de login' )
                     }

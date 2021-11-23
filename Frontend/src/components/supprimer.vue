@@ -78,5 +78,10 @@ export default {
 }
 .supp {
 	margin-top: 50px;
+	z-index: 1;
+	position: -webkit-sticky;
+	position: sticky;
+	bottom: 00px;
+	
 }
 </style>

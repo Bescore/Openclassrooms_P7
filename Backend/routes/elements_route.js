@@ -32,5 +32,7 @@ router.put( '/compte/changes', authentification, elementCtrl.changeMyInfos );
 //route de suppression du post utilisateur//
 router.delete( '/feed/delete', authentification, elementCtrl.deletePost )
 
+//route de desactivation du compte//
+router.put( '/compte/inactive', authentification, elementCtrl.deSactivate)
 
 module.exports = router;
