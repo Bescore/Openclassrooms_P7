@@ -4,7 +4,7 @@
 		<div><router-link class="mur" to="/feed">Mur</router-link></div>
 		<div class="compte-contenair">
 			<div class="compte-contains">
-				<img  class="compte-contenair-photo" :src="User.photo" />
+				<img class="compte-contenair-photo" :src="User.photo" />
 				<div class="compte-contenair-photo-label">
 					<div class="infos">Nom : {{ User.nom }}</div>
 					<div class="infos">Prénom : {{ User.prenom }}</div>
@@ -31,7 +31,6 @@
 						type="submit"
 						value="Modifier mon Email"
 					/><br />
-					<label for="img">Modifier la photo</label>
 					<input
 						@change="getInfos"
 						id="img"
@@ -102,7 +101,7 @@ export default {
 			this.Inf = event.target.files[0];
 			console.log(this.Inf);
 		},
-		async change_image() {
+		change_image() {
 			console.log(this.Inf);
 			const formdata = new formData();
 			formdata.append("image", this.Inf, this.Inf.name);
@@ -291,129 +290,125 @@ export default {
 		top: 400px;
 		display: initial;
 	}
-  @media screen and (max-width: 556px) {
-	.compte-contenair {
-		width: 95%;
-		height: 1100px;
-		display: flex;
+	@media screen and (max-width: 556px) {
+		.compte-contenair {
+			width: 95%;
+			height: 1100px;
+			display: flex;
+		}
+		.compte-contenair-photo-label {
+			width: 350px;
+			height: 400px;
+			position: relative;
+			left: -110px;
+			top: 250px;
+		}
+		.compte-contains-infos {
+			width: 800px;
+			height: 350px;
+			position: relative;
+			left: -400px;
+			top: 550px;
+			display: initial;
+		}
+		.compte-contenair-photo {
+			width: 200px;
+			height: 200px;
+			border-radius: 50%;
+			position: relative;
+			left: 150px;
+			top: 50px;
+			object-fit: cover;
+		}
+		.form-buttons {
+			width: 200px;
+			height: 300px;
+			display: flex;
+			flex-direction: column;
+		}
+		.form-buttons-btns {
+			margin: 5px;
+			border-radius: 5px;
+			height: 100px;
+		}
+		.form-inputs {
+			margin: auto;
+			margin-top: 15px;
+			display: flex;
+			flex-direction: column;
+		}
+		.form-buttons-inputs {
+			width: 200px;
+			margin: 15px;
+			border-radius: 5px;
+			height: 30px;
+		}
+		.infos {
+			width: 250px;
+		}
 	}
-	.compte-contenair-photo-label {
-		width: 350px;
-		height: 400px;
-		position: relative;
-		left: -110px;
-		top: 250px;
+	@media screen and (max-width: 458px) {
+		.compte-contenair-photo-label {
+			width: 320px;
+			height: 400px;
+			position: relative;
+			left: 00px;
+			top: 230px;
+			left: -200px;
+		}
+		.compte-contains-infos {
+			width: 800px;
+			height: 350px;
+			position: relative;
+			left: -260px;
+			top: 600px;
+			display: flex;
+			flex-direction: column-reverse;
+		}
+		.infos {
+			width: 250px;
+		}
+		.compte-contains {
+			width: 300px;
+		}
+		.compte-contenair-photo-label {
+			width: 350px;
+			height: 400px;
+			position: relative;
+			left: -180px;
+			top: 250px;
+		}
+		.compte-contenair-photo {
+			width: 200px;
+			height: 200px;
+			border-radius: 50%;
+			position: relative;
+			left: 70px;
+			top: 50px;
+			object-fit: cover;
+		}
+		@media screen and (max-width: 320px) {
+			.compte-contains-infos {
+				left: -270px;
+				top: 600px;
+			}
+			.compte-contenair-photo-label {
+				width: 300px;
+				height: 400px;
+				position: relative;
+				left: -210px;
+				top: 250px;
+			}
+			.compte-contenair-photo {
+				width: 200px;
+				height: 200px;
+				border-radius: 50%;
+				position: relative;
+				left: 50px;
+				top: 50px;
+				object-fit: cover;
+			}
+		}
 	}
-	.compte-contains-infos {
-		width: 800px;
-		height: 350px;
-		position: relative;
-		left: -400px;
-		top: 550px;
-		display: initial;
-	}
-  .compte-contenair-photo {
-	width: 200px;
-	height: 200px;
-	border-radius: 50%;
-	position: relative;
-	left: 150px;
-	top: 50px;
-	object-fit: cover;
-}
-.form-buttons {
-	width: 200px;
-	height: 300px;
-	display: flex;
-	flex-direction: column;
-}
-.form-buttons-btns {
-	margin: 5px;
-	border-radius: 5px;
-	height: 100px;
-}
-.form-inputs {
-	margin: auto;
-	margin-top: 15px;
-	display: flex;
-	flex-direction: column;
-}
-.form-buttons-inputs {
-	width: 200px;
-	margin: 15px;
-	border-radius: 5px;
-	height: 30px;
-}
-.infos {
-		width: 250px;
-	
-}
-  }
-  @media screen and (max-width: 458px) {
-.compte-contenair-photo-label {
-		width: 320px;
-		height: 400px;
-		position: relative;
-		left: 00px;
-		top: 230px;
-    left:-200px;
-	}
-  .compte-contains-infos {
-		width: 800px;
-		height: 350px;
-		position: relative;
-		left: -260px;
-		top: 600px;
-		display: flex;
-		flex-direction: column-reverse;
-	}
-	.infos {
-		width: 250px;
-	
-}
-.compte-contains {
-	width:300px;
-}
-.compte-contenair-photo-label {
-		width: 350px;
-		height: 400px;
-		position: relative;
-		left: -180px;
-		top: 250px;
-	}
-.compte-contenair-photo {
-	width: 200px;
-	height: 200px;
-	border-radius: 50%;
-	position: relative;
-	left: 70px;
-	top: 50px;
-	object-fit: cover;
-}
-@media screen and (max-width: 320px) {
-.compte-contains-infos {
-		
-		left: -270px;
-		top: 600px;
-		
-	}
-	.compte-contenair-photo-label {
-		width: 300px;
-		height: 400px;
-		position: relative;
-		left: -210px;
-		top: 250px;
-	}
-	.compte-contenair-photo {
-	width: 200px;
-	height: 200px;
-	border-radius: 50%;
-	position: relative;
-	left: 50px;
-	top: 50px;
-	object-fit: cover;
-}
-}
-  }
 }
 </style>

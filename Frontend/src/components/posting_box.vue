@@ -51,7 +51,7 @@ export default {
 			console.log(document.getElementById("image").value);
 		},
 
-		async addpost() {
+		addpost() {
 			const secret = localStorage.getItem("secret");
 			if (document.getElementById("image").value !== "") {
 				const formdata = new formData();
@@ -145,18 +145,18 @@ export default {
 	top: 1px;
 }
 /*MEDIA QUERIES*/
-@media screen and (max-width:662px) {
+@media screen and (max-width: 662px) {
 	.create-posts-contains {
-	padding: 20px;
-	width: 300px;
-	height: 300px;
-	border-radius: 10px;
-	margin: auto;
-	margin-top: 40px;
-	background-color: #f2f2f2;
-	box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
-		rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
-		rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-}
+		padding: 20px;
+		width: 300px;
+		height: 300px;
+		border-radius: 10px;
+		margin: auto;
+		margin-top: 40px;
+		background-color: #f2f2f2;
+		box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+			rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+			rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+	}
 }
 </style>

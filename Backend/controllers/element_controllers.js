@@ -162,33 +162,41 @@ exports.changeMyInfos = ( req, res, next ) => {
 
 exports.deletePost = ( req, res, next ) => {
     con.query(
-        `SELECT utilisateurs_idutilisateurs FROM posts WHERE utilisateurs_idutilisateurs="${ req.body.userid }"`,
+        `SELECT utilisateurs_idutilisateurs,post_img FROM posts WHERE utilisateurs_idutilisateurs="${ req.body.userid }"`,
 
         function ( err, results ) {
             if ( err ) {
-                console.log( 'Erreur backend route userAccount' );
+                console.log( 'Erreur backend route userAccount 1' );
             }
             try {
                 if ( JSON.stringify( results[ 0 ].utilisateurs_idutilisateurs ) !== req.body.userid ) {
                     console.log( JSON.stringify( results[ 0 ].utilisateurs_idutilisateurs ) )
                 } else {
-
-                    con.query(
-                        `DELETE FROM posts WHERE titre="${ req.body.titre }"`,
-
-                        function ( err, resultat ) {
-                            if ( err ) {
-                                console.log( 'Erreur backend route userAccount' );
-                            }
-                            console.log(req.body)
-                            res.status( 201 ).json( resultat )
-
-
-
+                    con.query( `SELECT post_img FROM posts WHERE TITRE="${ req.body.titre }"`, function ( err, resulted ) {
+                        if ( err ) {
+                            console.log( 'Erreur backend route userAccount 2' );
+                        }
+                        const removedfile = resulted[ 0 ].post_img.split( '/image/' )[ 1 ];
+                        fs.unlink( `image/${ removedfile }`, () => {
+                            console.log( 'la précédente image a été supprimée' )
                         } )
+                    })
+                        con.query(
+                            `DELETE FROM posts WHERE titre="${ req.body.titre }"`,
+
+                            function ( err, resultat ) {
+                                if ( err ) {
+                                    console.log( 'Erreur backend route userAccount 3' );
+                                }
+                                console.log( req.body )
+                                res.status( 201 ).json( resultat )
+
+                            
+
+                            } )
                 
-                }
-            } catch { res.status(200).json('nope') }
+                    }
+            } catch { res.status( 200 ).json( 'nope' ) }
             } )
 
 

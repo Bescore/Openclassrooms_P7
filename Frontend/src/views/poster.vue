@@ -19,7 +19,7 @@
 		</div>
 		<div>
 			<div class="posts" :key="index" v-for="(posted, index) in posted">
-				<div>{{ posted.titre }}</div>
+				<div class="title-font">{{ posted.titre }}</div>
 				<img :src="posted.post_img" id="posted_img" class="photo" />
 				<div class="posts-comments">
 					<div class="posts-comments-child">{{ posted.post_body }}</div>
@@ -247,6 +247,10 @@ export default {
 	box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
 		rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
 		rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+.title-font{
+	font-size: 23px;
+	overflow:auto ;
 }
 .photo {
 	width: 550px;
