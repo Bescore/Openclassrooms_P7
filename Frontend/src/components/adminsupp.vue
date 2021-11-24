@@ -9,7 +9,7 @@
 	</form>
     <form id="admin-deletecomments">
 		<label id="supp" for="delete_post"
-			>Supprimer ce commentaire ? (copier/coller)<br
+			>Supprimer un commentaire ? (copier/coller)<br
 		/></label>
 		<input v-model="delCommentaire" id="delete_input" type="textarea" />
 		<input @click="delComment()" class="del-btn" type="submit" value="Supprimer" />
