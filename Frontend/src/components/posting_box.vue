@@ -90,7 +90,7 @@ export default {
 			}
 			setTimeout(function () {
 				location.reload();
-			}, 20);
+			}, 100);
 		},
 	},
 };

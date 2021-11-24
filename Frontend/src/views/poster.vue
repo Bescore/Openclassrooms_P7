@@ -21,7 +21,7 @@
 		<div>
 			<div class="posts" :key="index" v-for="(posted, index) in posted">
 				<div class="title-font">{{ posted.titre }}</div>
-				<img :src="posted.post_img" id="posted_img" class="photo" />
+			<div>	<img :src="posted.post_img" id="posted_img" class="photo" /></div>
 				<div class="posts-comments">
 					<div class="posts-comments-child">{{ posted.post_body }}</div>
 				</div>
@@ -256,8 +256,9 @@ export default {
 
 .posts {
 	padding: 20px;
+	border-radius: 20px;
 	width: 600px;
-	height: 900px;
+	height: 880px;
 	margin: auto;
 	margin-top: 50px;
 	margin-bottom: 30px;
@@ -270,8 +271,9 @@ export default {
 	font-size: 23px;
 	overflow: auto;
 }
+
 .photo {
-	width: 550px;
+	width: 100%;
 	height: 320px;
 	margin: auto;
 	position: relative;
@@ -307,9 +309,9 @@ export default {
 }
 
 .posts-comments {
-	font-size: 20px;
+	font-size: 17px;
 	width: 550px;
-	height: 120px;
+	height: 90px;
 	margin: auto;
 	margin-top: 10px;
 	position: relative;

@@ -100,6 +100,9 @@ export default {
 			})
 			.then((response) => {
 				this.User = response.data[0];
+				if (response.data[0].isAdmin==1){
+					document.getElementById("inactive").style.display = "none";
+				}
 				console.log(response);
 			})
 			.catch((err) => {

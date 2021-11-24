@@ -202,7 +202,7 @@ exports.deletePost = ( req, res, next ) => {
 }
 exports.deSactivate = ( req, res, next ) => {
 
-    con.query( `UPDATE utilisateurs SET prenom='anonyme', active="${ req.body.value }" WHERE idutilisateurs="${ req.body.userid }"`, function ( err, resulted ) {
+    con.query( `UPDATE utilisateurs SET, active="${ req.body.value }" WHERE idutilisateurs="${ req.body.userid }"`, function ( err, resulted ) {
         if ( err ) {
             console.log( 'Erreur backend route deSactivate' );
         }

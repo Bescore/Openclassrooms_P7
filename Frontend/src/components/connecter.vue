@@ -7,7 +7,7 @@
   <form @submit.prevent="submit">
     <label for="email_id">Email :</label>
     <br />
-    <input class="email" type="email" id="email_id" name="email" />
+    <input class="email" type="email" id="email_id" name="email" required />
     <br />
     <label for="password_id">Mot de passe :</label>
     <br />

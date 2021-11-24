@@ -31,7 +31,7 @@ export default {
 
 					if (response.data == "nope") {
 						alert(
-							" vous ne pouvez pas supprimer un post que vous n'avez pas créer !"
+							" vous ne pouvez pas supprimer un post que vous n'avez pas créé !"
 						);
 					}
 				}),

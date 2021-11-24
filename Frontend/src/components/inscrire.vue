@@ -5,7 +5,7 @@
   <form @submit.stop.prevent="submit">
     <label for="email">Email :</label>
     <br />
-    <input class="email" v-model="email" type="email" id="email" name="email" required="required" />
+    <input class="email" v-model="email" type="email" id="email" name="email"  required/>
     <br />
     <label for="password">Mot de passe :</label>
     <br />
@@ -15,12 +15,12 @@
       type="password"
       id="password"
       name="password-name"
-      required="required"
+      required
     />
     <br />
     <label for="nom">Nom :</label>
     <br />
-    <input class="password" v-model="nom" type="text" id="nom" name="nom-name" required="required" />
+    <input class="password" v-model="nom" type="text" id="nom" name="nom-name" required />
     <br />
     <label for="Prenom">Prénom :</label>
     <br />
@@ -30,7 +30,7 @@
       type="text"
       id="Prenom"
       name="Prenom-name"
-      required="required"
+      required
     />
     <br />
     <br />
