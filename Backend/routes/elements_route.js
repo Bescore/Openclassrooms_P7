@@ -35,4 +35,12 @@ router.delete( '/feed/delete', authentification, elementCtrl.deletePost )
 //route de desactivation du compte//
 router.put( '/compte/inactive', authentification, elementCtrl.deSactivate)
 
+//route de suppression de post admin//
+router.delete( '/feed/admin/delete', authentification, elementCtrl.adminDeletepost )
+
+//route de suppression de commentaire admin//
+router.delete( '/feed/admin/del_comment', authentification, elementCtrl.adminDeletecomment )
+
+//route d'activation ou desactivation du compte utilisateur par l'admin//
+router.put( '/feed/admin/mod', authentification, elementCtrl.adminInactivation )
 module.exports = router;

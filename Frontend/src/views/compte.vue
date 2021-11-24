@@ -3,7 +3,12 @@
 		<h1>Vos informations personelles</h1>
 		<div>
 			<router-link class="mur" to="/feed">Mur</router-link
-			><button @click="inactiveAccount()" id="inactive" class="mur" type="button">
+			><button
+				@click="inactiveAccount()"
+				id="inactive"
+				class="mur"
+				type="button"
+			>
 				Désactiver son compte
 			</button>
 		</div>
@@ -179,22 +184,20 @@ export default {
 				location.reload();
 			}, 20);
 		},
-		inactiveAccount(){
-			axios.put("compte/inactive",{
-				value:0,
-				userid:localStorage.getItem('secret')
-			})
-			.then((response) => {
+		inactiveAccount() {
+			axios
+				.put("compte/inactive", {
+					value: 0,
+					userid: localStorage.getItem("secret"),
+				})
+				.then((response) => {
 					console.log(response);
 				}),
 				(error) => {
 					console.log(error);
 				};
-				this.$router.push("/")
-		}
-
-
-
+			this.$router.push("/");
+		},
 	},
 };
 </script>
@@ -318,7 +321,7 @@ export default {
 		display: flex;
 	}
 	.compte-contenair-photo-label {
-		width: 350px;
+		width: 380px;
 		height: 400px;
 		position: initial;
 		left: 00px;
@@ -332,7 +335,7 @@ export default {
 		top: 400px;
 		display: initial;
 	}
-	@media screen and (max-width: 556px) {
+	@media screen and (max-width: 659px) {
 		.compte-contenair {
 			width: 95%;
 			height: 1100px;

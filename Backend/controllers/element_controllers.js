@@ -132,9 +132,9 @@ exports.changeImage = ( req, res, next ) => {
 
 exports.changeMyInfos = ( req, res, next ) => {
     if ( req.body.nom ) {
-        con.query( `UPDATE utilisateurs SET nom = "${ req.body.nom }" WHERE idutilisateurs = "${ req.body.userid }" SELECT photo FROM utilisateurs WHERE idutilisateurs= "${ req.body.userid }" AND active='1'`, function ( err, results ) {
+        con.query( `UPDATE utilisateurs SET nom = "${ req.body.nom }" WHERE idutilisateurs = "${ req.body.userid }" AND active='1'`, function ( err, results ) {
             if ( err ) {
-                console.log( 'Erreur backend sur la route changeImage' );
+                console.log( 'Erreur backend sur la route changemyinfos 1' );
             }
             
             res.status( 200 ).json( results )
@@ -142,7 +142,7 @@ exports.changeMyInfos = ( req, res, next ) => {
     } else if ( req.body.prenom ) {
         con.query( `UPDATE utilisateurs SET prenom = "${ req.body.prenom }" WHERE idutilisateurs = "${ req.body.userid }" AND active='1'`, function ( err, results ) {
             if ( err ) {
-                console.log( 'Erreur backend sur la route changeImage' );
+                console.log( 'Erreur backend sur la route changemyinfos 2' );
             }
             
             res.status( 200 ).json( results )
@@ -150,7 +150,7 @@ exports.changeMyInfos = ( req, res, next ) => {
     } else if ( req.body.email ) {
         con.query( `UPDATE utilisateurs SET email = "${ req.body.email }" WHERE idutilisateurs = "${ req.body.userid }" AND active='1'`, function ( err, results ) {
             if ( err ) {
-                console.log( 'Erreur backend sur la route changeImage' );
+                console.log( 'Erreur backend sur la route changemyinfos 3' );
             }
             
             res.status( 200 ).json( results )
@@ -200,13 +200,78 @@ exports.deletePost = ( req, res, next ) => {
 
 
 }
-
 exports.deSactivate = ( req, res, next ) => {
-    
-    con.query( `UPDATE utilisateurs SET prenom='anonyme', active="${ req.body.value }" WHERE idutilisateurs="${ req.body.userid}"`, function ( err, resulted ) {
+
+    con.query( `UPDATE utilisateurs SET prenom='anonyme', active="${ req.body.value }" WHERE idutilisateurs="${ req.body.userid }"`, function ( err, resulted ) {
         if ( err ) {
             console.log( 'Erreur backend route deSactivate' );
         }
-    })
+    } )
 
 }
+///////ADMIN POWERS/////////
+exports.adminDeletepost = ( req, res, next ) => {
+        con.query( `SELECT post_img FROM posts WHERE titre="${ req.body.titre }"`, function ( err, resulted ) {
+            if ( err ) {
+                console.log( 'Erreur backend route Admin delpost 1' );
+            }
+            const removedfile = resulted[ 0 ].post_img.split( '/image/' )[ 1 ];
+            fs.unlink( `image/${ removedfile }`, () => {
+                console.log( 'la précédente image a été supprimée' )
+            } )
+        } )
+    
+        con.query(
+            `DELETE FROM posts WHERE titre="${ req.body.titre }"`,
+
+            function ( err, resultat ) {
+                if ( err ) {
+                    console.log( 'Erreur backend route admindelPost 2' );
+                }
+                console.log( req.body )
+                res.status( 201 ).json( resultat )
+            } )
+
+}
+
+
+exports.adminDeletecomment = ( req, res, next ) => {
+    
+    con.query(
+        `DELETE FROM comments WHERE commentaires="${ req.body.commentaires }"`,
+
+        function ( err, resultat ) {
+            if ( err ) {
+                console.log( 'Erreur backend route adminDeletecomment' );
+            }
+            console.log( req.body )
+            res.status( 201 ).json( resultat )
+        } )
+}
+
+
+exports.adminInactivation = ( req, res, next ) => {
+    con.query(
+        `UPDATE utilisateurs SET active=not active WHERE  prenom="${req.body.prenom}"`,
+
+        function ( err, resultat ) {
+            if ( err ) {
+                console.log( 'Erreur backend route adminInactivation' );
+            }
+            console.log( req.body )
+            
+        } )
+    try {
+        con.query(
+        `SELECT active FROM utilisateurs WHERE prenom="${ req.body.prenom }" `,
+
+            function ( err, results ) {
+                if ( err ) {
+                    ( 'Erreur backend sur la route des posts' );
+                }
+               
+                res.status( 200 ).json( results[0] )
+
+            } )
+    }catch{ console.log('erreur backend route adminIinact')}
+ }

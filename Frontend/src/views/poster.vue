@@ -11,6 +11,7 @@
 			<router-link @click="logOut" class="compte" to="/"
 				>Se déconnecter</router-link
 			>
+			<div id="mod" class="moderate">M</div>
 		</div>
 		<div>
 			<div class="actualite">
@@ -62,7 +63,8 @@
 				</form>
 			</div>
 		</div>
-		<supprimer></supprimer>
+		<supprimer id="supp"></supprimer>
+		<adminsupp id="admin"></adminsupp>
 		<posting_box></posting_box>
 	</div>
 </template>
@@ -72,10 +74,12 @@ import axios from "axios";
 import poster from "@/views/poster.vue";
 import posting_box from "@/components/posting_box.vue";
 import supprimer from "@/components/supprimer.vue";
+import adminsupp from "@/components/adminsupp.vue";
 export default {
 	components: {
 		posting_box,
 		supprimer,
+		adminsupp,
 	},
 	name: poster,
 	data() {
@@ -101,6 +105,13 @@ export default {
 				if (this.accountOwner.photo == "") {
 					document.getElementById("roundpic").style.display = "none";
 				}
+				if (this.accountOwner.isAdmin==null || this.accountOwner.isAdmin==0){
+					document.getElementById("mod").style.display = "none";
+					document.getElementById("admin").style.display = "none";
+				}else{
+					document.getElementById("supp").style.display = "none";
+				}
+				console.log(this.accountOwner.isAdmin)
 			})
 			.catch((error) =>{ console.log(error)});
 	},
@@ -204,8 +215,18 @@ export default {
 	position: relative;
 	top: 1px;
 }
+.moderate{
+	border: solid 2px;
+	border-image: linear-gradient(to right, darkblue, darkorchid) 1;
+	width:20px;
+	height: 20px;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
 .compte-banner {
-	z-index: 1;
+	z-index: 50;
 	position: -webkit-sticky;
 	position: sticky;
 	top: 0;
