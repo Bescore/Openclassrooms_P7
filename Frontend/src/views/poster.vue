@@ -60,6 +60,7 @@
 						type="submit"
 						value="Dire"
 					/>
+					<div class="created-by"> post créé par: {{posted.prenom}}</div>
 				</form>
 			</div>
 		</div>
@@ -142,6 +143,7 @@ export default {
 				.then((response) => {
 					//LES POSTS
 					this.posted = response.data;
+					console.log(this.posted)
 				})
 				.catch((error) =>{ console.log(error, "problème fonction posting")});
 		setInterval(function(){	axios.post("feed/connect_verify",{token:localStorage.getItem('token')})
@@ -314,6 +316,10 @@ export default {
 	text-decoration: none;
 	text-shadow: 0px 1px 0px #283966;
 }
+.created-by{
+font-size:12px;
+margin:20px;
+}
 .add-comments-btn:hover {
 	background: linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
 	background-color: #476e9e;
@@ -349,7 +355,7 @@ export default {
 	border-radius: 5px;
 }
 #post-body {
-	height: 150px;
+	height: 130px;
 }
 .posts-comments-child {
 	margin: 20px;
