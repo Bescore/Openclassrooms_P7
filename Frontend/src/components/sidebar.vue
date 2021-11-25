@@ -55,8 +55,13 @@ export default {
 .sidebar:hover{
     z-index:51;
     width:180px;
-    opacity:1;
-    
+    opacity:1;  
+}
+/*MEDIA QUERIES*/
+@media screen and (max-width:320px) {
+    .sidebar{
+        display: none;
+    }
 }
 
 </style>

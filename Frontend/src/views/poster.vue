@@ -485,4 +485,32 @@ export default {
 		flex: wrap;
 	}
 }
+@media screen and (max-width:320px) {
+	.posts {
+		width: 250px;
+	}
+	.compte-banner-round-pic {
+	display: none;
+		
+		
+	}
+	.compte-banner {
+		width: 255px;
+	}
+	.actualite {
+		width: 250px;
+	}
+	.posts-comments {
+		width: 260px;
+	}
+	.commentaire {
+		width: 230px;
+	}
+	
+	#post-body {
+		width: 245px;
+		flex: wrap;
+	}
+	
+}
 </style>

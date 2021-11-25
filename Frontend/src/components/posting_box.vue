@@ -164,4 +164,10 @@ export default {
 			rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 	}
 }
+@media screen and (max-width: 320px) {
+	.create-posts-contains {
+		width:250px;
+	}
+
+}
 </style>

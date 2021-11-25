@@ -136,7 +136,8 @@ body {
 		width: 110px;
 		display: flex;
 		justify-content: center;
-		margin: 2px;
+		margin: 4px;
+		padding: 5px 20px;
 	}
 }
 </style>
