@@ -71,6 +71,7 @@
 </template>
 
 <script>
+import router from "@/router/index.js"
 import axios from "axios";
 import poster from "@/views/poster.vue";
 import posting_box from "@/components/posting_box.vue";
@@ -143,6 +144,17 @@ export default {
 					this.posted = response.data;
 				})
 				.catch((error) =>{ console.log(error, "problème fonction posting")});
+		setInterval(function(){	axios.post("feed/connect_verify",{token:localStorage.getItem('token')})
+				.then((response) => {
+					console.log(response.data);
+				if (response.data==0){
+					router.push('/')
+				}
+				})
+				.catch(function (error) {
+					alert(error);
+				});
+		},600000)
 	},
 
 	methods: {

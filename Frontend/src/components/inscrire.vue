@@ -107,10 +107,12 @@ export default {
         nom: this.nom,
         prenom: this.prenom,
       };
+      const reg=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const regex=reg.test(this.email)
       if (
-        (data.email === "" || data.password === "",
-        data.nom === "",
-        data.prenom === "")
+        (data.email === "" || data.password === ""||
+        data.nom === ""||
+        data.prenom === ""|| regex==false)
       ) {
         alert("données incorrectes");
       } else {

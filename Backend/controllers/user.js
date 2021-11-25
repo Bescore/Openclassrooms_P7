@@ -16,7 +16,7 @@ exports.signup = async ( req, res, next ) => {
         }
         res.status( 200 ).json( {
             token: jwt.sign(
-                { userId: result }, 'RANDOM_TOKEN_SECRET', { expiresIn: '2h' }
+                { userId: result }, 'RANDOM_TOKEN_SECRET', { expiresIn: '1h' }
             ),
             userId: result
         } )
@@ -46,7 +46,7 @@ exports.login = ( req, res, next ) => {
                              if ( valid ) {
                                  res.status( 200 ).json( {
                                      token: jwt.sign(
-                                         { userId: idUser }, 'RANDOM_TOKEN_SECRET', { expiresIn: '2h' }
+                                         { userId: idUser }, 'RANDOM_TOKEN_SECRET', { expiresIn: '2700s' }
                                      ),
                                      userId: idUser
                                  } )

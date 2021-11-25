@@ -1,6 +1,6 @@
 const con = require( '../mysql/db' );
 const fs = require( 'fs' );
-
+const jwt = require( 'jsonwebtoken' )
 
 
 
@@ -14,9 +14,9 @@ exports.userPosts = ( req, res, next ) => {
             if ( err ) {
                 ( 'Erreur backend sur la route des posts' );
             }
-    
+
             res.status( 200 ).json( results )
-            
+
         } )
 
 }
@@ -112,9 +112,9 @@ exports.changeImage = ( req, res, next ) => {
         if ( err ) {
             console.log( 'Erreur backend sur la route changeImage 1' );
         }
-        const removedfile = resulting[0].photo.split( '/image/' )[ 1 ];
+        const removedfile = resulting[ 0 ].photo.split( '/image/' )[ 1 ];
         fs.unlink( `image/${ removedfile }`, () => {
-           console.log('la précédente image a été supprimée')
+            console.log( 'la précédente image a été supprimée' )
         } );
         req.body.image = `${ req.protocol }://${ req.get( 'host' ) }/image/${ req.file.filename }`
         con.query( `UPDATE utilisateurs SET photo = '${ req.body.image }' WHERE idutilisateurs = '${ req.body.userid }'`, function ( err, results ) {
@@ -136,7 +136,7 @@ exports.changeMyInfos = ( req, res, next ) => {
             if ( err ) {
                 console.log( 'Erreur backend sur la route changemyinfos 1' );
             }
-            
+
             res.status( 200 ).json( results )
         } )
     } else if ( req.body.prenom ) {
@@ -144,7 +144,7 @@ exports.changeMyInfos = ( req, res, next ) => {
             if ( err ) {
                 console.log( 'Erreur backend sur la route changemyinfos 2' );
             }
-            
+
             res.status( 200 ).json( results )
         } )
     } else if ( req.body.email ) {
@@ -152,7 +152,7 @@ exports.changeMyInfos = ( req, res, next ) => {
             if ( err ) {
                 console.log( 'Erreur backend sur la route changemyinfos 3' );
             }
-            
+
             res.status( 200 ).json( results )
         } )
     }
@@ -179,24 +179,24 @@ exports.deletePost = ( req, res, next ) => {
                         fs.unlink( `image/${ removedfile }`, () => {
                             console.log( 'la précédente image a été supprimée' )
                         } )
-                    })
-                        con.query(
-                            `DELETE FROM posts WHERE titre="${ req.body.titre }"`,
+                    } )
+                    con.query(
+                        `DELETE FROM posts WHERE titre="${ req.body.titre }"`,
 
-                            function ( err, resultat ) {
-                                if ( err ) {
-                                    console.log( 'Erreur backend route userAccount 3' );
-                                }
-                                console.log( req.body )
-                                res.status( 201 ).json( resultat )
+                        function ( err, resultat ) {
+                            if ( err ) {
+                                console.log( 'Erreur backend route userAccount 3' );
+                            }
+                            console.log( req.body )
+                            res.status( 201 ).json( resultat )
 
-                            
 
-                            } )
-                
-                    }
+
+                        } )
+
+                }
             } catch { res.status( 200 ).json( 'nope' ) }
-            } )
+        } )
 
 
 }
@@ -222,72 +222,93 @@ exports.getAllusers = ( req, res, next ) => {
             res.status( 200 ).json( results )
 
         } )
- }
+}
 
+exports.verifyToken = ( req, res, next ) => {
+    const expiry = jwt.decode( req.body.token ).exp;
+    const now = new Date();
+    if ( now.getTime() > expiry * 1000 ) {
+        res.status( 200 ).json( '0' )
+    } else {
+        res.status( 200 ).json( '1' )
+    }
+}
 
 ///////ADMIN POWERS/////////
 exports.adminDeletepost = ( req, res, next ) => {
-        con.query( `SELECT post_img FROM posts WHERE titre="${ req.body.titre }"`, function ( err, resulted ) {
-            if ( err ) {
-                console.log( 'Erreur backend route Admin delpost 1' );
-            }
-            const removedfile = resulted[ 0 ].post_img.split( '/image/' )[ 1 ];
-            fs.unlink( `image/${ removedfile }`, () => {
-                console.log( 'la précédente image a été supprimée' )
-            } )
+    con.query( `SELECT post_img FROM posts WHERE titre="${ req.body.titre }"`, function ( err, resulted ) {
+        if ( err ) {
+            console.log( 'Erreur backend route Admin delpost 1' );
+        }
+        const removedfile = resulted[ 0 ].post_img.split( '/image/' )[ 1 ];
+        fs.unlink( `image/${ removedfile }`, () => {
+            console.log( 'la précédente image a été supprimée' )
         } )
-    
-        con.query(
-            `DELETE FROM posts WHERE titre="${ req.body.titre }"`,
+    } )
 
-            function ( err, resultat ) {
-                if ( err ) {
-                    console.log( 'Erreur backend route admindelPost 2' );
-                }
-                console.log( req.body )
-                res.status( 201 ).json( resultat )
-            } )
+    con.query(
+        `DELETE FROM posts WHERE titre="${ req.body.titre }"`,
+
+        function ( err, resultat ) {
+            if ( err ) {
+                console.log( 'Erreur backend route admindelPost 2' );
+            }
+            console.log( req.body )
+            res.status( 201 ).json( resultat )
+        } )
 
 }
 
 
 exports.adminDeletecomment = ( req, res, next ) => {
-    
     con.query(
-        `DELETE FROM comments WHERE commentaires="${ req.body.commentaires }"`,
+        `SELECT idcommentaire FROM comments WHERE commentaires="${ req.body.commentaires }"`,
 
-        function ( err, resultat ) {
+        function ( err, results ) {
             if ( err ) {
-                console.log( 'Erreur backend route adminDeletecomment' );
+                ( 'Erreur backend sur la route getAllusers' );
             }
-            console.log( req.body )
-            res.status( 201 ).json( resultat )
+
+            console.log( results[ 0 ].idcommentaire )
+
+
+
+            con.query(
+                `DELETE FROM comments WHERE idcommentaire="${ results[ 0 ].idcommentaire }"`,
+
+                function ( err, resultat ) {
+                    if ( err ) {
+                        console.log( 'Erreur backend route adminDeletecomment' );
+                    }
+                    console.log( req.body )
+                    res.status( 201 ).json( resultat )
+                } )
         } )
 }
 
 
 exports.adminInactivation = ( req, res, next ) => {
     con.query(
-        `UPDATE utilisateurs SET active=not active WHERE  prenom="${req.body.prenom}"`,
+        `UPDATE utilisateurs SET active=not active WHERE  prenom="${ req.body.prenom }"`,
 
         function ( err, resultat ) {
             if ( err ) {
                 console.log( 'Erreur backend route adminInactivation' );
             }
             console.log( req.body )
-            
+
         } )
     try {
         con.query(
-        `SELECT active FROM utilisateurs WHERE prenom="${ req.body.prenom }" `,
+            `SELECT active FROM utilisateurs WHERE prenom="${ req.body.prenom }" `,
 
             function ( err, results ) {
                 if ( err ) {
                     ( 'Erreur backend sur la route des posts' );
                 }
-               
-                res.status( 200 ).json( results[0] )
+
+                res.status( 200 ).json( results[ 0 ] )
 
             } )
-    }catch{ console.log('erreur backend route adminIinact')}
- }
+    } catch { console.log( 'erreur backend route adminIinact' ) }
+}

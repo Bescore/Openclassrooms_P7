@@ -134,7 +134,7 @@ export default {
 				});
 			setTimeout(function () {
 				location.reload();
-			}, 50);
+			}, 100);
 		},
 		change_email() {
 			event.preventDefault();

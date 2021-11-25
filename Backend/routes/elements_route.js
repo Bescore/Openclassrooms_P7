@@ -47,4 +47,6 @@ router.put( '/feed/admin/mod', authentification, elementCtrl.adminInactivation )
 //route des utilisateurs sidebar//
 router.get( '/feed/user_list', authentification, elementCtrl.getAllusers );
 
+//route de verification de validité du token//
+router.post( '/feed/connect_verify',elementCtrl.verifyToken );
 module.exports = router;
