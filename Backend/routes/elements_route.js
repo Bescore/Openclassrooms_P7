@@ -43,4 +43,8 @@ router.delete( '/feed/admin/del_comment', authentification, elementCtrl.adminDel
 
 //route d'activation ou desactivation du compte utilisateur par l'admin//
 router.put( '/feed/admin/mod', authentification, elementCtrl.adminInactivation )
+
+//route des utilisateurs sidebar//
+router.get( '/feed/user_list', authentification, elementCtrl.getAllusers );
+
 module.exports = router;

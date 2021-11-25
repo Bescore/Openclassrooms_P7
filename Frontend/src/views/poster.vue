@@ -66,6 +66,7 @@
 		<supprimer id="supp"></supprimer>
 		<adminsupp id="admin"></adminsupp>
 		<posting_box></posting_box>
+		<sidebar></sidebar>
 	</div>
 </template>
 
@@ -75,11 +76,13 @@ import poster from "@/views/poster.vue";
 import posting_box from "@/components/posting_box.vue";
 import supprimer from "@/components/supprimer.vue";
 import adminsupp from "@/components/adminsupp.vue";
+import sidebar from "@/components/sidebar.vue";
 export default {
 	components: {
 		posting_box,
 		supprimer,
 		adminsupp,
+		sidebar,
 	},
 	name: poster,
 	data() {

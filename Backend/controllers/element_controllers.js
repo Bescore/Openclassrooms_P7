@@ -209,6 +209,22 @@ exports.deSactivate = ( req, res, next ) => {
     } )
 
 }
+
+exports.getAllusers = ( req, res, next ) => {
+    con.query(
+        'SELECT * FROM utilisateurs WHERE active="1"',
+
+        function ( err, results ) {
+            if ( err ) {
+                ( 'Erreur backend sur la route getAllusers' );
+            }
+
+            res.status( 200 ).json( results )
+
+        } )
+ }
+
+
 ///////ADMIN POWERS/////////
 exports.adminDeletepost = ( req, res, next ) => {
         con.query( `SELECT post_img FROM posts WHERE titre="${ req.body.titre }"`, function ( err, resulted ) {

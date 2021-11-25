@@ -74,7 +74,7 @@ export default {
 				.catch(function (error) {
 					alert(error);
 				});
-                
+                setTimeout(function(){location.reload()},20);
         },
         
     }
