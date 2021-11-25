@@ -15,8 +15,12 @@ exports.signup = async ( req, res, next ) => {
             console.log( 'Erreur sur 1 la route de login' )
         }
         res.status( 200 ).json( {
+            token: jwt.sign(
+                { userId: result }, 'RANDOM_TOKEN_SECRET', { expiresIn: '2h' }
+            ),
             userId: result
         } )
+       
        } )
 };
 
