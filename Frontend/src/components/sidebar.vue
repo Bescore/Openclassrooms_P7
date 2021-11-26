@@ -60,7 +60,7 @@ export default {
 	opacity: 1;
 }
 /*MEDIA QUERIES*/
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 500px) {
 	.sidebar {
 		display: none;
 	}

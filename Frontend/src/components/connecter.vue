@@ -80,7 +80,7 @@ export default {
 				});
 			setTimeout(function () {
 				location.reload();
-			}, 100);
+			}, 30);
 		},
 	},
 };
