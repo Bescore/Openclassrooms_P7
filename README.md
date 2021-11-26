@@ -5,19 +5,19 @@ Le projet consiste à construire un réseau social interne pour les employés de
 
 Contraintes:
 
-Utilisation de base de donnée sql (Mysql)
-Tout doit être en javascript
-Utilisation d'un framework frontend (vue.js)
-Respecter les normes wcag
-Sécuriser son application
+Utilisation de base de donnée sql ( Mysql ).
+Tout doit être en javascript.
+Utilisation d'un framework frontend ( vue.js ).
+Respecter les normes wcag.
+Sécuriser son application.
 
 Exigences:
 
-La présentation des fonctionnalités doit être simple
-La création d'un compte doit être possible
-Supression de compte possible
-Accès a un forum ou l'on publie du texte et du contenu multimédia doit être présent ( images, gif)
-Les utilisateurs doivent pouvoir repéré les interventions des autres
-Un compte de modérateur doit être présent ( élévation des droits )
+La présentation des fonctionnalités doit être simple.
+La création d'un compte doit être possible.
+Supression de compte possible.
+Accès a un forum ou l'on publie du texte et du contenu multimédia doit être présent ( images, gif ).
+Les utilisateurs doivent pouvoir repéré les interventions des autres.
+Un compte de modérateur doit être présent ( élévation des droits ).
 
-Certaines informations du projet sont en claire et c'est entièrement  voulu, cela permet de favoriser l'accès au projet pour les évaluateurs
+Certaines informations du projet sont en claire et c'est entièrement  voulu, cela permet de favoriser l'accès au projet pour les évaluateurs.
