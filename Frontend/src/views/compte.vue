@@ -2,15 +2,8 @@
 	<div>
 		<h1>Vos informations personelles</h1>
 		<div>
-			<router-link class="mur" to="/feed">Mur</router-link
-			><button
-				@click="inactiveAccount()"
-				id="inactive"
-				class="mur"
-				type="button"
-			>
-				Désactiver son compte
-			</button>
+			<router-link class="mur" to="/feed">Mur</router-link>
+			<button @click="inactiveAccount()" id="inactive" class="mur" type="button">Désactiver son compte</button>
 		</div>
 		<div class="compte-contenair">
 			<div class="compte-contains">
@@ -28,41 +21,33 @@
 						class="form-buttons-btns"
 						type="submit"
 						value="Modifier mon Nom"
-					/><br />
+					/>
+					<br />
 					<input
 						@click="change_firstname"
 						class="form-buttons-btns"
 						type="submit"
 						value="Modifier mon Prénom"
-					/><br />
+					/>
+					<br />
 					<input
 						@click="change_email"
 						class="form-buttons-btns"
 						type="submit"
 						value="Modifier mon Email"
-					/><br />
+					/>
+					<br />
 					<input
 						@change="getInfos"
 						id="img"
 						class="form-buttons-btns"
 						type="file"
-						accept=".gif,.jpg,.jpeg,.png"
+						accept=".gif, .jpg, .jpeg, .png"
 					/>
-					<input
-						@click="change_image"
-						class="form-buttons-btns"
-						type="submit"
-						value="Changer de photo"
-					/>
+					<input @click="change_image" class="form-buttons-btns" type="submit" value="Changer de photo" />
 				</form>
 				<form class="form-inputs">
-					<input
-						id="Newname"
-						class="form-buttons-inputs"
-						type="textarea"
-						placeholder="NOM"
-						name="nom"
-					/>
+					<input id="Newname" class="form-buttons-inputs" type="textarea" placeholder="NOM" name="nom" />
 					<input
 						id="Firstname"
 						class="form-buttons-inputs"
@@ -70,13 +55,7 @@
 						placeholder="PRÉNOM"
 						name="prénom"
 					/>
-					<input
-						id="email"
-						class="form-buttons-inputs"
-						type="textarea"
-						placeholder="EMAIL"
-						name="email"
-					/>
+					<input id="email" class="form-buttons-inputs" type="textarea" placeholder="EMAIL" name="email" />
 				</form>
 			</div>
 		</div>
@@ -100,7 +79,7 @@ export default {
 			})
 			.then((response) => {
 				this.User = response.data[0];
-				if (response.data[0].isAdmin==1){
+				if (response.data[0].isAdmin == 1) {
 					document.getElementById("inactive").style.display = "none";
 				}
 				console.log(response);

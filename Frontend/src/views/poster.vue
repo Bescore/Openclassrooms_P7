@@ -2,26 +2,20 @@
 	<div>
 		<div class="test"></div>
 		<div class="compte-banner">
-			<img
-				id="roundpic"
-				class="compte-banner-round-pic"
-				:src="accountOwner.photo"
-			/>
+			<img id="roundpic" class="compte-banner-round-pic" :src="accountOwner.photo" />
 			<router-link class="compte" to="/compte">Mon Compte</router-link>
-			<router-link @click="logOut" class="compte" to="/"
-				>Se déconnecter</router-link
-			>
+			<router-link @click="logOut" class="compte" to="/">Se déconnecter</router-link>
 			<div id="mod" class="moderate">M</div>
 		</div>
 		<div>
-			<div class="actualite">
-				Bonjour {{ accountOwner.prenom }}, votre mur d'actualité aujourd'hui !
-			</div>
+			<div class="actualite">Bonjour {{ accountOwner.prenom }}, votre mur d'actualité aujourd'hui !</div>
 		</div>
 		<div>
 			<div class="posts" :key="index" v-for="(posted, index) in posted">
 				<div class="title-font">{{ posted.titre }}</div>
-			<div>	<img :src="posted.post_img" id="posted_img" class="photo" /></div>
+				<div>
+					<img :src="posted.post_img" id="posted_img" class="photo" />
+				</div>
 				<div class="posts-comments">
 					<div class="posts-comments-child">{{ posted.post_body }}</div>
 				</div>
@@ -32,8 +26,9 @@
 						v-for="(commentaires, comindex) in commentaires"
 					>
 						<div class="round-name">
-							<img class="photo-comments" :src="commentaires.photo" />{{
-								commentaires.prenom
+							<img class="photo-comments" :src="commentaires.photo" />
+							{{
+							commentaires.prenom
 							}}
 							à
 							<div class="date-time">{{ commentaires.date }} :</div>
@@ -43,24 +38,13 @@
 				</div>
 
 				<form class="form">
-					<label class="commentaire-label" for="comments"
-						>Discutez entre collègues :</label
-					>
+					<label class="commentaire-label" for="comments">Discutez entre collègues :</label>
 					<div>
 						<br />
-						<textarea
-							v-model="coms"
-							class="commentaire"
-							name="commentaires"
-						></textarea>
+						<textarea v-model="coms" class="commentaire" name="commentaires"></textarea>
 					</div>
-					<input
-						class="add-comments-btn"
-						@click="addcomment"
-						type="submit"
-						value="Dire"
-					/>
-					<div class="created-by"> post créé par: {{posted.prenom}}</div>
+					<input class="add-comments-btn" @click="addcomment" type="submit" value="Dire" />
+					<div class="created-by">post créé par: {{posted.prenom}}</div>
 				</form>
 			</div>
 		</div>
@@ -72,7 +56,7 @@
 </template>
 
 <script>
-import router from "@/router/index.js"
+import router from "@/router/index.js";
 import axios from "axios";
 import poster from "@/views/poster.vue";
 import posting_box from "@/components/posting_box.vue";
@@ -110,15 +94,20 @@ export default {
 				if (this.accountOwner.photo == "") {
 					document.getElementById("roundpic").style.display = "none";
 				}
-				if (this.accountOwner.isAdmin==null || this.accountOwner.isAdmin==0){
+				if (
+					this.accountOwner.isAdmin == null ||
+					this.accountOwner.isAdmin == 0
+				) {
 					document.getElementById("mod").style.display = "none";
 					document.getElementById("admin").style.display = "none";
-				}else{
+				} else {
 					document.getElementById("supp").style.display = "none";
 				}
-				console.log(this.accountOwner.isAdmin)
+				console.log(this.accountOwner.isAdmin);
 			})
-			.catch((error) =>{ console.log(error)});
+			.catch((error) => {
+				console.log(error);
+			});
 	},
 
 	commentaires() {
@@ -127,7 +116,9 @@ export default {
 			.then((response) => {
 				this.commentaires = response.data;
 			})
-			.catch((error) =>{ console.log(error)});
+			.catch((error) => {
+				console.log(error);
+			});
 	},
 
 	mounted() {
@@ -137,26 +128,32 @@ export default {
 				///COMMENTAIRES DES POSTS
 				this.commentaires = response.data;
 			})
-			.catch((error) =>{ console.log(error)}),
+			.catch((error) => {
+				console.log(error);
+			}),
 			axios
 				.get("feed/post")
 				.then((response) => {
 					//LES POSTS
 					this.posted = response.data;
-					console.log(this.posted)
+					console.log(this.posted);
 				})
-				.catch((error) =>{ console.log(error, "problème fonction posting")});
-		setInterval(function(){	axios.post("feed/connect_verify",{token:localStorage.getItem('token')})
+				.catch((error) => {
+					console.log(error, "problème fonction posting");
+				});
+		setInterval(function () {
+			axios
+				.post("feed/connect_verify", { token: localStorage.getItem("token") })
 				.then((response) => {
 					console.log(response.data);
-				if (response.data==0){
-					router.push('/')
-				}
+					if (response.data == 0) {
+						router.push("/");
+					}
 				})
 				.catch(function (error) {
 					alert(error);
 				});
-		},600000)
+		}, 600000);
 	},
 
 	methods: {
@@ -176,7 +173,9 @@ export default {
 				.catch(function (error) {
 					alert(error);
 				});
-				setTimeout(function(){location.reload()},20);
+			setTimeout(function () {
+				location.reload();
+			}, 20);
 		},
 	},
 };
@@ -232,10 +231,10 @@ export default {
 	position: relative;
 	top: 1px;
 }
-.moderate{
+.moderate {
 	border: solid 2px;
 	border-image: linear-gradient(to right, darkblue, darkorchid) 1;
-	width:20px;
+	width: 20px;
 	height: 20px;
 	text-align: center;
 	justify-content: center;
@@ -316,9 +315,9 @@ export default {
 	text-decoration: none;
 	text-shadow: 0px 1px 0px #283966;
 }
-.created-by{
-font-size:12px;
-margin:20px;
+.created-by {
+	font-size: 12px;
+	margin: 20px;
 }
 .add-comments-btn:hover {
 	background: linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
@@ -491,14 +490,12 @@ margin:20px;
 		flex: wrap;
 	}
 }
-@media screen and (max-width:320px) {
+@media screen and (max-width: 320px) {
 	.posts {
 		width: 250px;
 	}
 	.compte-banner-round-pic {
-	display: none;
-		
-		
+		display: none;
 	}
 	.compte-banner {
 		width: 255px;
@@ -512,11 +509,10 @@ margin:20px;
 	.commentaire {
 		width: 230px;
 	}
-	
+
 	#post-body {
 		width: 245px;
 		flex: wrap;
 	}
-	
 }
 </style>

@@ -14,12 +14,7 @@
 				placeholder="Réagissez ici!"
 			></textarea>
 			<label for="image">Ajoutez une photo, une image</label>
-			<input
-				id="image"
-				type="file"
-				@change="sentImage"
-				accept=".jpg, .jpeg, .png, .gif"
-			/>
+			<input id="image" type="file" @change="sentImage" accept=".jpg, .jpeg, .png, .gif" />
 			<input
 				@click="addpost"
 				class="create-posts-contains-inputs-btn"
@@ -166,8 +161,7 @@ export default {
 }
 @media screen and (max-width: 320px) {
 	.create-posts-contains {
-		width:250px;
+		width: 250px;
 	}
-
 }
 </style>
