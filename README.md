@@ -20,4 +20,12 @@ Accès a un forum ou l'on publie du texte et du contenu multimédia doit être p
 Les utilisateurs doivent pouvoir repéré les interventions des autres.
 Un compte de modérateur doit être présent ( élévation des droits ).
 
-Certaines informations du projet sont en claire et c'est entièrement  voulu, cela permet de favoriser l'accès au projet pour les évaluateurs.
+Certaines informations du projet sont en claire et c'est entièrement  voulu, cela permet de favoriser l'accès au projet pour les évaluateurs. Le projet se trouve sur la branche "Backend" 
+
+Il est necéssaire d'avoir node et vue cli pour le démarrer 
+
+Demarrer le backend : cd backend=> node server ou nodemon server
+
+Demarrer le frontend : cd backend=> cd frontend=> npm run serve
+
+Ce projet n'est pas définitif il sera sûrement hébergé à l'avenir et plus simple d'accès, le cas écheant, je remettrai à jour ce readme.
