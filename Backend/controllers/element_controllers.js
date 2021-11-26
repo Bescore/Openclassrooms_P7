@@ -32,6 +32,7 @@ exports.userComments = ( req, res, next ) => {
                 console.log( 'Erreur backend sur la route des commentaires du post' );
             }
             res.status( 200 ).json( results )
+            console.log(req.body)
 
 
         } )
@@ -61,7 +62,7 @@ exports.addcomment = ( req, res, next ) => {
     console.log( req.body )
     const time = new Date().toLocaleTimeString()
     con.query(
-        `INSERT INTO comments(commentaires,utilisateurs_idutilisateurs,DATE) VALUES ("${ req.body.commentaire }","${ req.body.userid }","${ time }")`,
+        `INSERT INTO comments(commentaires,utilisateurs_idutilisateurs,DATE,posts_idposts) VALUES ("${ req.body.commentaire }","${ req.body.userid }","${ time }","${req.body.idpost}")`,
 
         function ( err, results ) {
             if ( err ) {
@@ -160,6 +161,7 @@ exports.changeMyInfos = ( req, res, next ) => {
 
 
 exports.deletePost = ( req, res, next ) => {
+    console.log(req.body)
     con.query(
         `SELECT utilisateurs_idutilisateurs,post_img FROM posts WHERE utilisateurs_idutilisateurs="${ req.body.userid }"`,
 
@@ -171,7 +173,7 @@ exports.deletePost = ( req, res, next ) => {
                 if ( JSON.stringify( results[ 0 ].utilisateurs_idutilisateurs ) !== req.body.userid ) {
                     console.log( JSON.stringify( results[ 0 ].utilisateurs_idutilisateurs ) )
                 } else {
-                    con.query( `SELECT post_img FROM posts WHERE TITRE="${ req.body.titre }"`, function ( err, resulted ) {
+                    con.query( `SELECT post_img FROM posts WHERE idposts="${ req.body.postid }"`, function ( err, resulted ) {
                         if ( err ) {
                             console.log( 'Erreur backend route userAccount 2' );
                         }
@@ -181,13 +183,13 @@ exports.deletePost = ( req, res, next ) => {
                         } )
                     } )
                     con.query(
-                        `DELETE FROM posts WHERE titre="${ req.body.titre }"`,
+                        `DELETE FROM posts WHERE idposts="${ req.body.postid }"`,
 
                         function ( err, resultat ) {
                             if ( err ) {
                                 console.log( 'Erreur backend route userAccount 3' );
                             }
-                            console.log( req.body )
+                            console.log( "req.body" )
                             res.status( 201 ).json( resultat )
 
 
@@ -224,6 +226,24 @@ exports.getAllusers = ( req, res, next ) => {
         } )
 }
 
+exports.getAllusersinactive = ( req, res, next ) => {
+
+    con.query(
+        'SELECT * FROM utilisateurs WHERE active="0"',
+
+        function ( err, results ) {
+            if ( err ) {
+                ( 'Erreur backend sur la route getAllusersinactive' );
+            }
+
+            res.status( 200 ).json( results )
+
+        } )
+
+
+}
+
+
 exports.verifyToken = ( req, res, next ) => {
     const expiry = jwt.decode( req.body.token ).exp;
     const now = new Date();
@@ -236,7 +256,7 @@ exports.verifyToken = ( req, res, next ) => {
 
 ///////ADMIN POWERS/////////
 exports.adminDeletepost = ( req, res, next ) => {
-    con.query( `SELECT post_img FROM posts WHERE titre="${ req.body.titre }"`, function ( err, resulted ) {
+    con.query( `SELECT post_img FROM posts WHERE idposts="${ req.body.postid }"`, function ( err, resulted ) {
         if ( err ) {
             console.log( 'Erreur backend route Admin delpost 1' );
         }
@@ -247,7 +267,7 @@ exports.adminDeletepost = ( req, res, next ) => {
     } )
 
     con.query(
-        `DELETE FROM posts WHERE titre="${ req.body.titre }"`,
+        `DELETE FROM posts WHERE idposts="${ req.body.postid }"`,
 
         function ( err, resultat ) {
             if ( err ) {
@@ -289,7 +309,7 @@ exports.adminDeletecomment = ( req, res, next ) => {
 
 exports.adminInactivation = ( req, res, next ) => {
     con.query(
-        `UPDATE utilisateurs SET active=not active WHERE  prenom="${ req.body.prenom }"`,
+        `UPDATE utilisateurs SET active=not active WHERE  idutilisateurs="${ req.body.userid }"`,
 
         function ( err, resultat ) {
             if ( err ) {
@@ -300,7 +320,7 @@ exports.adminInactivation = ( req, res, next ) => {
         } )
     try {
         con.query(
-            `SELECT active FROM utilisateurs WHERE prenom="${ req.body.prenom }" `,
+            `SELECT active, prenom FROM utilisateurs WHERE idutilisateurs="${ req.body.userid }" `,
 
             function ( err, results ) {
                 if ( err ) {
@@ -308,6 +328,7 @@ exports.adminInactivation = ( req, res, next ) => {
                 }
 
                 res.status( 200 ).json( results[ 0 ] )
+                console.log( results[ 0 ])
 
             } )
     } catch { console.log( 'erreur backend route adminIinact' ) }

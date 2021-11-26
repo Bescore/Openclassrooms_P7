@@ -5,7 +5,7 @@
 			<img id="roundpic" class="compte-banner-round-pic" :src="accountOwner.photo" alt="utilisateur" />
 			<router-link class="compte" to="/compte">Mon Compte</router-link>
 			<router-link @click="logOut" class="compte" to="/">Se déconnecter</router-link>
-			<div id="mod" class="moderate">M</div>
+			<div v-if="this.accountOwner.isAdmin==1" id="mod" class="moderate">M</div>
 		</div>
 		<div>
 			<div tabindex="0" class="actualite">Bonjour {{ accountOwner.prenom }} , votre mur d'actualité aujourd'hui !</div>
@@ -43,15 +43,17 @@
 						<br />
 						<textarea v-model="coms" class="commentaire" id="comms"></textarea>
 					</div>
-					<input class="add-comments-btn" @click="addcomment" type="submit" value="Dire" />
+					<input class="add-comments-btn" @click="addcomment(posted.idposts)" type="submit" value="Dire" />
+					<input v-if="this.accountOwner.isAdmin == 0 || this.accountOwner.isAdmin == null" id="user-del" class="del-btn" type="submit" value="Supprimer post" @click="delPost(posted.idposts)"/>
+					<input v-if="this.accountOwner.isAdmin == 1" id="admin_del" @click="AdmindelPost(posted.idposts)" class="del-btn" type="submit" value="Suppression modérateur" />
 					<div  tabindex="0" class="created-by">post créé par: {{posted.prenom}}</div>
 				</form>
 			</div>
 		</div>
-		<supprimer id="supp"></supprimer>
 		<adminsupp id="admin"></adminsupp>
 		<posting_box></posting_box>
 		<sidebar></sidebar>
+		<sidebar_left></sidebar_left>
 	</div>
 </template>
 
@@ -60,15 +62,15 @@ import router from "@/router/index.js";
 import axios from "axios";
 import poster from "@/views/poster.vue";
 import posting_box from "@/components/posting_box.vue";
-import supprimer from "@/components/supprimer.vue";
 import adminsupp from "@/components/adminsupp.vue";
 import sidebar from "@/components/sidebar.vue";
+import sidebar_left from "@/components/sidebar_left.vue"
 export default {
 	components: {
 		posting_box,
-		supprimer,
 		adminsupp,
 		sidebar,
+		sidebar_left
 	},
 	name: poster,
 	data() {
@@ -94,16 +96,7 @@ export default {
 				if (this.accountOwner.photo == "") {
 					document.getElementById("roundpic").style.display = "none";
 				}
-				if (
-					this.accountOwner.isAdmin == null ||
-					this.accountOwner.isAdmin == 0
-				) {
-					document.getElementById("mod").style.display = "none";
-					document.getElementById("admin").style.display = "none";
-				} else {
-					document.getElementById("supp").style.display = "none";
-				}
-				console.log(this.accountOwner.isAdmin);
+				console.log(response.data[0].isAdmin);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -115,6 +108,7 @@ export default {
 			.get("feed/commentaires")
 			.then((response) => {
 				this.commentaires = response.data;
+				console.log(response)
 			})
 			.catch((error) => {
 				console.log(error);
@@ -136,7 +130,6 @@ export default {
 				.then((response) => {
 					//LES POSTS
 					this.posted = response.data;
-					console.log(this.posted);
 				})
 				.catch((error) => {
 					console.log(error, "problème fonction posting");
@@ -160,13 +153,55 @@ export default {
 		logOut() {
 			localStorage.removeItem("secret");
 		},
-		addcomment() {
+		addcomment(idpost) {
 			event.preventDefault();
 			axios
 				.post("feed/comment", {
 					commentaire: this.coms,
 					userid: localStorage.getItem("secret"),
+					idpost:idpost
 				})
+				.then((response) => {
+					console.log(this.coms)
+					console.log(response);
+				})
+				.catch(function (error) {
+					alert(error);
+				});
+			setTimeout(function () {
+				location.reload();
+			}, 20);
+		},
+		delPost(postid) {
+			event.preventDefault();
+			axios
+				.delete("feed/delete", {
+					data: {
+						postid: postid,
+						userid: localStorage.getItem("secret"),
+					},
+				})
+				.then((response) => {
+					console.log(response.data);
+
+					if (response.data == "nope") {
+						alert(
+							" vous ne pouvez pas supprimer un post que vous n'avez pas créé !"
+						);
+					}
+				}),
+				(error) => {
+					console.log(error);
+				};
+				setTimeout(function () {
+				location.reload();
+			}, 20);
+			
+		},
+		AdmindelPost(postid) {
+			event.preventDefault();
+			axios
+				.delete("feed/admin/delete", { data: { postid: postid } })
 				.then((response) => {
 					console.log(response);
 				})
@@ -274,7 +309,7 @@ export default {
 	padding: 20px;
 	border-radius: 20px;
 	width: 600px;
-	height: 880px;
+	height: 960px;
 	margin: auto;
 	margin-top: 50px;
 	margin-bottom: 30px;
@@ -327,7 +362,31 @@ export default {
 	position: relative;
 	top: 1px;
 }
-
+.del-btn {
+	margin-left: 20px;
+	margin-top: 20px;
+	box-shadow: 0px 0px 0px 2px #9fb4f2;
+	background: linear-gradient(to bottom, #ce2121 5%, #e2480b 100%);
+	background-color: #da4012;
+	border-radius: 10px;
+	border: 1px solid #96594e;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 19px;
+	padding: 9px 37px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #283966;
+}
+.del-btn:hover {
+	background: linear-gradient(to bottom, #eb2a2a 5%, #e04822 100%);
+	background-color: #9e5447;
+}
+.del-btn:active {
+	position: relative;
+	top: 1px;
+}
 .posts-comments {
 	font-size: 17px;
 	width: 550px;
@@ -434,7 +493,7 @@ export default {
 	.posts {
 		padding: 20px;
 		width: 290px;
-		height: 800px;
+		height: 860px;
 		margin: auto;
 		margin-top: 50px;
 		margin-bottom: 30px;

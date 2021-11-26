@@ -44,8 +44,11 @@ router.delete( '/feed/admin/del_comment', authentification, elementCtrl.adminDel
 //route d'activation ou desactivation du compte utilisateur par l'admin//
 router.put( '/feed/admin/mod', authentification, elementCtrl.adminInactivation )
 
-//route des utilisateurs sidebar//
+//route des utilisateurs sidebar actif//
 router.get( '/feed/user_list', authentification, elementCtrl.getAllusers );
+
+//route des utilisateur sidebar inactif
+router.get( '/feed/user_list/inactive', authentification, elementCtrl.getAllusersinactive )
 
 //route de verification de validité du token//
 router.post( '/feed/connect_verify',elementCtrl.verifyToken );
