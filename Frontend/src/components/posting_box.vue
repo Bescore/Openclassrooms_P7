@@ -1,20 +1,22 @@
 <template>
 	<form class="create-posts-contains">
 		<div class="create-posts-contains-inputs">
+			<label tabindex="0" for="post_title">Titre du post</label><br/>
 			<textarea
 				v-model="titre"
 				id="post_title"
 				class="create-posts-contains-inputs-title"
 				placeholder="Ajouter un titre à votre post"
-			></textarea>
+			></textarea><br/>
+			<label tabindex="0" for="post_body">Partagez vos impressions !</label><br/>
 			<textarea
 				v-model="post_body"
 				id="post_body"
 				class="create-posts-contains-inputs-commentaires"
 				placeholder="Réagissez ici!"
-			></textarea>
-			<label for="image">Ajoutez une photo, une image</label>
-			<input id="image" type="file" @change="sentImage" accept=".jpg, .jpeg, .png, .gif" />
+			></textarea><br/>
+			<label tabindex="0" for="image">Ajoutez une photo, une image</label>
+			<input id="image" type="file" @change="sentImage" accept=".jpg, .jpeg, .png, .gif" /><br/>
 			<input
 				@click="addpost"
 				class="create-posts-contains-inputs-btn"
@@ -95,7 +97,7 @@ export default {
 .create-posts-contains {
 	padding: 20px;
 	width: 600px;
-	height: 300px;
+	height: 350px;
 	border-radius: 10px;
 	margin: auto;
 	margin-top: 40px;
@@ -105,7 +107,7 @@ export default {
 		rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 .create-posts-contains-inputs {
-	height: 300px;
+	height: 340px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
@@ -149,7 +151,7 @@ export default {
 	.create-posts-contains {
 		padding: 20px;
 		width: 300px;
-		height: 300px;
+		height: 350px;
 		border-radius: 10px;
 		margin: auto;
 		margin-top: 40px;

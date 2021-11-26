@@ -1,17 +1,17 @@
 <template>
 	<div>
-		<h1>Vos informations personelles</h1>
+		<h1 tabindex="0">Vos informations personelles</h1>
 		<div>
 			<router-link class="mur" to="/feed">Mur</router-link>
 			<button @click="inactiveAccount()" id="inactive" class="mur" type="button">Désactiver son compte</button>
 		</div>
 		<div class="compte-contenair">
 			<div class="compte-contains">
-				<img class="compte-contenair-photo" :src="User.photo" />
+				<img  tabindex="0" class="compte-contenair-photo" :src="User.photo" alt="utilisateur sur son compte" />
 				<div class="compte-contenair-photo-label">
-					<div class="infos">Nom : {{ User.nom }}</div>
-					<div class="infos">Prénom : {{ User.prenom }}</div>
-					<div class="infos">Email : {{ User.email }}</div>
+					<div  tabindex="0" class="infos">Nom : {{ User.nom }}</div>
+					<div tabindex="0" class="infos">Prénom : {{ User.prenom }}</div>
+					<div tabindex="0" class="infos">Email : {{ User.email }}</div>
 				</div>
 			</div>
 			<div class="compte-contains-infos">

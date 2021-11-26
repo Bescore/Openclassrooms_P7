@@ -2,31 +2,31 @@
 	<div>
 		<div class="test"></div>
 		<div class="compte-banner">
-			<img id="roundpic" class="compte-banner-round-pic" :src="accountOwner.photo" />
+			<img id="roundpic" class="compte-banner-round-pic" :src="accountOwner.photo" alt="utilisateur" />
 			<router-link class="compte" to="/compte">Mon Compte</router-link>
 			<router-link @click="logOut" class="compte" to="/">Se déconnecter</router-link>
 			<div id="mod" class="moderate">M</div>
 		</div>
 		<div>
-			<div class="actualite">Bonjour {{ accountOwner.prenom }}, votre mur d'actualité aujourd'hui !</div>
+			<div tabindex="0" class="actualite">Bonjour {{ accountOwner.prenom }} , votre mur d'actualité aujourd'hui !</div>
 		</div>
 		<div>
-			<div class="posts" :key="index" v-for="(posted, index) in posted">
-				<div class="title-font">{{ posted.titre }}</div>
+			<div  class="posts" :key="index" v-for="(posted, index) in posted">
+				<div tabindex="0" class="title-font">{{ posted.titre }}</div>
 				<div>
-					<img :src="posted.post_img" id="posted_img" class="photo" />
+					<img tabindex="0" :src="posted.post_img" id="posted_img" class="photo" alt="image posté" />
 				</div>
 				<div class="posts-comments">
-					<div class="posts-comments-child">{{ posted.post_body }}</div>
+					<div tabindex="0" class="posts-comments-child">{{ posted.post_body }}</div>
 				</div>
-				<div id="post-body" class="posts-comments-2">
+				<div  tabindex="0" id="post-body" class="posts-comments-2">
 					<div
 						class="posts-comments-child-2"
 						:key="comindex"
 						v-for="(commentaires, comindex) in commentaires"
 					>
 						<div class="round-name">
-							<img class="photo-comments" :src="commentaires.photo" />
+							<img class="photo-comments" :src="commentaires.photo" alt="utilisateur en chat" />
 							{{
 							commentaires.prenom
 							}}
@@ -38,13 +38,13 @@
 				</div>
 
 				<form class="form">
-					<label class="commentaire-label" for="comments">Discutez entre collègues :</label>
+					<label  tabindex="0" class="commentaire-label" for="comms">Discutez entre collègues :</label>
 					<div>
 						<br />
-						<textarea v-model="coms" class="commentaire" name="commentaires"></textarea>
+						<textarea v-model="coms" class="commentaire" id="comms"></textarea>
 					</div>
 					<input class="add-comments-btn" @click="addcomment" type="submit" value="Dire" />
-					<div class="created-by">post créé par: {{posted.prenom}}</div>
+					<div  tabindex="0" class="created-by">post créé par: {{posted.prenom}}</div>
 				</form>
 			</div>
 		</div>
@@ -337,9 +337,6 @@ export default {
 	position: relative;
 	top: 30px;
 	overflow: auto;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	border-top: rgb(214, 206, 206) ridge 2px;
 	border-bottom: rgb(214, 206, 206) ridge 2px;
 }

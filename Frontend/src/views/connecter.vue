@@ -1,6 +1,6 @@
 <template>
 	<div class="home">
-		<img class="groupopict" src="@\assets\icon-above-font.png" />
+		<img  class="groupopict" src="@\assets\icon-above-font.png" alt="groupomania" />
 		<connecter msg="Connectez-vous !" />
 	</div>
 </template>

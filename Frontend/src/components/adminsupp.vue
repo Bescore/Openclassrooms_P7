@@ -1,27 +1,27 @@
 <template>
 	<div>
 		<form id="admin-deletepost">
-			<label id="supp" for="delete_post">
+			<label id="supp" for="delete_supp">
 				Le titre du post à supprimer ?
 				<br />
 			</label>
-			<input v-model="delPostadmin" id="delete_input" type="textarea" />
+			<input class="delete" v-model="delPostadmin" id="delete_supp" type="textarea" />
 			<input @click="AdmindelPost()" class="del-btn" type="submit" value="Supprimer" />
 		</form>
 		<form id="admin-deletecomments">
-			<label id="supp" for="delete_post">
+			<label id="supp" for="delete_com">
 				Supprimer un commentaire ? (copier/coller)
 				<br />
 			</label>
-			<input v-model="delCommentaire" id="delete_input" type="textarea" />
+			<input class="delete" v-model="delCommentaire" id="delete_com" name="del_com" type="textarea" />
 			<input @click="delComment()" class="del-btn" type="submit" value="Supprimer" />
 		</form>
 		<form id="admin-accoutnactivate">
-			<label id="supp" for="delete_post">
+			<label id="supp" for="delete_prenom">
 				Désactiver ou activer le compte de (prénom) ?
 				<br />
 			</label>
-			<input v-model="activateAccount" id="delete_input" type="textarea" />
+			<input class="delete" v-model="activateAccount" id="delete_prenom" name="delete_prenom" type="textarea" />
 			<input @click="activeAcc()" class="del-btn" type="submit" value="Activer/Désactiver" />
 		</form>
 	</div>
@@ -102,5 +102,10 @@ export default {
 }
 #admin-accoutnactivate {
 	margin-top: 30px;
+}
+.delete {
+	height: 28px;
+	width: 150px;
+	margin: 10px;
 }
 </style>

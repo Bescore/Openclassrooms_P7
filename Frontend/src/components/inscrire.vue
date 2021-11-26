@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<img class="groupopict" src="@\assets\icon-left-font-monochrome-black.png" alt="groupomania" />
+		<img tabindex="0" class="groupopict" src="@\assets\icon-left-font-monochrome-black.png" alt="groupomania" />
 		<h1>{{ inscrireinput }}</h1>
 		<form @submit.stop.prevent="submit">
 			<label for="email">Email :</label>

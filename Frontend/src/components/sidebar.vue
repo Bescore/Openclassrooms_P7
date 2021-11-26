@@ -2,7 +2,7 @@
 	<div class="sidebar">
 		<div>Membres actifs</div>
 		<div :key="sideindex" v-for="(sideuser,sideindex) in sideuser">
-			<img class="sidebar-pic" :src="sideuser.photo" />
+			<img class="sidebar-pic" :src="sideuser.photo" alt="utilisateurs" />
 			<div>{{sideuser.nom}} {{sideuser.prenom}}</div>
 		</div>
 	</div>

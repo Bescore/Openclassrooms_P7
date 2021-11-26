@@ -1,10 +1,10 @@
 <template>
 	<form class="supp">
-		<label id="supp" for="delete_post">
+		<label for="delete_input">
 			Supprimer mon post ? quel est son titre ?
 			<br />
 		</label>
-		<input v-model="del_input_value" id="delete_input" type="textarea" />
+		<input  v-model="del_input_value" id="delete_input" name="delete_input" type="textarea" />
 		<input @click="delPost()" class="del-btn" type="submit" value="Supprimer" />
 	</form>
 </template>
