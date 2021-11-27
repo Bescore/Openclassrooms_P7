@@ -46,7 +46,7 @@
 					<input class="add-comments-btn" @click="addcomment(posted.idposts)" type="submit" value="Dire" />
 					<input v-if="this.accountOwner.isAdmin == 0 || this.accountOwner.isAdmin == null" id="user-del" class="del-btn" type="submit" value="Supprimer post" @click="delPost(posted.idposts)"/>
 					<input v-if="this.accountOwner.isAdmin == 1" id="admin_del" @click="AdmindelPost(posted.idposts)" class="del-btn" type="submit" value="Suppression modérateur" />
-					<div  tabindex="0" class="created-by">post créé par: {{posted.prenom}}</div>
+					<div  tabindex="0" class="created-by">post créé par: {{posted.prenom}}  <img class="post-roundpic" :src="posted.photo"/></div>
 				</form>
 			</div>
 		</div>
@@ -131,6 +131,7 @@ export default {
 				.then((response) => {
 					//LES POSTS
 					this.posted = response.data;
+					console.log(this.posted)
 				})
 				.catch((error) => {
 					console.log(error, "problème fonction posting");
@@ -335,6 +336,15 @@ export default {
 		rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
 		rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
+.post-roundpic{
+	width:30px;
+	height:30px;
+	object-fit: cover;
+	border-radius:50%;
+	position:relative;
+	left: 10px;
+	
+}
 .title-font {
 	font-size: 23px;
 	overflow: auto;
@@ -370,6 +380,9 @@ export default {
 .created-by {
 	font-size: 15px;
 	margin: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .add-comments-btn:hover {
 	background: linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
