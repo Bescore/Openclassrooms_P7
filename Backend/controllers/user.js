@@ -27,38 +27,34 @@ exports.signup = async ( req, res, next ) => {
 //LOGIN, CONTRÔLE D'ACCÈS UTILISATEUR//
 exports.login = ( req, res, next ) => {
 
-        con.query( `SELECT idutilisateurs FROM utilisateurs WHERE email='${ req.body.email }' AND active='1'`, function ( err, resultat ) {
+        con.query( `SELECT  idutilisateurs,md_passe FROM utilisateurs WHERE email='${ req.body.email }' AND active='1'`, function ( err, resulting ) {
             if ( err ) {
-                console.log( 'Erreur sur 1 la route de login' )
+                console.log( 'Erreur 2 sur la route de login' )
             }
-            
-            con.query( `SELECT md_passe FROM utilisateurs WHERE email='${ req.body.email }' AND active='1'`, function ( err, resulting ) {
-                    if ( err ) {
-                        console.log( 'Erreur 2 sur la route de login' )
-                    }
-                     if(resultat[0]!==undefined){
-                    const idUser = resultat[ 0 ].idutilisateurs
-                    const hashedPassw = resulting[ 0 ].md_passe
-                    bcrypt.compare( req.body.password, hashedPassw )
-                        .then( valid => validate( valid ) )
+            try {
+            if ( resulting[ 0 ].idutilisateurs !== undefined ) {
+                const idUser = resulting[ 0 ].idutilisateurs
+                const hashedPassw = resulting[ 0 ].md_passe
+                bcrypt.compare( req.body.password, hashedPassw )
+                    .then( valid => validate( valid ) )
 
-                         const validate = ( valid ) => {
-                             if ( valid ) {
-                                 res.status( 200 ).json( {
-                                     token: jwt.sign(
-                                         { userId: idUser }, 'RANDOM_TOKEN_SECRET', { expiresIn: '2700s' }
-                                     ),
-                                     userId: idUser
-                                 } )
-                             } else {
-                                 res.status( 400 ).json( 'mauvais mot de passe' )
-                             }
-                         }
+                const validate = ( valid ) => {
+                    if ( valid ) {
+                        res.status( 200 ).json( {
+                            token: jwt.sign(
+                                { userId: idUser }, 'RANDOM_TOKEN_SECRET', { expiresIn: '2700s' }
+                            ),
+                            userId: idUser
+                        } )
+                    } else {
+                        res.status( 400 ).json( 'mauvais mot de passe' )
                     }
-            
-                } )
-           
-        } );
+                }
+            }
+            } catch {res.status(401).json({message:'adresse non reconnue'}) }
+        } )
+    
+       
 
 }
 
