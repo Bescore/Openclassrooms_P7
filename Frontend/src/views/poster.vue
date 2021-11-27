@@ -563,8 +563,11 @@ export default {
 		width: 300px;
 		flex: wrap;
 	}
+	#admin_del{
+		margin-left:0px;
+	}
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 350px) {
 	.posts {
 		width: 250px;
 	}
@@ -572,7 +575,7 @@ export default {
 		display: none;
 	}
 	.compte-banner {
-		width: 255px;
+		width: 254px;
 	}
 	.actualite {
 		width: 250px;
@@ -587,6 +590,9 @@ export default {
 	#post-body {
 		width: 245px;
 		flex: wrap;
+	}
+	#admin_del{
+		margin-left:-17px;
 	}
 }
 </style>
