@@ -60,7 +60,7 @@ exports.userAccount = ( req, res, next ) => {
 exports.addcomment = ( req, res, next ) => {
     const time = new Date().toLocaleTimeString()
     con.query(
-        `INSERT INTO comments(commentaires,utilisateurs_idutilisateurs,DATE,posts_idposts) VALUES ("${ req.body.commentaire }","${ req.body.userid }","${ time }","${req.body.idpost}")`,
+        `INSERT INTO comments(commentaires,utilisateurs_idutilisateurs,DATE,posts_idposts) VALUES ("${ req.body.commentaire }","${ req.body.userid }","${ time }","${ req.body.idpost }")`,
 
         function ( err, results ) {
             if ( err ) {
@@ -159,15 +159,16 @@ exports.changeMyInfos = ( req, res, next ) => {
 
 exports.deletePost = ( req, res, next ) => {
     con.query(
-        `SELECT utilisateurs_idutilisateurs,post_img FROM posts WHERE utilisateurs_idutilisateurs="${ req.body.userid }"`,
+        `SELECT utilisateurs_idutilisateurs,post_img FROM posts WHERE idposts="${ req.body.postid }"`,
 
         function ( err, results ) {
             if ( err ) {
                 console.log( 'Erreur backend route userAccount 1' );
             }
+            console.log( req.body )
             try {
                 if ( JSON.stringify( results[ 0 ].utilisateurs_idutilisateurs ) !== req.body.userid ) {
-                    console.log( JSON.stringify( results[ 0 ].utilisateurs_idutilisateurs ) )
+                    res.status( 200 ).json( 'nope' )
                 } else {
                     con.query( `SELECT post_img FROM posts WHERE idposts="${ req.body.postid }"`, function ( err, resulted ) {
                         if ( err ) {
@@ -186,9 +187,6 @@ exports.deletePost = ( req, res, next ) => {
                                 console.log( 'Erreur backend route userAccount 3' );
                             }
                             res.status( 201 ).json( resultat )
-
-
-
                         } )
 
                 }
@@ -276,18 +274,18 @@ exports.adminDeletepost = ( req, res, next ) => {
 
 
 exports.adminDeletecomment = ( req, res, next ) => {
-    
-            con.query(
-                `DELETE FROM comments WHERE idcommentaire="${ req.body.idcomments}"`,
 
-                function ( err, resultat ) {
-                    if ( err ) {
-                        console.log( 'Erreur backend route adminDeletecomment' );
-                    }
-                    console.log( req.body )
-                    res.status( 201 ).json( resultat )
-                } )
-       
+    con.query(
+        `DELETE FROM comments WHERE idcommentaire="${ req.body.idcomments }"`,
+
+        function ( err, resultat ) {
+            if ( err ) {
+                console.log( 'Erreur backend route adminDeletecomment' );
+            }
+            console.log( req.body )
+            res.status( 201 ).json( resultat )
+        } )
+
 }
 
 
@@ -312,7 +310,7 @@ exports.adminInactivation = ( req, res, next ) => {
                 }
 
                 res.status( 200 ).json( results[ 0 ] )
-                console.log( results[ 0 ])
+                console.log( results[ 0 ] )
 
             } )
     } catch { console.log( 'erreur backend route adminIinact' ) }
