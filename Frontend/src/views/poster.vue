@@ -583,6 +583,7 @@ export default {
 @media screen and (max-width: 350px) {
 	.posts {
 		width: 250px;
+		height:890px;
 	}
 	.compte-banner-round-pic {
 		display: none;
