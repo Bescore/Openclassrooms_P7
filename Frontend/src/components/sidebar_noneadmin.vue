@@ -4,7 +4,6 @@
 		<div :key="sideindex" v-for="(sideuser,sideindex) in sideuser">
 			<img  class="sidebar-pic" :src="sideuser.photo" alt="utilisateurs" />
 			<div>{{sideuser.nom}} {{sideuser.prenom}}</div>
-			<button   @click="desAct(sideuser.idutilisateurs)">Désactiver</button>
 		</div>
 	</div>
 </template>
@@ -31,28 +30,7 @@ export default {
 			});
 			
 	},
-	methods:{
-		desAct(userid) {
-			event.preventDefault();
-			axios
-				.put("feed/admin/mod", { userid: userid })
-				.then((response) => {
-					if (response.data.active == 1) {
-						alert(`Vous avez activé le compte de ${response.data.prenom} !`);
-					} else if (response.data.active == 0) {
-						alert(`Vous avez desactivé le compte de ${response.data.prenom} !`);
-					} else {
-						alert("Entrée non valide !");
-					}
-				})
-				.catch(function (error) {
-					alert(error);
-				});
-			setTimeout(function () {
-				location.reload();
-			}, 20);
-		},
-	}
+
 };
 </script>
 

@@ -25,7 +25,7 @@
 						:key="comindex"
 						v-for="(commentaires, comindex) in commentaires"
 					>
-						<div class="round-name">
+						<div class="round-name"><input v-if="this.accountOwner.isAdmin==1" @click="delComment(commentaires.idcommentaire)" value="x" type="button"/>
 							<img class="photo-comments" :src="commentaires.photo" alt="utilisateur en chat" />
 							{{
 							commentaires.prenom
@@ -50,10 +50,10 @@
 				</form>
 			</div>
 		</div>
-		<adminsupp id="admin"></adminsupp>
 		<posting_box></posting_box>
-		<sidebar></sidebar>
-		<sidebar_left></sidebar_left>
+		<sidebar v-if="this.accountOwner.isAdmin == 1"></sidebar>
+		<sidebar_left v-if="this.accountOwner.isAdmin == 1"></sidebar_left>
+		<sidebar_noneadmin v-if="this.accountOwner.isAdmin == 0 || this.accountOwner.isAdmin == null"></sidebar_noneadmin>
 	</div>
 </template>
 
@@ -62,15 +62,15 @@ import router from "@/router/index.js";
 import axios from "axios";
 import poster from "@/views/poster.vue";
 import posting_box from "@/components/posting_box.vue";
-import adminsupp from "@/components/adminsupp.vue";
 import sidebar from "@/components/sidebar.vue";
 import sidebar_left from "@/components/sidebar_left.vue"
+import sidebar_noneadmin from "@/components/sidebar_noneadmin.vue"
 export default {
 	components: {
 		posting_box,
-		adminsupp,
 		sidebar,
-		sidebar_left
+		sidebar_left,
+		sidebar_noneadmin
 	},
 	name: poster,
 	data() {
@@ -81,7 +81,7 @@ export default {
 			posted: null,
 			user: null,
 			like: null,
-			accountOwner: 0,
+			accountOwner: null,
 			coms: "",
 		};
 	},
@@ -96,7 +96,6 @@ export default {
 				if (this.accountOwner.photo == "") {
 					document.getElementById("roundpic").style.display = "none";
 				}
-				console.log(response.data[0].isAdmin);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -113,6 +112,7 @@ export default {
 			.catch((error) => {
 				console.log(error);
 			});
+			
 	},
 
 	mounted() {
@@ -121,6 +121,7 @@ export default {
 			.then((response) => {
 				///COMMENTAIRES DES POSTS
 				this.commentaires = response.data;
+				console.log(response.data)
 			})
 			.catch((error) => {
 				console.log(error);
@@ -202,6 +203,22 @@ export default {
 			event.preventDefault();
 			axios
 				.delete("feed/admin/delete", { data: { postid: postid } })
+				.then((response) => {
+					console.log(response);
+				})
+				.catch(function (error) {
+					alert(error);
+				});
+			setTimeout(function () {
+				location.reload();
+			}, 20);
+		},
+		delComment(idcomments) {
+			event.preventDefault();
+			axios
+				.delete("feed/admin/del_comment", {
+					data: { idcomments: idcomments },
+				})
 				.then((response) => {
 					console.log(response);
 				})
@@ -309,7 +326,7 @@ export default {
 	padding: 20px;
 	border-radius: 20px;
 	width: 600px;
-	height: 960px;
+	height: 920px;
 	margin: auto;
 	margin-top: 50px;
 	margin-bottom: 30px;
@@ -351,7 +368,7 @@ export default {
 	text-shadow: 0px 1px 0px #283966;
 }
 .created-by {
-	font-size: 12px;
+	font-size: 15px;
 	margin: 20px;
 }
 .add-comments-btn:hover {
@@ -431,6 +448,7 @@ export default {
 	border-radius: 50%;
 }
 .posts-comments-child-2 {
+	margin-left:10px;
 	height: 40px;
 	display: flex;
 	align-items: center;

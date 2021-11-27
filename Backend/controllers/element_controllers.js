@@ -32,7 +32,6 @@ exports.userComments = ( req, res, next ) => {
                 console.log( 'Erreur backend sur la route des commentaires du post' );
             }
             res.status( 200 ).json( results )
-            console.log(req.body)
 
 
         } )
@@ -59,7 +58,6 @@ exports.userAccount = ( req, res, next ) => {
 
 
 exports.addcomment = ( req, res, next ) => {
-    console.log( req.body )
     const time = new Date().toLocaleTimeString()
     con.query(
         `INSERT INTO comments(commentaires,utilisateurs_idutilisateurs,DATE,posts_idposts) VALUES ("${ req.body.commentaire }","${ req.body.userid }","${ time }","${req.body.idpost}")`,
@@ -97,7 +95,6 @@ exports.addPosts = ( req, res, next ) => {
                 if ( err ) {
                     console.log( 'Erreur backend sur la route des addposts2' );
                 }
-                console.log( req.body )
                 res.status( 200 ).json( results )
 
 
@@ -161,7 +158,6 @@ exports.changeMyInfos = ( req, res, next ) => {
 
 
 exports.deletePost = ( req, res, next ) => {
-    console.log(req.body)
     con.query(
         `SELECT utilisateurs_idutilisateurs,post_img FROM posts WHERE utilisateurs_idutilisateurs="${ req.body.userid }"`,
 
@@ -189,7 +185,6 @@ exports.deletePost = ( req, res, next ) => {
                             if ( err ) {
                                 console.log( 'Erreur backend route userAccount 3' );
                             }
-                            console.log( "req.body" )
                             res.status( 201 ).json( resultat )
 
 
@@ -281,20 +276,9 @@ exports.adminDeletepost = ( req, res, next ) => {
 
 
 exports.adminDeletecomment = ( req, res, next ) => {
-    con.query(
-        `SELECT idcommentaire FROM comments WHERE commentaires="${ req.body.commentaires }"`,
-
-        function ( err, results ) {
-            if ( err ) {
-                ( 'Erreur backend sur la route getAllusers' );
-            }
-
-            console.log( results[ 0 ].idcommentaire )
-
-
-
+    
             con.query(
-                `DELETE FROM comments WHERE idcommentaire="${ results[ 0 ].idcommentaire }"`,
+                `DELETE FROM comments WHERE idcommentaire="${ req.body.idcomments}"`,
 
                 function ( err, resultat ) {
                     if ( err ) {
@@ -303,7 +287,7 @@ exports.adminDeletecomment = ( req, res, next ) => {
                     console.log( req.body )
                     res.status( 201 ).json( resultat )
                 } )
-        } )
+       
 }
 
 
