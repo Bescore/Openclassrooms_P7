@@ -46,7 +46,7 @@
 					<input class="add-comments-btn" @click="addcomment(posted.idposts)" type="submit" value="Dire" />
 					<input v-if="this.accountOwner.isAdmin == 0 || this.accountOwner.isAdmin == null" id="user-del" class="del-btn" type="submit" value="Supprimer post" @click="delPost(posted.idposts)"/>
 					<input v-if="this.accountOwner.isAdmin == 1" id="admin_del" @click="AdmindelPost(posted.idposts)" class="del-btn" type="submit" value="Suppression modérateur" />
-					<div  tabindex="0" class="created-by">post créé par: {{posted.prenom}}  <img class="post-roundpic" :src="posted.photo"/></div>
+					<div  tabindex="0" class="created-by">post créé par: {{posted.prenom}}  <img class="post-roundpic" :src="posted.photo" alt="créateur du post"/></div>
 				</form>
 			</div>
 		</div>
