@@ -3,7 +3,7 @@
 		<div>Membres inactifs</div>
 		<div :key="sideindex" v-for="(sideuser_inactive,sideindex) in sideuser_inactive">
 			<img  class="sidebar-pic" :src="sideuser_inactive.photo" alt="utilisateurs" />
-			<div>{{sideuser_inactive.nom}} {{sideuser_inactive.prenom}}</div>
+			<div>{{sideuser_inactive.prenom}} {{sideuser_inactive.nom}}</div>
 			<button id="activate" @click="activeAcc(sideuser_inactive.idutilisateurs)"> Activer</button>
 		</div>
 	</div>

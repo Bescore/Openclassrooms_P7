@@ -5,7 +5,7 @@ const jwt = require( 'jsonwebtoken' )
 //CREATION D'UTILISATEUR//
 exports.signup = async ( req, res, next ) => {
     const hashy = await bcrypt.hash( req.body.password, 10 )
-    const photo =`${ req.protocol }://${ req.get( 'host' ) }/image/user-icon.png`
+    const photo =`https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/User_with_smile.svg/1200px-User_with_smile.svg.png`
     con.query( `INSERT INTO utilisateurs(nom,prenom,md_passe,email,photo,active) VALUES("${ req.body.nom }","${ req.body.prenom }","${ hashy }","${ req.body.email }","${photo}",'1')`, function ( err, result ) {
 
         console.log( req.body );
