@@ -50,6 +50,7 @@ export default {
 		},
 
 		addpost() {
+			if (this.titre && this.post_body!==null){
 			event.preventDefault();
 			const secret = localStorage.getItem("secret");
 			if (document.getElementById("image").value !== "") {
@@ -88,6 +89,7 @@ export default {
 			setTimeout(function () {
 				location.reload();
 			}, 100);
+			}else{ event.preventDefault(); alert("Écrivez d'abord quelque chose dans les DEUX champs 😎 !");}
 		},
 	},
 };
