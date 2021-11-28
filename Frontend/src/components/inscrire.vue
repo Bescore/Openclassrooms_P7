@@ -1,6 +1,11 @@
 <template>
 	<div>
-		<img tabindex="0" class="groupopict" src="@\assets\icon-left-font-monochrome-black.png" alt="groupomania" />
+		<img
+			tabindex="0"
+			class="groupopict"
+			src="@\assets\icon-left-font-monochrome-black.png"
+			alt="groupomania"
+		/>
 		<h1>{{ inscrireinput }}</h1>
 		<form @submit.stop.prevent="submit">
 			<label for="email">Email :</label>
@@ -111,6 +116,9 @@ export default {
 			) {
 				alert("données incorrectes");
 			} else {
+				setTimeout(function () {
+					location.reload();
+				}, 100);
 				axios
 					.post("auth/signup", data)
 					.then((response) => {
@@ -118,8 +126,8 @@ export default {
 							"secret",
 							response.data.userId[0].idutilisateurs
 						),
-						localStorage.setItem('token',response.data.token)
-							this.$router.push("/feed");
+							localStorage.setItem("token", response.data.token);
+						this.$router.push("/feed");
 					})
 					.catch((err) => {
 						console.log(err + " " + "envoi du login n'a pas aboutie");
