@@ -112,12 +112,13 @@ export default {
 				alert("données incorrectes");
 			} else {
 				axios
-					.post("auth/signup", data, console.log(data))
+					.post("auth/signup", data)
 					.then((response) => {
 						localStorage.setItem(
 							"secret",
-							JSON.stringify(response.data.userId[0].idutilisateurs)
+							response.data.userId[0].idutilisateurs
 						),
+						localStorage.setItem('token',response.data.token)
 							this.$router.push("/feed");
 					})
 					.catch((err) => {
