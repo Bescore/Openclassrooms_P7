@@ -12,7 +12,7 @@ exports.signup = async ( req, res, next ) => {
     } );
     con.query( `SELECT idutilisateurs FROM utilisateurs WHERE email='${ req.body.email }'`, function ( err, result ) {
         if ( err ) {
-            console.log( 'Erreur sur 1 la route de login' )
+            console.log( 'Erreur sur 1 la route de crétation utilisateur' )
         }
         res.status( 200 ).json( {
             token: jwt.sign(
@@ -29,7 +29,7 @@ exports.login = ( req, res, next ) => {
 
         con.query( `SELECT  idutilisateurs,md_passe FROM utilisateurs WHERE email='${ req.body.email }' AND active='1'`, function ( err, resulting ) {
             if ( err ) {
-                console.log( 'Erreur 2 sur la route de login' )
+                console.log( 'Erreur 1 sur la route de login' )
             }
             try {
             if ( resulting[ 0 ].idutilisateurs !== undefined ) {
