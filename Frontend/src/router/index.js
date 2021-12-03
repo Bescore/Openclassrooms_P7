@@ -11,23 +11,23 @@ const routes = [
   {
     path: '/inscrire',
     name: 'inscription',
-    component: () => import(/* webpackChunkName: "about" */ '../views/inscrire.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/inscrire.vue' )
   },
   {
     path: '/feed',
-    name:' post',
+    name: ' post',
     component: poster
   },
   {
     path: '/compte',
     name: 'compte',
-    component:compte
+    component: compte
   }
-  ]
+]
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+const router = createRouter( {
+  history: createWebHistory( process.env.BASE_URL ),
   routes
-})
+} )
 
 export default router

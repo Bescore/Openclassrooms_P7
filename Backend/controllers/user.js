@@ -5,8 +5,8 @@ const jwt = require( 'jsonwebtoken' )
 //CREATION D'UTILISATEUR//
 exports.signup = async ( req, res, next ) => {
     const hashy = await bcrypt.hash( req.body.password, 10 )
-    const photo =`https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/User_with_smile.svg/1200px-User_with_smile.svg.png`
-    con.query( `INSERT INTO utilisateurs(nom,prenom,md_passe,email,photo,active) VALUES("${ req.body.nom }","${ req.body.prenom }","${ hashy }","${ req.body.email }","${photo}",'1')`, function ( err, result ) {
+    const photo = `https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/User_with_smile.svg/1200px-User_with_smile.svg.png`
+    con.query( `INSERT INTO utilisateurs(nom,prenom,md_passe,email,photo,active) VALUES("${ req.body.nom }","${ req.body.prenom }","${ hashy }","${ req.body.email }","${ photo }",'1')`, function ( err, result ) {
 
         console.log( req.body );
     } );
@@ -20,18 +20,18 @@ exports.signup = async ( req, res, next ) => {
             ),
             userId: result
         } )
-       
-       } )
+
+    } )
 };
 
 //LOGIN, CONTRÔLE D'ACCÈS UTILISATEUR//
 exports.login = ( req, res, next ) => {
 
-        con.query( `SELECT  idutilisateurs,md_passe FROM utilisateurs WHERE email='${ req.body.email }' AND active='1'`, function ( err, resulting ) {
-            if ( err ) {
-                console.log( 'Erreur 1 sur la route de login' )
-            }
-            try {
+    con.query( `SELECT  idutilisateurs,md_passe FROM utilisateurs WHERE email='${ req.body.email }' AND active='1'`, function ( err, resulting ) {
+        if ( err ) {
+            console.log( 'Erreur 1 sur la route de login' )
+        }
+        try {
             if ( resulting[ 0 ].idutilisateurs !== undefined ) {
                 const idUser = resulting[ 0 ].idutilisateurs
                 const hashedPassw = resulting[ 0 ].md_passe
@@ -51,10 +51,10 @@ exports.login = ( req, res, next ) => {
                     }
                 }
             }
-            } catch {res.status(401).json({message:'adresse non reconnue'}) }
-        } )
-    
-       
+        } catch { res.status( 401 ).json( { message: 'adresse non reconnue' } ) }
+    } )
+
+
 
 }
 
