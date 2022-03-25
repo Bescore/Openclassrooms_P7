@@ -7,6 +7,5 @@
     "html.format.endWithNewline": true,
     "html.format.indentInnerHtml": true,
     "html.format.wrapAttributes": "force-aligned",
-    "prettier.printWidth": 250,
     "prettier.jsxBracketSameLine": true
 }
