@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1 tabindex="0">Vos informations personelles</h1>
+		<h1 tabindex="0">Vos  informations personelles</h1>
 		<div>
 			<router-link class="mur" to="/feed">Mur</router-link>
 			<button
