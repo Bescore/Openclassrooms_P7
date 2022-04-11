@@ -1,9 +1,9 @@
 const express = require( 'express' );
 const app = express();
 const elementRoutes = require( './routes/elements_route' );
-const userRoutes=require('./routes/user_route')
+const userRoutes = require( './routes/user_route' )
 const path = require( 'path' );
-const bodyParser=require('body-parser')
+const bodyParser = require( 'body-parser' )
 const helmet = require( "helmet" );
 const rateLimit = require( "express-rate-limit" );//anti ddos
 
@@ -34,6 +34,6 @@ app.use( bodyParser.json() );
 app.use( "/image", express.static( path.join( __dirname, 'image' ) ) );
 
 app.use( '/', elementRoutes );
-app.use( '/auth',userRoutes );
+app.use( '/auth', userRoutes );
 
 module.exports = app;

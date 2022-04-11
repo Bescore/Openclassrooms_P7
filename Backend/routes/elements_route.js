@@ -33,7 +33,7 @@ router.put( '/compte/changes', authentification, elementCtrl.changeMyInfos );
 router.delete( '/feed/delete', authentification, elementCtrl.deletePost )
 
 //route de desactivation du compte//
-router.put( '/compte/inactive', authentification, elementCtrl.deSactivate)
+router.put( '/compte/inactive', authentification, elementCtrl.deSactivate )
 
 //route de suppression de post admin//
 router.delete( '/feed/admin/delete', authentification, elementCtrl.adminDeletepost )
@@ -51,5 +51,5 @@ router.get( '/feed/user_list', authentification, elementCtrl.getAllusers );
 router.get( '/feed/user_list/inactive', authentification, elementCtrl.getAllusersinactive )
 
 //route de verification de validité du token//
-router.post( '/feed/connect_verify',elementCtrl.verifyToken );
+router.post( '/feed/connect_verify', elementCtrl.verifyToken );
 module.exports = router;
