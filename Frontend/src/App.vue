@@ -60,85 +60,85 @@
 </template>
 
 <style lang="scss">
-	@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
-	body {
-		background: #bcb7cd;
-		font-family: "Roboto", sans-serif;
-	}
-	#app {
-		font-family: "Roboto", sans-serif;
-		-webkit-font-smoothing: antialiased;
-		text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+body {
+	background: #bcb7cd;
+	font-family: "Roboto", sans-serif;
+}
+#app {
+	font-family: "Roboto", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	text-align: center;
+	color: #2c3e50;
+}
+
+#nav {
+	padding: 20px;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+
+	a {
+		font-weight: bold;
 		color: #2c3e50;
-	}
 
-	#nav {
-		padding: 20px;
-		display: flex;
-		justify-content: space-evenly;
-		align-items: center;
-
-		a {
-			font-weight: bold;
-			color: #2c3e50;
-
-			&.router-link-exact-active {
-				color: #db590d;
-			}
-			text-decoration: none;
+		&.router-link-exact-active {
+			color: #db590d;
 		}
-
-		text-align: right;
-	}
-	.groupopict {
-		width: 250px;
-		height: 250px;
-		border-radius: 50%;
-		margin-top: 50px;
-	}
-	.groupicon {
-		width: 50px;
-		height: 50px;
+		text-decoration: none;
 	}
 
-	.con {
-		display: flex;
+	text-align: right;
+}
+.groupopict {
+	width: 250px;
+	height: 250px;
+	border-radius: 50%;
+	margin-top: 50px;
+}
+.groupicon {
+	width: 50px;
+	height: 50px;
+}
+
+.con {
+	display: flex;
+}
+.con-btn {
+	box-shadow: 3px 4px 0px 0px #899599;
+	background: linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+	background-color: #ededed;
+	border-radius: 15px;
+	border: 1px solid #d6bcd6;
+	display: inline-block;
+	cursor: pointer;
+	color: #3a8a9e;
+	font-family: Arial;
+	font-size: 17px;
+	padding: 7px 25px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #e1e2ed;
+	margin: 20px;
+}
+.con-btn:hover {
+	background: linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+	background-color: #bab1ba;
+}
+.con-btn:active {
+	position: relative;
+	top: 1px;
+}
+///////////////MEDIA QUERIES///////////
+@media screen and (max-width: 626px) {
+	#nav-log {
+		display: none;
 	}
 	.con-btn {
-		box-shadow: 3px 4px 0px 0px #899599;
-		background: linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
-		background-color: #ededed;
-		border-radius: 15px;
-		border: 1px solid #d6bcd6;
-		display: inline-block;
-		cursor: pointer;
-		color: #3a8a9e;
-		font-family: Arial;
-		font-size: 17px;
-		padding: 7px 25px;
-		text-decoration: none;
-		text-shadow: 0px 1px 0px #e1e2ed;
-		margin: 20px;
+		width: 110px;
+		display: flex;
+		justify-content: center;
+		margin: 4px;
+		padding: 5px 20px;
 	}
-	.con-btn:hover {
-		background: linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
-		background-color: #bab1ba;
-	}
-	.con-btn:active {
-		position: relative;
-		top: 1px;
-	}
-	///////////////MEDIA QUERIES///////////
-	@media screen and (max-width: 626px) {
-		#nav-log {
-			display: none;
-		}
-		.con-btn {
-			width: 110px;
-			display: flex;
-			justify-content: center;
-			margin: 4px;
-			padding: 5px 20px;
-		}
-	}
+}
 </style>
