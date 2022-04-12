@@ -6,7 +6,14 @@ const path = require( 'path' );
 const bodyParser = require( 'body-parser' )
 const helmet = require( "helmet" );
 const rateLimit = require( "express-rate-limit" );//anti ddos
+var history = require('connect-history-api-fallback');
 
+
+
+
+
+
+app.use(history());
 //sécurité helmet//
 app.use( helmet() );
 
