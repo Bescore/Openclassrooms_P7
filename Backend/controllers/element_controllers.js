@@ -8,7 +8,7 @@ const jwt = require( 'jsonwebtoken' )
 exports.userPosts = ( req, res, next ) => {
 
     con.query(
-        `SELECT * FROM utilisateurs C,posts U WHERE C.idutilisateurs= U.idutilisateurs`,
+        `SELECT * FROM utilisateurs C,posts U WHERE C.idutilisateurs= U.idutilisateurs `,
 
         function ( err, results ) {
             if ( err ) {

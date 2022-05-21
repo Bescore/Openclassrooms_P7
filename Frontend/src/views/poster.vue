@@ -162,16 +162,7 @@
 				});
 		},
 
-		commentaires() {
-			axios
-				.get("feed/commentaires")
-				.then((response) => {
-					this.commentaires = response.data;
-				})
-				.catch((error) => {
-					console.log(error);
-				});
-		},
+	
 
 		mounted() {
 			axios
@@ -179,6 +170,7 @@
 				.then((response) => {
 					///COMMENTAIRES DES POSTS
 					this.commentaires = response.data;
+					console.log(response.data)
 				})
 				.catch((error) => {
 					console.log(error);
@@ -188,7 +180,6 @@
 					.then((response) => {
 						//LES POSTS
 						this.posted = response.data;
-						console.log(response.data);
 					})
 					.catch((error) => {
 						console.log(error, "problème fonction posting");
@@ -223,7 +214,6 @@
 						idpost: idpost,
 					})
 					.then((response) => {
-						console.log(this.coms);
 						console.log(response);
 					})
 					.catch(function (error) {
