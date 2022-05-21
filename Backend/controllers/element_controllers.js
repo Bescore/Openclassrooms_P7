@@ -8,7 +8,7 @@ const jwt = require( 'jsonwebtoken' )
 exports.userPosts = ( req, res, next ) => {
 
     con.query(
-        `SELECT * FROM utilisateurs C,posts U WHERE C.idutilisateurs= U.utilisateurs_idutilisateurs`,
+        `SELECT * FROM utilisateurs C,posts U WHERE C.idutilisateurs= U.idutilisateurs`,
 
         function ( err, results ) {
             if ( err ) {
@@ -25,7 +25,7 @@ exports.userPosts = ( req, res, next ) => {
 exports.userComments = ( req, res, next ) => {
 
     con.query(
-        'SELECT * FROM comments C,utilisateurs U WHERE C.utilisateurs_idutilisateurs= U.idutilisateurs  ORDER BY DATE ASC',
+        'SELECT * FROM comments C,utilisateurs U, posts P WHERE C.com_idutilisateurs= U.idutilisateurs   AND C.com_idposts=P.idposts ORDER BY dates DESC',
 
         function ( err, results ) {
             if ( err ) {
@@ -58,11 +58,12 @@ exports.userAccount = ( req, res, next ) => {
 
 
 exports.addcomment = ( req, res, next ) => {
-    const time = new Date().toLocaleTimeString()
+    const time = new Date().toISOString().slice(0, 19).replace('T', ' ');
     con.query(
-        `INSERT INTO comments(commentaires,utilisateurs_idutilisateurs,DATE,posts_idposts) VALUES ("${ req.body.commentaire }","${ req.body.userid }","${ time }","${ req.body.idpost }")`,
+        `INSERT INTO comments(commentaires,com_idutilisateurs,com_idposts,dates) VALUES ("${ req.body.commentaire }","${ req.body.userid }","${ req.body.idpost }","${ time }")`,
 
         function ( err, results ) {
+            console.log(time)
             if ( err ) {
                 console.log( 'Erreur backend sur la route des comments' );
             }
@@ -79,7 +80,7 @@ exports.addPosts = ( req, res, next ) => {
         req.body.post_img = `${ req.protocol }://${ req.get( 'host' ) }/image/${ req.file.filename }`
 
         con.query(
-            `INSERT INTO posts(post_body,post_img,titre,utilisateurs_idutilisateurs,likes_idlike) VALUES ("${ req.body.post_body }","${ req.body.post_img }","${ req.body.titre }","${ req.body.userid }","${ req.body.userid }")`, function ( err, results ) {
+            `INSERT INTO posts(post_body,post_img,titre,idutilisateurs) VALUES ("${ req.body.post_body }","${ req.body.post_img }","${ req.body.titre }","${ req.body.userid }")`, function ( err, results ) {
                 if ( err ) {
                     console.log( 'Erreur backend sur la route des addposts1' );
                 }
@@ -91,7 +92,7 @@ exports.addPosts = ( req, res, next ) => {
     } else {
         const img = "https://www.zdnet.fr/zdnet/i/edit/ne/2014/09/the-impact-of-social-media-on-enterprise-apps-600.jpg"
         con.query(
-            `INSERT INTO posts(post_body,post_img,titre,utilisateurs_idutilisateurs,likes_idlike) VALUES ("${ req.body.post_body }","${ img }","${ req.body.titre }","${ req.body.userid }","${ req.body.userid }")`, function ( err, results ) {
+            `INSERT INTO posts(post_body,post_img,titre,idutilisateurs) VALUES ("${ req.body.post_body }","${ img }","${ req.body.titre }","${ req.body.userid }")`, function ( err, results ) {
                 if ( err ) {
                     console.log( 'Erreur backend sur la route des addposts2' );
                 }
@@ -159,7 +160,7 @@ exports.changeMyInfos = ( req, res, next ) => {
 
 exports.deletePost = ( req, res, next ) => {
     con.query(
-        `SELECT utilisateurs_idutilisateurs,post_img FROM posts WHERE idposts="${ req.body.postid }"`,
+        `SELECT idutilisateurs,post_img FROM posts WHERE idposts="${ req.body.postid }"`,
 
         function ( err, results ) {
             if ( err ) {
@@ -167,7 +168,7 @@ exports.deletePost = ( req, res, next ) => {
             }
             console.log( req.body )
             try {
-                if ( JSON.stringify( results[ 0 ].utilisateurs_idutilisateurs ) !== req.body.userid ) {
+                if ( JSON.stringify( results[ 0 ].idutilisateurs ) !== req.body.userid ) {
                     res.status( 200 ).json( 'nope' )
                 } else {
                     con.query( `SELECT post_img FROM posts WHERE idposts="${ req.body.postid }"`, function ( err, resulted ) {
@@ -276,7 +277,7 @@ exports.adminDeletepost = ( req, res, next ) => {
 exports.adminDeletecomment = ( req, res, next ) => {
 
     con.query(
-        `DELETE FROM comments WHERE idcommentaire="${ req.body.idcomments }"`,
+        `DELETE FROM comments WHERE idcomments="${ req.body.idcomments }"`,
 
         function ( err, resultat ) {
             if ( err ) {

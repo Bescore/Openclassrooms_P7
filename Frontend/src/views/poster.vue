@@ -47,7 +47,7 @@
 						<div class="round-name">
 							<input
 								v-if="this.accountOwner.isAdmin == 1"
-								@click="delComment(commentaires.idcommentaire)"
+								@click="delComment(commentaires.idcomments)"
 								value="x"
 								type="button"
 							/>
@@ -58,7 +58,7 @@
 							/>
 							{{ commentaires.prenom }}
 							à
-							<div class="date-time">{{ commentaires.date }} :</div>
+							<div class="date-time">{{ commentaires.dates.slice(0, 19).replace('T', ' / ')}} :</div>
 						</div>
 						{{ commentaires.commentaires }}
 					</div>
@@ -167,7 +167,6 @@
 				.get("feed/commentaires")
 				.then((response) => {
 					this.commentaires = response.data;
-					console.log(response);
 				})
 				.catch((error) => {
 					console.log(error);
@@ -180,7 +179,6 @@
 				.then((response) => {
 					///COMMENTAIRES DES POSTS
 					this.commentaires = response.data;
-					console.log(response.data);
 				})
 				.catch((error) => {
 					console.log(error);
@@ -190,7 +188,7 @@
 					.then((response) => {
 						//LES POSTS
 						this.posted = response.data;
-						console.log(this.posted);
+						console.log(response.data);
 					})
 					.catch((error) => {
 						console.log(error, "problème fonction posting");
@@ -221,7 +219,7 @@
 				axios
 					.post("feed/comment", {
 						commentaire: this.coms,
-						userid: localStorage.getItem("secret"),
+						userid: parseInt(localStorage.getItem("secret")),
 						idpost: idpost,
 					})
 					.then((response) => {
