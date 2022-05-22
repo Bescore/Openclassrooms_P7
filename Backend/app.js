@@ -4,14 +4,13 @@ const app = express();
 const elementRoutes = require( './routes/elements_route' );
 const userRoutes = require( './routes/user_route' )
 const path = require( 'path' );
-const bodyParser = require( 'body-parser' )
 const helmet = require( "helmet" );
 const rateLimit = require( "express-rate-limit" );//anti ddos
 var history = require('connect-history-api-fallback');
 
 
-
-
+//parser//
+app.use( express.json() );
 
 
 app.use(history());
@@ -33,9 +32,6 @@ const limiter = rateLimit( {
 } );
 //  apply to all requests
 app.use( limiter );
-
-//body parser pour traiter les objets//
-app.use( bodyParser.json() );
 
 
 //ligne lié à multer, va servir le dossier indiqué//
