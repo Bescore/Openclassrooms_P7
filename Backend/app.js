@@ -35,7 +35,7 @@ app.use( limiter );
 
 
 //ligne lié à multer, va servir le dossier indiqué//
-app.use( "/image", express.static( path.join( __dirname, 'image' ) ) );
+app.use( "/image", express.static( path.join( process.cwd(), 'image' ) ) );
 
 app.use( '/', elementRoutes );
 app.use( '/auth', userRoutes );
