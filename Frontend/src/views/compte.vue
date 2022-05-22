@@ -443,7 +443,7 @@
 				top: 50px;
 				object-fit: cover;
 			}
-			@media screen and (max-width: 320px) {
+			@media screen and (max-width: 457px) {
 				.compte-contains-infos {
 					left: -270px;
 					top: 600px;

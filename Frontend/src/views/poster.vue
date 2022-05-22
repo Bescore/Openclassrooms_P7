@@ -608,6 +608,7 @@
 			overflow: hidden;
 			object-fit: cover;
 			animation: bounce 0.7s ease infinite;
+			display: none;
 		}
 		#delete {
 			margin-top: 20px;
@@ -626,6 +627,17 @@
 		#admin_del {
 			margin-left: 0px;
 		}
+		.moderate {
+		border: solid 2px;
+		border-image: linear-gradient(to right, darkblue, darkorchid) 1;
+		width: 20px;
+		height: 20px;
+		text-align: center;
+		justify-content: center;
+		align-items: center;
+		display: flex;
+		margin-left:10px;
+	}
 	}
 	@media screen and (max-width: 350px) {
 		.posts {
@@ -655,5 +667,8 @@
 		#admin_del {
 			margin-left: -17px;
 		}
+		.moderate {
+	display: none;
+	}
 	}
 </style>

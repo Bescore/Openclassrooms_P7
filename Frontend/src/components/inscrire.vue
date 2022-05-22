@@ -145,16 +145,21 @@
 					axios
 						.post("auth/signup", data)
 						.then((response) => {
+							if (response.data=="email présent dans la base") {
+								alert("cet email est déjà utilisé")
+							}else{
 							localStorage.setItem(
 								"secret",
 								response.data.userId[0].idutilisateurs
 							),
 								localStorage.setItem("token", response.data.token);
-							this.$router.push("/feed");
-						})
+							this.$router.push("/");
+							alert("l'inscription s'est bien passé, connectez vous !")
+						}})
 						.catch((err) => {
 							console.log(err + " " + "envoi du login n'a pas aboutie");
 						});
+				
 				}
 			},
 		},
