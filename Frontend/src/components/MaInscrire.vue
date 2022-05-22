@@ -139,9 +139,6 @@
 				) {
 					alert("données incorrectes");
 				} else {
-					setTimeout(function () {
-						location.reload();
-					}, 100);
 					axios
 						.post("auth/signup", data)
 						.then((response) => {
@@ -153,8 +150,8 @@
 								response.data.userId[0].idutilisateurs
 							),
 								localStorage.setItem("token", response.data.token);
-							this.$router.push("/");
 							alert("l'inscription s'est bien passé, connectez vous !")
+							this.$router.push("/");
 						}})
 						.catch((err) => {
 							console.log(err + " " + "envoi du login n'a pas aboutie");
