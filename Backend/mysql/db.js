@@ -15,6 +15,9 @@ con.connect( ( err ) => {
     }
     console.log( 'Base de donnée connectée !' );
 } );
+setInterval(function () {
+    con.query( 'SELECT 1' );
+}, 5000);
 
 /*EXEMPLE D'UTILISATION DES QUERY ET MANIPULATION
 const kiki = con.query(
