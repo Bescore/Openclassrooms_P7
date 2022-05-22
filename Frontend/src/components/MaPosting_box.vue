@@ -40,7 +40,7 @@
 	import formData from "form-data";
 	import axios from "axios";
 	export default {
-		name: "posting",
+		name: "MaPosting",
 		data() {
 			return {
 				fileselect: null,

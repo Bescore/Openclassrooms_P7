@@ -1,26 +1,26 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import connecter from '../views/connecter.vue'
-import poster from '../views/poster.vue'
-import compte from '../views/compte.vue'
+import connecter from '../views/MaConnecter.vue'
+import poster from '../views/MaPoster.vue'
+import compte from '../views/MaCompte.vue'
 const routes = [
   {
     path: '/',
-    name: 'connection',
+    name: 'MaConnection',
     component: connecter
   },
   {
     path: '/inscrire',
-    name: 'inscription',
-    component: () => import(/* webpackChunkName: "about" */ '../views/inscrire.vue' )
+    name: 'MaInscription',
+    component: () => import(/* webpackChunkName: "about" */ '../views/MaInscrire.vue' )
   },
   {
     path: '/feed',
-    name: ' post',
+    name: ' MaPost',
     component: poster
   },
   {
     path: '/compte',
-    name: 'compte',
+    name: 'MyCompte',
     component: compte
   }
 ]

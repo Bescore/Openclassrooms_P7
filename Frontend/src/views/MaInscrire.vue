@@ -4,9 +4,9 @@
 	</div>
 </template>
 <script>
-	import inscrire from "@/components/inscrire.vue";
+	import inscrire from "@/components/MaInscrire.vue";
 	export default {
-		name: "inscription",
+		name: "MaInscription",
 		components: {
 			inscrire,
 		},

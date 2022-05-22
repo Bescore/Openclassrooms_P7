@@ -35,7 +35,7 @@
 	import "../views/axios";
 	import axios from "axios";
 	export default {
-		name: "connecteur",
+		name: "MaConnecteur",
 		props: {
 			msg: String,
 		},

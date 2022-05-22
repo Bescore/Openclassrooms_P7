@@ -120,11 +120,11 @@
 <script>
 	import router from "@/router/index.js";
 	import axios from "axios";
-	import poster from "@/views/poster.vue";
-	import posting_box from "@/components/posting_box.vue";
-	import sidebar from "@/components/sidebar.vue";
-	import sidebar_left from "@/components/sidebar_left.vue";
-	import sidebar_noneadmin from "@/components/sidebar_noneadmin.vue";
+	import poster from "@/views/MaPoster.vue";
+	import posting_box from "@/components/MaPosting_box.vue";
+	import sidebar from "@/components/MaSidebar.vue";
+	import sidebar_left from "@/components/MaSidebar_left.vue";
+	import sidebar_noneadmin from "@/components/MaSidebar_noneadmin.vue";
 	export default {
 		components: {
 			posting_box,

@@ -12,9 +12,9 @@
 
 <script>
 	// @ is an alias to /src
-	import connecter from "@/components/connecter.vue";
+	import connecter from "@/components/MaConnecter.vue";
 	export default {
-		name: "connection",
+		name: "MaConnection",
 		components: {
 			connecter,
 		},

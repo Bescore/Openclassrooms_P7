@@ -70,7 +70,7 @@
 	import "../views/axios";
 	import axios from "axios";
 	export default {
-		name: "inscrire",
+		name: "MaInscrire",
 		data() {
 			return {
 				email: "",
