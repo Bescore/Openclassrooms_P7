@@ -3,7 +3,7 @@
 		<div id="nav">
 			<svg
 				tabindex="0"
-				id="nav-log"
+				id="nav-log "
 				data-v-5f19e91b=""
 				xmlns="http://www.w3.org/2000/svg"
 				width="200"
