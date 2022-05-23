@@ -28,7 +28,7 @@
 			<input
 				@click="addpost"
 				class="create-posts-contains-inputs-btn"
-				type="submit"
+				type="button"
 				value="Créer Post !"
 				name="addpost"
 			/>

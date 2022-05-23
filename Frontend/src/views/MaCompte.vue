@@ -31,21 +31,21 @@
 					<input
 						@click="change_lastname"
 						class="form-buttons-btns"
-						type="submit"
+						type="button"
 						value="Modifier mon Nom"
 					/>
 					<br />
 					<input
 						@click="change_firstname"
 						class="form-buttons-btns"
-						type="submit"
+						type="button"
 						value="Modifier mon Prénom"
 					/>
 					<br />
 					<input
 						@click="change_email"
 						class="form-buttons-btns"
-						type="submit"
+						type="button"
 						value="Modifier mon Email"
 					/>
 					<br />
@@ -56,12 +56,14 @@
 						type="file"
 						accept=".gif, .jpg, .jpeg, .png"
 					/>
+				
 					<input
 						@click="change_image"
 						class="form-buttons-btns"
 						type="submit"
 						value="Changer de photo"
 					/>
+					
 				</form>
 				<form class="form-inputs">
 					<input
@@ -142,7 +144,7 @@
 					});
 				setTimeout(function () {
 					location.reload();
-				}, 100);
+				}, 500);
 			},
 			change_email() {
 				event.preventDefault();
