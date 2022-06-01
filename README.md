@@ -29,3 +29,5 @@ Demarrer le backend : cd backend=> node server ou nodemon server
 Demarrer le frontend : cd backend=> cd frontend=> npm run serve
 
 Ce projet n'est pas définitif il sera sûrement hébergé à l'avenir et plus simple d'accès, le cas écheant, je remettrai à jour ce readme.
+
+un aperçu ici https://discord.com/channels/412326940083486730/412326940083486732/977981935538274384
